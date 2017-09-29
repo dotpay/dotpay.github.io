@@ -1,0 +1,194 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+    namespace Dotpay\Model;
+
+    use Dotpay\Validator\Email;
+    use Dotpay\Validator\ChannelId;
+    use Dotpay\Exception\BadParameter\EmailException;
+    use Dotpay\Exception\BadParameter\ChannelIdException;
+
+    class Notification {
+        private $operation;
+        private $email;
+        private $shopEmail;
+        private $shopName;
+        private $channelId;
+        private $channelCountry;
+        private $ipCountry;
+        private $creditCard;
+        private $signature;
+
+        public function __construct(Operation $operation, $channel) {
+            $this-&gt;setOperation($operation);
+            $this-&gt;setChannelId($channel);
+        }
+
+        public function getOperation() {
+            return $this-&gt;operation;
+        }
+
+        public function getEmail() {
+            return $this-&gt;email;
+        }
+
+        public function getShopEmail() {
+            return $this-&gt;shopEmail;
+        }
+
+        public function getShopName() {
+            return $this-&gt;shopName;
+        }
+
+        public function getChannelId() {
+            return $this-&gt;channelId;
+        }
+
+        public function getChannelCountry() {
+            return $this-&gt;channelCountry;
+        }
+
+        public function getIpCountry() {
+            return $this-&gt;ipCountry;
+        }
+
+        public function getCreditCard() {
+            return $this-&gt;creditCard;
+        }
+
+        public function getSignature() {
+            return $this-&gt;signature;
+        }
+
+        public function calculateSignature($pin) {
+            $sign=
+                $pin.
+                $this-&gt;getOperation()-&gt;getAccountId().
+                $this-&gt;getOperation()-&gt;getNumber().
+                $this-&gt;getOperation()-&gt;getType().
+                $this-&gt;getOperation()-&gt;getStatus().
+                $this-&gt;getOperation()-&gt;getAmount().
+                $this-&gt;getOperation()-&gt;getCurrency().
+                $this-&gt;getOperation()-&gt;getWithdrawalAmount().
+                $this-&gt;getOperation()-&gt;getCommissionAmount().
+                $this-&gt;getOperation()-&gt;getOriginalAmount().
+                $this-&gt;getOperation()-&gt;getOriginalCurrency().
+                $this-&gt;getOperation()-&gt;getDateTime()-&gt;format('Y-m-d H:i:s').
+                $this-&gt;getOperation()-&gt;getRelatedNumber().
+                $this-&gt;getOperation()-&gt;getControl().
+                $this-&gt;getOperation()-&gt;getDescription().
+                $this-&gt;getEmail().
+                $this-&gt;getShopName().
+                $this-&gt;getShopEmail();
+            if($this-&gt;getCreditCard() !== null) {
+                $sign.=
+                    $this-&gt;getCreditCard()-&gt;getIssuerId().
+                    $this-&gt;getCreditCard()-&gt;getMask().
+                    $this-&gt;getCreditCard()-&gt;getBrand()-&gt;getCodeName().
+                    $this-&gt;getCreditCard()-&gt;getBrand()-&gt;getName().
+                    $this-&gt;getCreditCard()-&gt;getCardId();
+            }
+            $sign.=
+                $this-&gt;getChannelId().
+                $this-&gt;getChannelCountry().
+                $this-&gt;getIpCountry();
+            return hash('sha256', $sign);
+        }
+    
+    public function setOperation(Operation $operation) {
+        $this-&gt;operation = $operation;
+        return $this;
+    }
+    
+    public function setEmail($email) {
+
+        if(!Email::validate($email))
+
+            throw new EmailException($email);
+
+        $this-&gt;email = $email;
+        return $this;
+    }
+    
+    public function setShopEmail($shopEmail) {
+        if(!Email::validate($shopEmail))
+            throw new EmailException($shopEmail);
+        $this-&gt;shopEmail = $shopEmail;
+        return $this;
+    }
+    
+    public function setShopName($shopName) {
+        $this-&gt;shopName = $shopName;
+        return $this;
+    }
+    
+    public function setChannelId($channelId) {
+        if(!ChannelId::validate($channelId))
+            throw new ChannelIdException($channelId);
+        $this-&gt;channelId = $channelId;
+        return $this;
+    }
+    
+    public function setChannelCountry($channelCountry) {
+        $this-&gt;channelCountry = $channelCountry;
+        return $this;
+    }
+    
+    public function setIpCountry($ipCountry) {
+        $this-&gt;ipCountry = $ipCountry;
+        return $this;
+    }
+
+    public function setCreditCard(CreditCard $creditCard) {
+        $this-&gt;creditCard = $creditCard;
+        return $this;
+    }
+    
+    public function setSignature($signature) {
+        $this-&gt;signature = $signature;
+        return $this;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

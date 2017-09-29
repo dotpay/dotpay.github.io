@@ -1,0 +1,396 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Model;
+
+use Dotpay\Validator\Id;
+use Dotpay\Validator\Pin;
+use Dotpay\Validator\Username;
+use Dotpay\Exception\BadParameter\IdException;
+use Dotpay\Exception\BadParameter\PinException;
+use Dotpay\Exception\BadParameter\UsernameException;
+use Dotpay\Exception\BadParameter\ApiVersionException;
+
+class Configuration {
+    const SDK_VERSION = '0.1';
+    
+    const PAYMENT_URL_PROD = 'https://ssl.dotpay.pl/t2/';
+    const PAYMENT_URL_DEV = 'https://ssl.dotpay.pl/test_payment/';
+    const SELLER_URL_PROD = 'https://ssl.dotpay.pl/s2/login/';
+    const SELLER_URL_DEV = 'https://ssl.dotpay.pl/test_seller/';
+    
+    const CALLBACK_IP = '195.150.9.37';
+    const OFFICE_IP = '77.79.195.34';
+    const LOCAL_IP = '127.0.0.1';
+    
+    const OC_CHANNEL = 248;
+    const FCC_CHANNEL = 248;
+    const CC_CHANNEL = 246;
+    const MP_CHANNEL = 71;
+    const BLIK_CHANNEL = 73;
+    
+    const CASH_GROUP = 'cash';
+    const TRANSFER_GROUP = 'transfers';
+    
+    const WIDGET_CLASS_CONTAINER = 'dotpay-widget-container';
+    
+    const CURRENCIES = array(
+        'EUR',
+        'USD',
+        'GBP',
+        'JPY',
+        'CZK',
+        'SEK',
+        'PLN'
+    );
+    
+    private $enable;
+    private $id;
+    private $pin;
+    private $username;
+    private $password;
+    private $testMode;
+    private $ocVisible;
+    private $fccVisible;
+    private $fccId;
+    private $fccPin;
+    private $fccCurrencies;
+    private $ccVisible;
+    private $mpVisible;
+    private $blikVisible;
+    private $widgetVisible;
+    private $widgetCurrencies;
+    private $instructionVisible;
+    private $refundsEnable;
+    private $shopName;
+    
+    private $api = 'dev';
+    
+    public function getEnable() {
+        return $this-&gt;enable;
+    }
+    
+    public function getId() {
+        return $this-&gt;id;
+    }
+
+    public function getPin() {
+        return $this-&gt;pin;
+    }
+
+    public function getUsername() {
+        return $this-&gt;username;
+    }
+
+    public function getPassword() {
+        return $this-&gt;password;
+    }
+    
+    public function isGoodAccount() {
+        return !(empty($this-&gt;id) || empty($this-&gt;pin));
+    }
+    
+    public function isGoodApiData() {
+        return !(empty($this-&gt;username) || empty($this-&gt;password));
+    }
+
+    public function getTestMode() {
+        return $this-&gt;testMode;
+    }
+
+    public function getOcVisible() {
+        return $this-&gt;ocVisible;
+    }
+    
+    public function isOcEnable() {
+        return $this-&gt;getOcVisible() &amp;&amp; 
+               !(empty($this-&gt;username) &amp;&amp; 
+                 empty($this-&gt;password));
+    }
+
+    public function getFccVisible() {
+        return $this-&gt;fccVisible;
+    }
+
+    public function getFccId() {
+        return $this-&gt;fccId;
+    }
+
+    public function getFccPin() {
+        return $this-&gt;fccPin;
+    }
+
+    public function getFccCurrencies() {
+        return $this-&gt;fccCurrencies;
+    }
+    
+    public function isFccEnable() {
+        return $this-&gt;getFccVisible() &amp;&amp; 
+               !(empty($this-&gt;fccId) &amp;&amp; 
+                 empty($this-&gt;fccPin) &amp;&amp; 
+                 empty($this-&gt;fccCurrencies));
+    }
+
+    public function getCcVisible() {
+        return $this-&gt;ccVisible;
+    }
+
+    public function getMpVisible() {
+        return $this-&gt;mpVisible;
+    }
+
+    public function getBlikVisible() {
+        return $this-&gt;blikVisible;
+    }
+
+    public function getWidgetVisible() {
+        return $this-&gt;widgetVisible;
+    }
+    
+    public function getWidgetCurrencies() {
+        return $this-&gt;widgetCurrencies;
+    }
+    
+    public function getInstructionVisible() {
+        return $this-&gt;instructionVisible;
+    }
+    
+    public function getRefundsEnable() {
+        return $this-&gt;refundsEnable;
+    }
+    
+    public function getShopName() {
+        return $this-&gt;shopName;
+    }
+    
+    public function getApi() {
+        return $this-&gt;api;
+    }
+    
+    public function getPaymentUrl() {
+        if(!$this-&gt;getTestMode())
+            return self::PAYMENT_URL_PROD;
+        else
+            return self::PAYMENT_URL_DEV;
+    }
+    
+    public function getSellerUrl() {
+        if(!$this-&gt;getTestMode())
+            return self::SELLER_URL_PROD;
+        else
+            return self::SELLER_URL_DEV;
+    }
+    
+    public function isGatewayEnabled($currency) {
+        return $this-&gt;isCurrencyOnList($currency, implode(',', self::CURRENCIES));
+    }
+    
+    public function isCurrencyForFcc($currency) {
+        return $this-&gt;isCurrencyOnList($currency, $this-&gt;getFccCurrencies());
+    }
+    
+    public function isWidgetEnabled($currency) {
+        return !$this-&gt;isCurrencyOnList($currency, $this-&gt;getWidgetCurrencies());
+    }
+    
+    public function getShopIp() {
+        $ip = null;
+        if(isset($_SERVER['REMOTE_ADDR']))
+            $ip = $_SERVER['REMOTE_ADDR'];
+        else if(function_exists('php_sapi_name') &amp;&amp; php_sapi_name() == 'cli')
+            $ip = gethostbyname(gethostname());
+        return $ip;
+    }
+    
+    public function setEnable($enable) {
+        $this-&gt;enable = (bool)$enable;
+        return $this;
+    }
+
+    public function setId($id) {
+        if(!Id::validate($id))
+            throw new IdException($id);
+        $this-&gt;id = $id;
+        return $this;
+    }
+
+    public function setPin($pin) {
+        if(!Pin::validate($pin))
+            throw new PinException($pin);
+        $this-&gt;pin = $pin;
+        return $this;
+    }
+
+    public function setUsername($username) {
+        if(!Username::validate($username))
+            throw new UsernameException($username);
+        $this-&gt;username = $username;
+        return $this;
+    }
+
+    public function setPassword($password) {
+        if(empty($password))
+            throw new PasswordException();
+        $this-&gt;password = $password;
+        return $this;
+    }
+
+    public function setTestMode($testMode) {
+        $this-&gt;testMode = (bool)$testMode;
+        return $this;
+    }
+
+    public function setOcVisible($ocVisible) {
+        $this-&gt;ocVisible = (bool)$ocVisible;
+        return $this;
+    }
+
+    public function setFccVisible($pvVisible) {
+        $this-&gt;fccVisible = (bool)$pvVisible;
+        return $this;
+    }
+
+    public function setFccId($pvId) {
+        if(!Id::validate($pvId))
+            throw new IdException($pvId);
+        $this-&gt;fccId = $pvId;
+        return $this;
+    }
+
+    public function setFccPin($pvPin) {
+        if(!Pin::validate($pvPin))
+            throw new PinException($pvPin);
+        $this-&gt;fccPin = $pvPin;
+        return $this;
+    }
+
+    public function setFccCurrencies($pvCurrencies) {
+        $this-&gt;fccCurrencies = strtoupper($pvCurrencies);
+        return $this;
+    }
+
+    public function setCcVisible($ccVisible) {
+        $this-&gt;ccVisible = (bool)$ccVisible;
+        return $this;
+    }
+
+    public function setMpVisible($mpVisible) {
+        $this-&gt;mpVisible = (bool)$mpVisible;
+        return $this;
+    }
+
+    public function setBlikVisible($blikVisible) {
+        $this-&gt;blikVisible = (bool)$blikVisible;
+        return $this;
+    }
+
+    public function setWidgetVisible($widgetVisible) {
+        $this-&gt;widgetVisible = (bool)$widgetVisible;
+        return $this;
+    }
+    
+    public function setWidgetCurrencies($widgetCurrencies) {
+        $this-&gt;widgetCurrencies = strtoupper($widgetCurrencies);
+        return $this;
+    }
+    
+    public function setInstructionVisible($instructionVisible) {
+        $this-&gt;instructionVisible = (bool)$instructionVisible;
+        return $this;
+    }
+    
+    public function setRefundsEnable($refundsEnable) {
+        $this-&gt;refundsEnable = (bool)$refundsEnable;
+        return $this;
+    }
+    
+    public function setShopName($shopName) {
+        $this-&gt;shopName = $shopName;
+        return $this;
+    }
+
+    public function setApi($api) {
+        if($api !== 'dev')
+            throw new ApiVersionException($api);
+        $this-&gt;api = $api;
+        return $this;
+    }
+
+    public function setInitialState() {
+        $this-&gt;enable = false;
+        $this-&gt;id = '';
+        $this-&gt;pin = '';
+        $this-&gt;username = '';
+        $this-&gt;password = '';
+        $this-&gt;testMode = false;
+        $this-&gt;ocVisible = false;
+        $this-&gt;fccVisible = false;
+        $this-&gt;fccId = '';
+        $this-&gt;fccPin = '';
+        $this-&gt;fccCurrencies = '';
+        $this-&gt;ccVisible = false;
+        $this-&gt;mpVisible = false;
+        $this-&gt;blikVisible = false;
+        $this-&gt;widgetVisible = true;
+        $this-&gt;widgetCurrencies = '';
+        $this-&gt;instructionVisible = true;
+        return $this;
+    }
+    
+    private function isCurrencyOnList($currency, $list) {
+        $result = false;
+
+        $allowCurrency = str_replace(';', ',', $list);
+        $allowCurrency = strtoupper(str_replace(' ', '', $allowCurrency));
+        $allowCurrencyArray =  explode(&quot;,&quot;,trim($allowCurrency));
+        
+        if(in_array(strtoupper($currency), $allowCurrencyArray)) {
+            $result = true;
+        }
+        
+        return $result;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,136 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Model;
+
+use Dotpay\Validator\Id;
+use Dotpay\Validator\Pin;
+use Dotpay\Validator\Email;
+use Dotpay\Validator\Username;
+use Dotpay\Exception\BadParameter\IdException;
+use Dotpay\Exception\BadParameter\PinException;
+use Dotpay\Exception\BadParameter\UsernameException;
+use Dotpay\Exception\BadParameter\EmailException;
+
+class Seller {
+    private $id;
+    private $pin;
+    private $username;
+    private $password;
+    private $info;
+    private $email;
+
+    public function __construct($id, $pin) {
+        $this-&gt;setId($id);
+        $this-&gt;setPin($pin);
+    }
+
+    public function getId() {
+        return $this-&gt;id;	
+    }
+
+    public function getPin() {
+        return $this-&gt;pin;	
+    }
+
+    public function getUsername() {
+        return $this-&gt;username;	
+    }
+
+    public function getPassword() {
+        return $this-&gt;password;	
+    }
+
+    public function getInfo() {
+        return $this-&gt;info;	
+    }
+
+    public function getEmail() {
+        return $this-&gt;email;	
+    }
+
+    public function hasAccessToApi() {
+        return (!empty($this-&gt;username) &amp;&amp; !empty($this-&gt;password));
+    }
+
+    public function setId($id) {
+        if(!Id::validate($id))
+            throw new IdException($id);
+        $this-&gt;id = $id;
+        return $this;
+    }
+
+    public function setPin($pin) {
+        if(!Pin::validate($pin))
+            throw new PinException($pin);
+        $this-&gt;pin = $pin;
+        return $this;
+    }
+
+    public function setUsername($username) {
+        if(!Username::validate($username))
+            throw new UsernameException($username);
+        $this-&gt;username = $username;
+        return $this;
+    }
+
+    public function setPassword($password) {
+        $this-&gt;password = $password;
+        return $this;
+    }
+    
+    public function setInfo($info) {
+        $this-&gt;info = $info;
+        return $this;
+    }
+
+    public function setEmail($email) {
+        if(!Email::validate($email))
+            throw new EmailException($email);
+        $this-&gt;email = $email;
+        return $this;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

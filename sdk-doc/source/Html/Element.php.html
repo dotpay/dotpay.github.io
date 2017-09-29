@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Html;
+
+abstract class Element extends Node {
+    private $type;
+    
+    public function getType() {
+        return $this-&gt;type;
+    }
+    
+    public function __construct($type = '', $name=null) {
+        $this-&gt;setType($type);
+        if($name!==null)
+            $this-&gt;setName($name);
+    }
+    
+    public function getName() {
+        return $this-&gt;getAttribute('name');
+    }
+    
+    public function setName($name) {
+        return $this-&gt;setAttribute('name', $name);
+    }
+    
+    public function getClass() {
+        return $this-&gt;getAttribute('class');
+    }
+    
+    public function setClass($className) {
+        return $this-&gt;setAttribute('class', $className);
+    }
+    
+    public function getData($name) {
+        return $this-&gt;getAttribute('data-'.$name);
+    }
+    
+    public function setData($name, $value) {
+        return $this-&gt;setAttribute('data-'.$name, $value);
+    }
+    
+    public function __toString() {
+        return parent::__toString();
+    }
+    
+    private function setType($type) {
+        $this-&gt;type = $type;
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

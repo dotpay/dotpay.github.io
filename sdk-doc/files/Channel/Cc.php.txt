@@ -1,0 +1,43 @@
+<?php
+/**
+ * @package Dotpay\Channel
+ */
+namespace Dotpay\Channel;
+
+use Dotpay\Model\Configuration;
+use Dotpay\Model\Transaction;
+use Dotpay\Resource\Payment as PaymentResource;
+
+/**
+ * Class provides a special functionality for credit card payments
+ */
+class Cc extends Channel
+{
+    /**
+     * Initializes a credit card channel
+     * @param Configuration $config Dotpay configuration object
+     * @param Transaction $transaction Object with transaction details
+     * @param PaymentResource $paymentResource Payment resource which can be used for Payment API
+     */
+    public function __construct(Configuration $config, Transaction $transaction, PaymentResource $paymentResource)
+    {
+        parent::__construct(Configuration::OC_CHANNEL, 'cc', $config, $transaction, $paymentResource);
+        if (!$this->available) {
+            parent::__construct(Configuration::CC_CHANNEL, 'cc', $config, $transaction, $paymentResource);
+        }
+    }
+    
+    /**
+     * Checks if the channel is enabled to using
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return $this->config->getCcVisible() &&
+               !($this->config->getFccCorrect() ||
+                 $this->config->isCurrencyForFcc(
+                    $this->transaction->getPayment()->getOrder()->getCurrency()
+                 ));
+    }
+}
+

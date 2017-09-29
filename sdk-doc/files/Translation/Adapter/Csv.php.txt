@@ -1,0 +1,58 @@
+<?php
+
+namespace Dotpay\Translation\Adapter;
+
+use Dotpay\Translation\Adapter;
+use Dotpay\Exception\FileNotFoundException;
+
+class Csv extends Adapter {
+    const ROW_SIZE = 4096;
+    
+    private $name;
+    private $delimiter;
+    private $file;
+    private $key;
+    
+    public function __construct($fileName, $delimiter=',') {
+        $this->name = $fileName;
+        $this->delimiter = $delimiter;
+        $this->openFile();
+    }
+    
+    public function rewind() {
+        $this->key = 0;
+        if(!$this->file) {
+            $this->openFile($this->name, $this->delimiter);
+        }
+        rewind($this->file);
+    }
+    
+    public function current() {
+        $current = fgetcsv($this->file, self::ROW_SIZE, $this->delimiter);
+        ++$this->key;
+        return $current;
+    }
+    
+    public function key() {
+        return $this->key;
+    }
+    
+    public function next() {
+        return !feof($this->file);
+    }
+    
+    public function valid() {
+        if (!$this->next()) {
+            fclose($this->file);
+            return false;
+        }
+        return true;
+    }
+    
+    private function openFile($fileName, $delimiter=',') {
+        if(!file_exists($this->name))
+            throw new FileNotFoundException($this->name);
+        $this->file = fopen($this->name, 'r');
+        
+    }
+}

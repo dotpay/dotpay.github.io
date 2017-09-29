@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Html\Form;
+
+use Dotpay\Html\Container\Container;
+use Dotpay\Html\Form\Option;
+
+class Select extends Container {
+    private $selected;
+    
+    public function __construct($name = '', array $options = [], $selected = null) {
+        parent::__construct('select', $options);
+        if(!empty($name))
+            $this-&gt;setName($name);
+        if(!empty($selected))
+            $this-&gt;setSelected($selected);
+    }
+    
+    public function getSelected() {
+        return $this-&gt;selected;
+    }
+    
+    public function getOptions() {
+        return $this-&gt;getChildren();
+    }
+    
+    public function setSelected($value) {
+        foreach($this-&gt;getChildren() as $option)
+            if($this-&gt;checkValue($option, $value)) {
+                $this-&gt;selected = $option-&gt;setSelected();
+            } else {
+                $option-&gt;setSelected(false);
+            }
+        return $this;
+    }
+    
+    public function addOption(Option $option) {
+        return $this-&gt;addChild($option);
+    }
+    
+    public function removeOption($value) {
+        foreach($this-&gt;getChildren() as $option)
+            if($this-&gt;checkValue($option, $value)) {
+                $this-&gt;removeChild($option);
+                break;
+            }
+        return $this;
+    }
+    
+    private function checkValue(Option $option, $value) {
+        return $option-&gt;getValue() === $value ||
+               ($option-&gt;getValue() === null &amp;&amp; $option-&gt;getText() === $value);
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

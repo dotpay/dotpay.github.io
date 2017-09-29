@@ -1,0 +1,171 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Model;
+
+use Dotpay\Validator\OpNumber;
+use Dotpay\Validator\BankNumber;
+use Dotpay\Validator\ChannelId;
+use Dotpay\Exception\BadParameter\OperationNumberException;
+use Dotpay\Exception\BadParameter\BankNumberException;
+use Dotpay\Exception\BadParameter\AmountException;
+use Dotpay\Exception\BadParameter\CurrencyException;
+use Dotpay\Exception\BadParameter\ChannelIdException;
+
+class Instruction {
+    const DOTPAY_NAME = 'DOTPAY SA';
+    
+    const DOTPAY_STREET = 'Wielicka 72';
+    
+    const DOTPAY_CITY = '30-552 Krak&oacute;w';
+    
+    private $id;
+    private $orderId;
+    private $number;
+    private $bankAccount;
+    private $amount;
+    private $currency;
+    private $channel;
+    private $hash;
+    private $isCash;
+    
+    public function getId() {
+        return $this-&gt;id;
+    }
+    
+    public function getOrderId() {
+        return $this-&gt;orderId;
+    }
+
+    public function getNumber() {
+        return $this-&gt;number;
+    }
+
+    public function getBankAccount() {
+        return $this-&gt;bankAccount;
+    }
+
+    public function getAmount() {
+        return $this-&gt;amount;
+    }
+
+    public function getCurrency() {
+        return $this-&gt;currency;
+    }
+
+    public function getChannel() {
+        return $this-&gt;channel;
+    }
+
+    public function getHash() {
+        return $this-&gt;hash;
+    }
+
+    public function getIsCash() {
+        return $this-&gt;isCash;
+    }
+
+    public function setId($id) {
+        $this-&gt;id = $id;
+        return $this;
+    }
+    
+    public function setOrderId($orderId) {
+        $this-&gt;orderId = $orderId;
+        return $this;
+    }
+
+    public function setNumber($number) {
+        if(!OpNumber::validate($number))
+            throw new OperationNumberException($number);
+        $this-&gt;number = $number;
+        return $this;
+    }
+
+    public function setBankAccount($bankAccount) {
+        if(preg_match('/^\d{26}$/', trim($bankAccount)) === 1)
+            $bankAccount = 'PL'.$bankAccount;
+        if(!empty($bankAccount) &amp;&amp; !BankNumber::validate($bankAccount))
+            throw new BankNumberException($bankAccount);
+        $this-&gt;bankAccount = $bankAccount;
+        return $this;
+    }
+
+    public function setAmount($amount) {
+        if(empty($amount))
+            throw new AmountException($amount);
+        $this-&gt;amount = $amount;
+        return $this;
+    }
+
+    public function setCurrency($currency) {
+        $currency = strtoupper($currency);
+        if(!in_array($currency, Configuration::CURRENCIES))
+            throw new CurrencyException($currency);
+        $this-&gt;currency = $currency;
+        return $this;
+    }
+
+    public function setChannel($channel) {
+        if(!ChannelId::validate($channel))
+            throw new ChannelIdException($channel);
+        $this-&gt;channel = $channel;
+        return $this;
+    }
+
+    public function setHash($hash) {
+        $this-&gt;hash = $hash;
+        return $this;
+    }
+
+    public function setIsCash($isCash) {
+        $this-&gt;isCash = (bool)$isCash;
+        return $this;
+    }
+
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

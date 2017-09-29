@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    Dotpay SDK &raquo; \Dotpay\Loader\Loader
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">Dotpay SDK</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                    <li><a>Namespaces</a></li>
+                                                                        <li><a href="../namespaces/Dotpay.html">Dotpay</a></li>
+                                                                                                                                </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                                                                                                                                    <li class="method public">
+        <a href="#method_get" title="get :: Get the object which is identified by the name and initialized with the given set of params.">
+            <span class="description">Get the object which is identified by the name and initialized with the given set of params.</span><pre>get</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                                                                        <li class="method public">
+        <a href="#method_load" title="load :: Load the loader with given configuration.">
+            <span class="description">Load the loader with given configuration.</span><pre>load</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_object" title="object :: Return the object which represents an object which name and alias is given and which is initialized by using the given parameter list.">
+            <span class="description">Return the object which represents an object which name and alias is given and which is initialized by using the given parameter list.</span><pre>object</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_parameter" title="parameter :: Set a value of the parameter which is identified by class name and parameter name.">
+            <span class="description">Set a value of the parameter which is identified by class name and parameter name.</span><pre>parameter</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_set" title="set :: Set the given object with the given name and alias.">
+            <span class="description">Set the given object with the given name and alias.</span><pre>set</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_unload" title="unload :: Unload data stored in the Loader.">
+            <span class="description">Unload data stored in the Loader.</span><pre>unload</pre>
+        </a>
+    </li>
+
+                                                                                                        </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                            <li class="method private">
+                            <a href="#method___construct" title="__construct :: Initialize the loader obect during creating an instance.">
+                                <span class="description">Initialize the loader obect during creating an instance.</span><pre>__construct</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method private">
+                            <a href="#method_findObject" title="findObject :: Return an object which class name or alias is given.">
+                                <span class="description">Return an object which class name or alias is given.</span><pre>findObject</pre>
+                            </a>
+                        </li>
+                                                                                                                    <li class="method private">
+                            <a href="#method_getObjectInstance" title="getObjectInstance :: Return an instance of object which is represented by the given Object, instantiated using the given param list.">
+                                <span class="description">Return an instance of object which is represented by the given Object, instantiated using the given param list.</span><pre>getObjectInstance</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method private">
+                            <a href="#method_initialize" title="initialize :: Initialize the loader object with the given data.">
+                                <span class="description">Initialize the loader object with the given data.</span><pre>initialize</pre>
+                            </a>
+                        </li>
+                                                                                                                                                                                                                                                                    <li class="method private">
+                            <a href="#method_updateObjects" title="updateObjects :: Update objects which are stored in the loader.">
+                                <span class="description">Update objects which are stored in the loader.</span><pre>updateObjects</pre>
+                            </a>
+                        </li>
+                                                </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>Loader</h1>
+                <small style="display: block; text-align: right">
+                                                        </small>
+                <p class="short_description">Loader of class instances based on dependency structure defined in an XML configuration file.</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Default</p>
+                                    </td>
+                                </tr>
+                                                                                                                                                                                </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method___construct"></a>
+                        <div class="element clickable method private  method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+                            <h2>Initialize the loader obect during creating an instance.</h2>
+                            <pre>__construct(\Dotpay\Loader\Parser|null $current = null, \Dotpay\Loader\Parser|null $default = null) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$current</h4>
+                                                <code><a href="../classes/Dotpay.Loader.Parser.html">\Dotpay\Loader\Parser</a>|null</code><p><p>The current parsed XML file with dependency structure</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$default</h4>
+                                                <code><a href="../classes/Dotpay.Loader.Parser.html">\Dotpay\Loader\Parser</a>|null</code><p><p>The default parsed XML file with dependency structure</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_findObject"></a>
+                        <div class="element clickable method private  method_findObject" data-toggle="collapse" data-target=".method_findObject .collapse">
+                            <h2>Return an object which class name or alias is given.</h2>
+                            <pre>findObject(string $name) : object</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                            <tr>
+                                                <th>Throws</th>
+                                                <td>
+                                                    <dl>
+                                                                                                            <dt>\Dotpay\Exception\Loader\EmptyObjectNameException</dt>
+                                                        <dd><p>Thrown when object name is empty</p></dd>
+                                                                                                            <dt>\Dotpay\Exception\Loader\ObjectNotFoundException</dt>
+                                                        <dd><p>Thrown when object with the given name is not found</p></dd>
+                                                                                                                                                            </dl>
+                                                </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$name</h4>
+                                                <code>string</code><p><p>A class name or an alias of an object</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>object</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_get"></a>
+                        <div class="element clickable method public  method_get" data-toggle="collapse" data-target=".method_get .collapse">
+                            <h2>Get the object which is identified by the name and initialized with the given set of params.</h2>
+                            <pre>get(string $name, array $params = array()) : object|null</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$name</h4>
+                                                <code>string</code><p><p>A class name or an alias of an object which is returned</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$params</h4>
+                                                <code>array</code><p><p>Set of params which is used to an initialization</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>object|null</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getObjectInstance"></a>
+                        <div class="element clickable method private  method_getObjectInstance" data-toggle="collapse" data-target=".method_getObjectInstance .collapse">
+                            <h2>Return an instance of object which is represented by the given Object, instantiated using the given param list.</h2>
+                            <pre>getObjectInstance(object $object, array $params = array()) : object|null</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$object</h4>
+                                                <code>object</code><p><p>The Object instance which describes returned object</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$params</h4>
+                                                <code>array</code><p><p>The param list</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>object|null</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_initialize"></a>
+                        <div class="element clickable method private  method_initialize" data-toggle="collapse" data-target=".method_initialize .collapse">
+                            <h2>Initialize the loader object with the given data.</h2>
+                            <pre>initialize(\Dotpay\Loader\Parser|null $current = null, \Dotpay\Loader\Parser|null $default = null) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$current</h4>
+                                                <code><a href="../classes/Dotpay.Loader.Parser.html">\Dotpay\Loader\Parser</a>|null</code><p><p>The current parsed XML file with dependency structure</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$default</h4>
+                                                <code><a href="../classes/Dotpay.Loader.Parser.html">\Dotpay\Loader\Parser</a>|null</code><p><p>The default parsed XML file with dependency structure</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_load"></a>
+                        <div class="element clickable method public  method_load" data-toggle="collapse" data-target=".method_load .collapse">
+                            <h2>Load the loader with given configuration.</h2>
+                            <pre>load(\Dotpay\Loader\Parser|null $current = null, \Dotpay\Loader\Parser|null $default = null) : \Dotpay\Loader\Loader</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$current</h4>
+                                                <code><a href="../classes/Dotpay.Loader.Parser.html">\Dotpay\Loader\Parser</a>|null</code><p><p>The current parsed XML file with dependency structure</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$default</h4>
+                                                <code><a href="../classes/Dotpay.Loader.Parser.html">\Dotpay\Loader\Parser</a>|null</code><p><p>The default parsed XML file with dependency structure</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Loader.Loader.html">\Dotpay\Loader\Loader</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_object"></a>
+                        <div class="element clickable method public  method_object" data-toggle="collapse" data-target=".method_object .collapse">
+                            <h2>Return the object which represents an object which name and alias is given and which is initialized by using the given parameter list.</h2>
+                            <pre>object(string $className, array $params = array(), string|null $alias = null) : object</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$className</h4>
+                                                <code>string</code><p><p>The class name of the object</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$params</h4>
+                                                <code>array</code><p><p>The arameter list</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$alias</h4>
+                                                <code>string|null</code><p><p>The alias of the object</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>object</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_parameter"></a>
+                        <div class="element clickable method public  method_parameter" data-toggle="collapse" data-target=".method_parameter .collapse">
+                            <h2>Set a value of the parameter which is identified by class name and parameter name.</h2>
+                            <pre>parameter(string $name, mixed $value) : object</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Return the Object whose value has been set.</p></div>
+
+                                    <table class="table">
+                                                                                                                            <tr>
+                                                <th>Throws</th>
+                                                <td>
+                                                    <dl>
+                                                                                                            <dt>\Dotpay\Exception\Loader\ParamNotFoundException</dt>
+                                                        <dd></dd>
+                                                                                                                                                            </dl>
+                                                </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$name</h4>
+                                                <code>string</code><p><p>A name of the parameter, which is composed of a class name and a parameter name, separated by &quot;:&quot; character</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$value</h4>
+                                                <code>mixed</code><p><p>A value of the parameter</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>object</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_set"></a>
+                        <div class="element clickable method public  method_set" data-toggle="collapse" data-target=".method_set .collapse">
+                            <h2>Set the given object with the given name and alias.</h2>
+                            <pre>set(string $className, object $object, string|null $alias = null) : object</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Return the Object which represents the given object.</p></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$className</h4>
+                                                <code>string</code><p><p>Class name of the given object</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$object</h4>
+                                                <code>object</code><p><p>The object which is set</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$alias</h4>
+                                                <code>string|null</code><p><p>Alias of the given object</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>object</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_unload"></a>
+                        <div class="element clickable method public  method_unload" data-toggle="collapse" data-target=".method_unload .collapse">
+                            <h2>Unload data stored in the Loader.</h2>
+                            <pre>unload() </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_updateObjects"></a>
+                        <div class="element clickable method private  method_updateObjects" data-toggle="collapse" data-target=".method_updateObjects .collapse">
+                            <h2>Update objects which are stored in the loader.</h2>
+                            <pre>updateObjects(array $objects) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$objects</h4>
+                                                <code>array</code><p><p>A set of new objects</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                    
+                    
+                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property_instance"> </a>
+                            <div class="element clickable property  private property_instance" data-toggle="collapse" data-target=".property_instance .collapse">
+                                <h2>An instance of the Loader class</h2>
+                                <pre>instance : \Dotpay\Loader\Loader|null</pre>
+                                <div class="labels">
+                                                                        <span class="label">static</span>                                </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>An instance of the Loader class</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/Dotpay.Loader.Loader.html">\Dotpay\Loader\Loader</a>|null</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_objects"> </a>
+                            <div class="element clickable property  private property_objects" data-toggle="collapse" data-target=".property_objects .collapse">
+                                <h2>List of Object elements which can contain instantiated objects.
+           Keys are class names</h2>
+                                <pre>objects : array</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>List of Object elements which can contain instantiated objects.
+Keys are class names</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_aliases"> </a>
+                            <div class="element clickable property  private property_aliases" data-toggle="collapse" data-target=".property_aliases .collapse">
+                                <h2>List of Object elements which can contain instantiated objects.
+           Keys are aliases</h2>
+                                <pre>aliases : array</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>List of Object elements which can contain instantiated objects.
+Keys are aliases</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\Dotpay\Loader\Loader"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/Dotpay.Loader.html">Loader</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/Dotpay.Loader.Loader.html">Loader</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Fri, 29 Sep 2017 20:39:08 +0000.<br/>
+    </footer>
+    </body>
+</html>

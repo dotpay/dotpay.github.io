@@ -1,0 +1,29 @@
+<?php
+/**
+ * @package Dotpay\Action
+ */
+namespace Dotpay\Action;
+
+use Dotpay\Model\CreditCard;
+
+/**
+ * Action which is executed during updating informations about credit card
+ */
+class UpdateCcInfo extends Action {
+    /**
+     * Returns a credit card which is set as an argument for a callback.
+     * @return CreditCard
+     */
+    public function getCreditCard() {
+        return $this->getOneArgument();
+    }
+    
+    /**
+     * Sets a credit card which can be passed to callback function.
+     * @param CreditCard $cc Credit card object
+     * @return UpdateCcInfo
+     */
+    public function setCreditCard(CreditCard $cc) {
+        return $this->setOneArgument($cc);
+    }
+}

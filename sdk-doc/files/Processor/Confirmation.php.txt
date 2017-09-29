@@ -1,0 +1,207 @@
+<?php
+
+namespace Dotpay\Processor;
+
+use Dotpay\Action\UpdateCcInfo;
+use Dotpay\Action\MakePaymentOrRefund;
+use Dotpay\Model\Configuration;
+use Dotpay\Model\Payment;
+use Dotpay\Model\Notification;
+use Dotpay\Model\Seller;
+use Dotpay\Resource\Payment as PaymentResource;
+use Dotpay\Resource\Seller as SellerResource;
+use Dotpay\Exception\Processor\SellerNotRecognizedException;
+use Dotpay\Exception\Processor\ConfirmationDataException;
+use Dotpay\Exception\Processor\ConfirmationInfoException;
+
+class Confirmation {
+    private $outputMessage;
+    private $config;
+    private $paymentApi;
+    private $sellerApi;
+    private $payment;
+    private $notification;
+    
+    private $updateCcAction;
+    private $makePaymentAction;
+    private $makeRefundAction;
+    
+    public function __construct(Configuration $config, PaymentResource $paymentApi, SellerResource $sellerApi) {
+        $this->config = $config;
+        $this->paymentApi = $paymentApi;
+        $this->sellerApi = $sellerApi;
+        $this->outputMessage = '';
+    }
+    
+    public function setUpdateCcAction(UpdateCcInfo $updateCcAction) {
+        $this->updateCcAction = $updateCcAction;
+    }
+    
+    public function setMakePaymentAction(MakePaymentOrRefund $makePaymentAction) {
+        $this->makePaymentAction = $makePaymentAction;
+    }
+    
+    public function setMakeRefundAction(MakePaymentOrRefund $makeRefundAction) {
+        $this->makeRefundAction = $makeRefundAction;
+    }
+
+    public function execute(Payment $payment, Notification $notification) {
+        $this->payment = $payment;
+        $this->notification = $notification;
+        $config = $this->config;
+        if ($_SERVER['REMOTE_ADDR'] == $config::OFFICE_IP && 
+            $_SERVER['REQUEST_METHOD'] == 'GET'
+        ) {
+            $this->completeInformations();
+            throw new ConfirmationInfoException($this->outputMessage);
+        }
+        $this->checkIp();
+        $this->checkMethod();
+        $this->checkSignature();
+        $this->checkCurrency();
+        
+        $operation = $this->notification->getOperation();
+        switch($operation->getType()) {
+            case $operation::TYPE_PAYMENT:
+                return $this->makePayment();
+            case $operation::TYPE_REFUND:
+                return $this->makeRefund();
+            default:
+                return false;
+        }
+    }
+    
+    protected function completeInformations() {
+        $config = $this->config;
+        $this->addOutputMessage('--- Dotpay Diagnostic Information ---')
+             ->addOutputMessage('Sdk Version: '.$config::SDK_VERSION)
+             ->addOutputMessage('Enabled: '.(int)$config->getEnable(), true)
+             ->addOutputMessage('--- Dotpay PLN ---')
+             ->addOutputMessage('Id: '.$config->getId())
+             ->addOutputMessage('Correct Id: '.(int)$this->paymentApi->checkSeller($config->getId()))
+             ->addOutputMessage('Correct Pin: '.(int)$this->sellerApi->checkPin())
+             ->addOutputMessage('API Version: '.$config->getApi())
+             ->addOutputMessage('Test Mode: '.(int)$config->getTestMode())
+             ->addOutputMessage('Refunds: '.(int)$config->getRefundsEnable())
+             ->addOutputMessage('Widget: '.(int)$config->getWidgetVisible())
+             ->addOutputMessage('Widget currencies: '.$config->getWidgetCurrencies())
+             ->addOutputMessage('Instructions: '.(int)$config->getInstructionVisible(), true)
+             ->addOutputMessage('--- Separate Channels ---')
+             ->addOutputMessage('One Click: '.(int)$config->getOcVisible())
+             ->addOutputMessage('Credit Card: '.(int)$config->getCcVisible())
+             ->addOutputMessage('MasterPass: '.(int)$config->getMpVisible())
+             ->addOutputMessage('Blik: '.(int)$config->getBlikVisible(), true)
+             ->addOutputMessage('--- Dotpay FCC ---')
+             ->addOutputMessage('FCC Mode: '.(int)$config->getFccVisible())
+             ->addOutputMessage('FCC Id: '.$config->getFccId())
+             ->addOutputMessage('FCC Correct Id: '.(int)$this->paymentApi->checkSeller($config->getFccId()))
+             ->addOutputMessage('FCC Correct Pin: '.(int)$this->sellerApi->checkFccPin())
+             ->addOutputMessage('FCC Currencies: '.$config->getFccCurrencies(), true)
+             ->addOutputMessage('--- Dotpay API ---')
+             ->addOutputMessage('Data: '.(($config->isGoodApiData())?'<given>':'<empty>'))
+             ->addOutputMessage('Login: '.$config->getUsername());
+        $isAccountRight = false;
+        try {
+            $isAccountRight = $this->sellerApi->isAccountRight();
+        } catch (Exception $ex) {}
+        $this->addOutputMessage('Correct data: '.$isAccountRight,true);
+    }
+    
+    protected function addOutputMessage($message, $endOfSection = false) {
+        $this->outputMessage .= $message."<br />";
+        if($endOfSection)
+            $this->outputMessage .= "<br />";
+        return $this;
+    }
+    
+    protected function checkIp() {
+        $config = $this->config;
+        if (
+            !($_SERVER['REMOTE_ADDR'] == $config::CALLBACK_IP ||
+                ($this->config->getTestMode() &&
+                 ($_SERVER['REMOTE_ADDR'] == $config::OFFICE_IP ||
+                  $_SERVER['REMOTE_ADDR'] == $config::LOCAL_IP
+                 )
+                )
+            )
+        ) {
+            throw new ConfirmationDataException("ERROR (REMOTE ADDRESS: ".$_SERVER['REMOTE_ADDR'].")");
+        }
+    }
+    
+    protected function checkMethod() {
+        if (strtoupper($_SERVER['REQUEST_METHOD']) != 'POST') {
+            throw new ConfirmationDataException("ERROR (METHOD <> POST)");
+        }
+    }
+    
+    protected function checkSignature() {
+        $seller = $this->getSeller();
+        if ($this->notification->calculateSignature($seller->getPin()) != $this->notification->getSignature()) {
+            throw new ConfirmationDataException("ERROR SIGNATURE - CHECK PIN");
+        }
+    }
+
+    protected function checkCurrency() {
+        $receivedCurrency = $this->notification->getOperation()->getOriginalCurrency();
+        $orderCurrency = $this->payment->getOrder()->getCurrency();
+        if ($receivedCurrency != $orderCurrency) {
+            throw new ConfirmationDataException('ERROR NO MATCH OR WRONG CURRENCY - '.$receivedCurrency.' <> '.$orderCurrency);
+        }
+    }
+    
+    protected function checkPaymentAmount() {
+        $receivedAmount = $this->notification->getOperation()->getOriginalAmount();
+        $orderAmount = $this->payment->getOrder()->getAmount();
+        if ($receivedAmount != $orderAmount) {
+            throw new ConfirmationDataException('ERROR NO MATCH OR WRONG AMOUNT - '.$receivedAmount.' <> '.$orderAmount);
+        }
+    }
+    
+    protected function makePayment() {
+        $config = $this->config;
+        $this->checkPaymentAmount();
+        $operation = $this->notification->getOperation();
+        if(
+           $operation->getStatus() == $operation::STATUS_COMPLETE &&
+           $this->notification->getChannelId() == $config::OC_CHANNEL &&
+           $this->updateCcAction !== null
+          ) {
+            $creditCard = null;
+            if($this->notification->getCreditCard() !== null) {
+                $creditCard = $this->notification->getCreditCard();
+            } else {
+                $operation = $this->sellerApi->getOperationByNumber($this->notification->getOperation()->getNumber());
+                $paymentMethod = $operation->getPaymentMethod();
+                if($paymentMethod->getDetailsType() == $paymentMethod::CREDIT_CARD)
+                    $creditCard = $paymentMethod->getDetails();
+            }
+            if($creditCard !== null)
+                $this->updateCcAction->setCreditCard($creditCard);
+        }
+        return ($this->makePaymentAction !== null)?$this->makePaymentAction->execute():true;
+    }
+    
+    protected function makeRefund() {
+        return ($this->makeRefundAction !== null)?$this->makeRefundAction->execute():true;
+    }
+
+    protected function getSeller() {
+        switch($this->notification->getAccountId()) {
+            case $this->config->getId():
+                return new Seller($this->config->getId(), $this->config->getPin());
+            case $this->config->getFccId():
+                if(
+                    $this->config->getFccVisible() && 
+                    $this->config->isCurrencyForFcc(
+                        $this->notification->getOperation()->getOriginalCurrency()
+                    )
+                  ) {
+                    return new Seller($this->config->getFccId(), $this->config->getFccPin());
+                }
+            default:
+                throw new SellerNotRecognizedException($this->notification->getAccountId());
+        }
+    }
+}
+

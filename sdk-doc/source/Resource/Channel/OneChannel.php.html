@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Resource\Channel;
+
+class OneChannel {
+    private $data;
+    
+    public function __construct(array $data) {
+        $this-&gt;data = $data;
+    }
+    
+    public function getId() {
+        return $this-&gt;get('id');
+    }
+    
+    public function getName() {
+        return $this-&gt;get('name');
+    }
+    
+    public function getLogo() {
+        return $this-&gt;get('logo');
+    }
+    
+    public function getGroup() {
+        return $this-&gt;get('group');
+    }
+    
+    public function getGroupName() {
+        return $this-&gt;get('group_name');
+    }
+    
+    public function getShortName() {
+        return $this-&gt;get('short_name');
+    }
+    
+    public function isDisabled() {
+        return ($this-&gt;get('is_disable') !== &quot;False&quot;);
+    }
+    
+    public function isNotOnline() {
+        return ($this-&gt;get('is_not_online') !== &quot;False&quot;);
+    }
+    
+    public function getFormNames() {
+        return $this-&gt;get('form_names');
+    }
+    
+    protected function get($name) {
+        if(isset($this-&gt;data[$name]))
+            return $this-&gt;data[$name];
+        else
+            return null;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

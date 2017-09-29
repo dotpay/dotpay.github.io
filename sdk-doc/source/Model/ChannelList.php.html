@@ -1,0 +1,131 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Model;
+
+use Dotpay\Channel\Channel;
+use Dotpay\Channel\Dotpay;
+use Dotpay\Html\Container\Script;
+use Dotpay\Html\PlainText;
+
+use \ArrayAccess;
+use \Countable;
+use \Iterator;
+
+class ChannelList implements ArrayAccess, Countable, Iterator {
+    private $pointer;
+    private $channels = [];
+    private $config;
+    
+    public function __construct() {
+        $this-&gt;rewind();
+    }
+    
+    public function offsetExists($offset) {
+        return isset($this-&gt;channels[$offset]);
+    }
+    
+    public function offsetGet($offset) {
+        return $this-&gt;channels[$offset];
+    }
+    
+    public function offsetSet($offset, $value) {
+        $this-&gt;channels[$offset] = $value;
+    }
+    
+    public function offsetUnset($offset) {
+        unset($this-&gt;channels[$offset]);
+    }
+    
+    public function count() {
+        return count($this-&gt;channels);
+    }
+    
+    public function current() {
+        return $this-&gt;channels[$this-&gt;key()];
+    }
+    
+    public function key() {
+        return $this-&gt;pointer;
+    }
+    
+    public function next() {
+        do {
+            ++$this-&gt;pointer;
+        } while($this-&gt;valid() &amp;&amp; !$this-&gt;current()-&gt;isEnabled(1));
+    }
+    
+    public function rewind() {
+        $this-&gt;pointer = -1;
+        $this-&gt;next();
+    }
+    
+    public function valid() {
+        return isset($this-&gt;channels[$this-&gt;key()]);
+    }
+    
+    public function addChannel(Channel $channel) {
+        $this-&gt;channels[] = $channel;
+    }
+    
+    public function getChannelIds() {
+        $ids = [];
+        foreach($this as $channel) {
+            if(!empty($channel-&gt;getChannelId()))
+                $ids[] = $channel-&gt;getChannelId();
+        }
+        return $ids;
+    }
+    
+    public function getWidgetScript() {
+        foreach ($this as $channel)
+            if($channel instanceof Dotpay)
+                return $channel-&gt;getScript($this-&gt;getChannelIds());
+        return new Script(new PlainText());
+    }
+}
+
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

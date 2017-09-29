@@ -1,0 +1,136 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * @package Dotpay\Action
+ */
+namespace Dotpay\Action;
+
+/**
+ * Action provides a functionality of some actions, executed in concrete times thanks to special interface.
+ */
+abstract class Action
+{
+    /**
+     * @var callable A callable value to executed
+     */
+    protected $userFunc;
+
+    /**
+     * @var mixed If a callable value contains a function which needs only one argument, it can be passed from this value
+     */
+    protected $oneArgument;
+
+    /**
+     * Initializes an action object
+     * @param callable $userFunc Initial callable value, which can be executed in a coorect time
+     */
+    public function __construct(callable $userFunc = null)
+    {
+        if ($userFunc !== null) {
+            $this-&gt;setUserFunc($userFunc);
+        }
+    }
+
+    /**
+     * Returns a callable value which is set.
+     * @return callable
+     */
+    public function getUserFunc()
+    {
+        return $this-&gt;userFunc;
+    }
+
+    /**
+     * Returns one argument, which is set.
+     * @return mixed
+     */
+    public function getOneArgument()
+    {
+        return $this-&gt;oneArgument;
+    }
+
+    /**
+     * Sets a callable value which will be executed.
+     * @param callable $userFunc Callable value
+     * @return Action
+     */
+    public function setUserFunc(callable $userFunc)
+    {
+        $this-&gt;userFunc = $userFunc;
+
+        return $this;
+    }
+
+    /**
+     * Sets an one argument which will be passed to the function during its execution.
+     * @param mixed $oneArgument Argument to passing to the function during execution
+     * @return Action
+     */
+    public function setOneArgument($oneArgument)
+    {
+        $this-&gt;oneArgument = $oneArgument;
+
+        return $this;
+    }
+
+    /**
+     * Executes a callback and returns a result of it. It returns null if callback wasn't set.
+     * @return mixed
+     */
+    public function execute()
+    {
+        $func = $this-&gt;userFunc;
+        if (!is_callable($func)) {
+            return null;
+        }
+        if ($this-&gt;oneArgument !== null) {
+            return $func($this-&gt;getOneArgument());
+        } else {
+            return $func();
+        }
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

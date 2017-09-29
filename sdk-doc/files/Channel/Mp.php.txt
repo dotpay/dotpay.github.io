@@ -1,0 +1,33 @@
+<?php
+
+namespace Dotpay\Channel;
+
+use Dotpay\Model\Configuration;
+use Dotpay\Model\Transaction;
+use Dotpay\Resource\Payment as PaymentResource;
+
+/**
+ * Class provides a special functionality for MasterPass payments
+ */
+class Mp extends Channel {
+    /**
+     * Initializes a MasterPass channel
+     * @param Configuration $config Dotpay configuration object
+     * @param Transaction $transaction Object with transaction details
+     * @param PaymentResource $paymentResource Payment resource which can be used for Payment API
+     */
+    public function __construct(Configuration $config, Transaction $transaction, PaymentResource $paymentResource) {
+        parent::__construct(Configuration::MP_CHANNEL, 'mp', $config, $transaction, $paymentResource);
+    }
+    
+    /**
+     * Checks if the channel is enabled to using
+     * @return bool
+     */
+    public function isEnabled() {
+        return parent::isEnabled() && $this->config->getMpVisible();
+    }
+}
+
+?>
+

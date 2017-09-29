@@ -1,0 +1,135 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Channel;
+
+use Dotpay\Model\Configuration;
+use Dotpay\Model\Transaction;
+use Dotpay\Resource\Payment as PaymentResource;
+use Dotpay\Html\Container\P;
+use Dotpay\Html\Container\Script;
+use Dotpay\Html\PlainText;
+
+/**
+ * Class provides a special functionality for Dotpay standard payments
+ */
+class Dotpay extends Channel {
+    /**
+     * Initializes a Dotpay standard channel
+     * @param Configuration $config Dotpay configuration object
+     * @param Transaction $transaction Object with transaction details
+     * @param PaymentResource $paymentResource Payment resource which can be used for Payment API
+     */
+    public function __construct(Configuration $config, Transaction $transaction, PaymentResource $paymentResource) {
+        parent::__construct(null, 'dotpay', $config, $transaction, $paymentResource);
+        $this-&gt;available = true;
+    }
+    
+    /**
+     * Checks if the channel is enabled to using
+     * @return bool
+     */
+    public function isEnabled() {
+        return parent::isEnabled() &amp;&amp;
+               $this-&gt;config-&gt;isWidgetEnabled(
+                    $this-&gt;transaction-&gt;getPayment()-&gt;getOrder()-&gt;getCurrency()
+               );
+    }
+    
+    public function setChannelId($id) {
+        $this-&gt;setChannelInfo($id);
+    }
+    
+    /**
+     * Returns an array of fields which can be displayed on a list of payment channels.
+     * They can contain aditional fields with information which are needed before continue a payment process.
+     * @return array
+     */
+    public function getViewFields() {
+        $data = parent::getViewFields();
+        if($this-&gt;config-&gt;getWidgetVisible() &amp;&amp; $this-&gt;isVisible()) {
+            $config = $this-&gt;config;
+            $container = new P();
+            $container-&gt;setClass($config::WIDGET_CLASS_CONTAINER);
+            $data[] = $container;
+        }
+        return $data;
+    }
+    
+    /**
+     * Returns array of hidden fields for a form to redirecting to a Dotpay site with all needed information about a current payment
+     * @return array
+     */
+    public function getHiddenFields() {
+        $data = parent::getHiddenFields();
+        if(empty($this-&gt;getChannelId()) || !$this-&gt;config-&gt;getWidgetVisible()) {
+            $data['type'] = 0;
+            $data['ch_lock'] = 0;
+        } else {
+            $data['channel'] = $this-&gt;getChannelId();
+        }
+        return $data;
+    }
+    
+    public function getScript(array $disableChanels = []) {
+        $config = $this-&gt;config;
+        $script = [
+            'sellerAccountId' =&gt; $this-&gt;config-&gt;getId(),
+            'amount' =&gt; $this-&gt;transaction-&gt;getPayment()-&gt;getOrder()-&gt;getAmount(),
+            'currency' =&gt; $this-&gt;transaction-&gt;getPayment()-&gt;getOrder()-&gt;getCurrency(),
+            'lang' =&gt; $this-&gt;transaction-&gt;getPayment()-&gt;getCustomer()-&gt;getLanguage(),
+            'widgetFormContainerClass' =&gt; $config::WIDGET_CLASS_CONTAINER,
+            'offlineChannel' =&gt; 'mark',
+            'offlineChannelTooltip' =&gt; true,
+            'disabledChannels' =&gt; $disableChanels,
+            'host' =&gt; $this-&gt;config-&gt;getPaymentUrl()
+        ];
+        return new Script(new PlainText('var dotpayWidgetConfig = '.json_encode($script).';'));
+    }
+}
+
+?&gt;
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

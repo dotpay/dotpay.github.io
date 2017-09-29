@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Model;
+
+class Payment {
+    private $seller;
+    private $customer;
+    private $order;
+    private $description;
+
+    public function __construct(Seller $seller, Customer $customer, Order $order, $description) {
+        $this-&gt;setSeller($seller);
+        $this-&gt;setCustomer($customer);
+        $this-&gt;setOrder($order);
+        $this-&gt;setDescription($description);
+    }
+    
+    public function getSeller() {
+        return $this-&gt;seller;
+    }
+
+    public function getCustomer() {
+        return $this-&gt;customer;
+    }
+
+    public function getOrder() {
+        return $this-&gt;order;
+    }
+
+    public function getDescription() {
+        return $this-&gt;description;
+    }
+
+    public function setSeller(Seller $seller) {
+        $this-&gt;seller = $seller;
+        return $this;
+    }
+
+    public function setCustomer(Customer $customer) {
+        $this-&gt;customer = $customer;
+        return $this;
+    }
+
+    public function setOrder(Order $order) {
+        $this-&gt;order = $order;
+        return $this;
+    }
+
+    public function setDescription($description) {
+        $this-&gt;description = $description;
+        return $this;
+    }
+    
+    public function getIdentifier() {
+        return $this-&gt;getSeller()-&gt;getId().$this-&gt;getOrder()-&gt;getAmount().$this-&gt;getOrder()-&gt;getCurrency().$this-&gt;getCustomer()-&gt;getLanguage();
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

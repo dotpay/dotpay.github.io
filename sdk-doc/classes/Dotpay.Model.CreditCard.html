@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    Dotpay SDK &raquo; \Dotpay\Model\CreditCard
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">Dotpay SDK</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                    <li><a>Namespaces</a></li>
+                                                                        <li><a href="../namespaces/Dotpay.html">Dotpay</a></li>
+                                                                                                                                </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method___construct" title="__construct :: Initialize the model.">
+            <span class="description">Initialize the model.</span><pre>__construct</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_generateNewUserId" title="generateNewUserId :: Generate a new user identificator which can be assigned to a registered card during a first transaction.">
+            <span class="description">Generate a new user identificator which can be assigned to a registered card during a first transaction.</span><pre>generateNewUserId</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                                                                        <li class="method public">
+        <a href="#method_generateUserId" title="generateUserId :: Generate a new user identificator which can be assigned to a registered card during a first transaction.">
+            <span class="description">Generate a new user identificator which can be assigned to a registered card during a first transaction.</span><pre>generateUserId</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getBrand" title="getBrand :: Return a brand object for the credit card.">
+            <span class="description">Return a brand object for the credit card.</span><pre>getBrand</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCardId" title="getCardId :: Return an identificator of credit card which is assigned by Dotpay system.">
+            <span class="description">Return an identificator of credit card which is assigned by Dotpay system.</span><pre>getCardId</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCreditCardByOrder" title="getCreditCardByOrder :: Return credit card which is connected with the given order id. This function is a mock and it should be overwritten in a children CreditCard class.">
+            <span class="description">Return credit card which is connected with the given order id. This function is a mock and it should be overwritten in a children CreditCard class.</span><pre>getCreditCardByOrder</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCustomerHash" title="getCustomerHash :: Return a customer hash.">
+            <span class="description">Return a customer hash.</span><pre>getCustomerHash</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getHref" title="getHref :: Return an URL on Dotpay server where is located information about this card.">
+            <span class="description">Return an URL on Dotpay server where is located information about this card.</span><pre>getHref</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getId" title="getId :: Return a credit card id in a shop.">
+            <span class="description">Return a credit card id in a shop.</span><pre>getId</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getIssuerId" title="getIssuerId :: Return a card issuer id.">
+            <span class="description">Return a card issuer id.</span><pre>getIssuerId</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getMask" title="getMask :: Return a card masked number.">
+            <span class="description">Return a card masked number.</span><pre>getMask</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getOrderId" title="getOrderId :: Return an id of the first order made using the card.">
+            <span class="description">Return an id of the first order made using the card.</span><pre>getOrderId</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getRegisterDate" title="getRegisterDate :: Return a date when the card has beed registered.">
+            <span class="description">Return a date when the card has beed registered.</span><pre>getRegisterDate</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getUserId" title="getUserId :: Return an identificator of a credit card user.">
+            <span class="description">Return an identificator of a credit card user.</span><pre>getUserId</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_isRegistered" title="isRegistered :: Check if the credit card contains information which are available after registration on Dotpay server.">
+            <span class="description">Check if the credit card contains information which are available after registration on Dotpay server.</span><pre>isRegistered</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setBrand" title="setBrand :: Set a brand object for the credit card.">
+            <span class="description">Set a brand object for the credit card.</span><pre>setBrand</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setCardId" title="setCardId :: Set an identificator of credit card which is assigned by Dotpay system.">
+            <span class="description">Set an identificator of credit card which is assigned by Dotpay system.</span><pre>setCardId</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setCustomerHash" title="setCustomerHash :: Set the given customer hash.">
+            <span class="description">Set the given customer hash.</span><pre>setCustomerHash</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setHref" title="setHref :: Set an URL on Dotpay server where is located information about this card.">
+            <span class="description">Set an URL on Dotpay server where is located information about this card.</span><pre>setHref</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setId" title="setId :: Set an id of credit card in a shop.">
+            <span class="description">Set an id of credit card in a shop.</span><pre>setId</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setIssuerId" title="setIssuerId :: Set a card issuer id.">
+            <span class="description">Set a card issuer id.</span><pre>setIssuerId</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setMask" title="setMask :: Set a card masked number.">
+            <span class="description">Set a card masked number.</span><pre>setMask</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setOrderId" title="setOrderId :: Set an id of the first order made using the card.">
+            <span class="description">Set an id of the first order made using the card.</span><pre>setOrderId</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setRegisterDate" title="setRegisterDate :: Set a date when the card has beed registered.">
+            <span class="description">Set a date when the card has beed registered.</span><pre>setRegisterDate</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setUserId" title="setUserId :: Set an identificator of a credit card user.">
+            <span class="description">Set an identificator of a credit card user.</span><pre>setUserId</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                    <li class="method protected">
+                            <a href="#method_generateRandomValue" title="generateRandomValue :: Return a random value between 0 and 11.">
+                                <span class="description">Return a random value between 0 and 11.</span><pre>generateRandomValue</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method_generateTimeValue" title="generateTimeValue :: Return current Unix timestamp with microseconds.">
+                                <span class="description">Return current Unix timestamp with microseconds.</span><pre>generateTimeValue</pre>
+                            </a>
+                        </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>CreditCard</h1>
+                <small style="display: block; text-align: right">
+                                                        </small>
+                <p class="short_description">Informations about a credit card.</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Default</p>
+                                    </td>
+                                </tr>
+                                                                                                                                                                                </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method___construct"></a>
+                        <div class="element clickable method public  method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+                            <h2>Initialize the model.</h2>
+                            <pre>__construct(integer $id, string $userId) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>integer</code><p><p>Id of credit card in a shop</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$userId</h4>
+                                                <code>string</code><p><p>Identificator of a credit card user</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_generateNewUserId"></a>
+                        <div class="element clickable method public  method_generateNewUserId" data-toggle="collapse" data-target=".method_generateNewUserId .collapse">
+                            <h2>Generate a new user identificator which can be assigned to a registered card during a first transaction.</h2>
+                            <pre>generateNewUserId() : string</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_generateRandomValue"></a>
+                        <div class="element clickable method protected  method_generateRandomValue" data-toggle="collapse" data-target=".method_generateRandomValue .collapse">
+                            <h2>Return a random value between 0 and 11.</h2>
+                            <pre>generateRandomValue() : integer</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    codeCoverageIgnore
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>integer</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_generateTimeValue"></a>
+                        <div class="element clickable method protected  method_generateTimeValue" data-toggle="collapse" data-target=".method_generateTimeValue .collapse">
+                            <h2>Return current Unix timestamp with microseconds.</h2>
+                            <pre>generateTimeValue() : integer</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    codeCoverageIgnore
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>integer</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_generateUserId"></a>
+                        <div class="element clickable method public  method_generateUserId" data-toggle="collapse" data-target=".method_generateUserId .collapse">
+                            <h2>Generate a new user identificator which can be assigned to a registered card during a first transaction.</h2>
+                            <pre>generateUserId() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getBrand"></a>
+                        <div class="element clickable method public  method_getBrand" data-toggle="collapse" data-target=".method_getBrand .collapse">
+                            <h2>Return a brand object for the credit card.</h2>
+                            <pre>getBrand() : \Dotpay\Model\CardBrand</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.CardBrand.html">\Dotpay\Model\CardBrand</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getCardId"></a>
+                        <div class="element clickable method public  method_getCardId" data-toggle="collapse" data-target=".method_getCardId .collapse">
+                            <h2>Return an identificator of credit card which is assigned by Dotpay system.</h2>
+                            <pre>getCardId() : \Dotpay\Model\type</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>\Dotpay\Model\type</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getCreditCardByOrder"></a>
+                        <div class="element clickable method public  method_getCreditCardByOrder" data-toggle="collapse" data-target=".method_getCreditCardByOrder .collapse">
+                            <h2>Return credit card which is connected with the given order id. This function is a mock and it should be overwritten in a children CreditCard class.</h2>
+                            <pre>getCreditCardByOrder(integer $orderId) : \Dotpay\Model\getCreditCardByOrder</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$orderId</h4>
+                                                <code>integer</code><p><p>Order id</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\Dotpay\Model\getCreditCardByOrder</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getCustomerHash"></a>
+                        <div class="element clickable method public  method_getCustomerHash" data-toggle="collapse" data-target=".method_getCustomerHash .collapse">
+                            <h2>Return a customer hash.</h2>
+                            <pre>getCustomerHash() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getHref"></a>
+                        <div class="element clickable method public  method_getHref" data-toggle="collapse" data-target=".method_getHref .collapse">
+                            <h2>Return an URL on Dotpay server where is located information about this card.</h2>
+                            <pre>getHref() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getId"></a>
+                        <div class="element clickable method public  method_getId" data-toggle="collapse" data-target=".method_getId .collapse">
+                            <h2>Return a credit card id in a shop.</h2>
+                            <pre>getId() : integer|null</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>integer|null</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getIssuerId"></a>
+                        <div class="element clickable method public  method_getIssuerId" data-toggle="collapse" data-target=".method_getIssuerId .collapse">
+                            <h2>Return a card issuer id.</h2>
+                            <pre>getIssuerId() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getMask"></a>
+                        <div class="element clickable method public  method_getMask" data-toggle="collapse" data-target=".method_getMask .collapse">
+                            <h2>Return a card masked number.</h2>
+                            <pre>getMask() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getOrderId"></a>
+                        <div class="element clickable method public  method_getOrderId" data-toggle="collapse" data-target=".method_getOrderId .collapse">
+                            <h2>Return an id of the first order made using the card.</h2>
+                            <pre>getOrderId() : integer|null</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>integer|null</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getRegisterDate"></a>
+                        <div class="element clickable method public  method_getRegisterDate" data-toggle="collapse" data-target=".method_getRegisterDate .collapse">
+                            <h2>Return a date when the card has beed registered.</h2>
+                            <pre>getRegisterDate() : \Dotpay\Model\DateType|null</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>\Dotpay\Model\DateType|null</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getUserId"></a>
+                        <div class="element clickable method public  method_getUserId" data-toggle="collapse" data-target=".method_getUserId .collapse">
+                            <h2>Return an identificator of a credit card user.</h2>
+                            <pre>getUserId() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_isRegistered"></a>
+                        <div class="element clickable method public  method_isRegistered" data-toggle="collapse" data-target=".method_isRegistered .collapse">
+                            <h2>Check if the credit card contains information which are available after registration on Dotpay server.</h2>
+                            <pre>isRegistered() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setBrand"></a>
+                        <div class="element clickable method public  method_setBrand" data-toggle="collapse" data-target=".method_setBrand .collapse">
+                            <h2>Set a brand object for the credit card.</h2>
+                            <pre>setBrand(\Dotpay\Model\CardBrand $brand) : \Dotpay\Model\CreditCard</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$brand</h4>
+                                                <code><a href="../classes/Dotpay.Model.CardBrand.html">\Dotpay\Model\CardBrand</a></code><p><p>Brand object for the credit card</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.CreditCard.html">\Dotpay\Model\CreditCard</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setCardId"></a>
+                        <div class="element clickable method public  method_setCardId" data-toggle="collapse" data-target=".method_setCardId .collapse">
+                            <h2>Set an identificator of credit card which is assigned by Dotpay system.</h2>
+                            <pre>setCardId(string $cardId) : \Dotpay\Model\CreditCard</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$cardId</h4>
+                                                <code>string</code><p><p>Identificator of credit card which is assigned by Dotpay system</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.CreditCard.html">\Dotpay\Model\CreditCard</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setCustomerHash"></a>
+                        <div class="element clickable method public  method_setCustomerHash" data-toggle="collapse" data-target=".method_setCustomerHash .collapse">
+                            <h2>Set the given customer hash.</h2>
+                            <pre>setCustomerHash(string $customerHash) : \Dotpay\Model\CreditCard</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$customerHash</h4>
+                                                <code>string</code><p><p>Customer hash</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.CreditCard.html">\Dotpay\Model\CreditCard</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setHref"></a>
+                        <div class="element clickable method public  method_setHref" data-toggle="collapse" data-target=".method_setHref .collapse">
+                            <h2>Set an URL on Dotpay server where is located information about this card.</h2>
+                            <pre>setHref(string $href) : \Dotpay\Model\CreditCard</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                            <tr>
+                                                <th>Throws</th>
+                                                <td>
+                                                    <dl>
+                                                                                                            <dt>\Dotpay\Exception\BadParameter\UrlException</dt>
+                                                        <dd><p>Thrown when the given URl address is incorrect</p></dd>
+                                                                                                                                                            </dl>
+                                                </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$href</h4>
+                                                <code>string</code><p><p>Url where are located information about this card</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.CreditCard.html">\Dotpay\Model\CreditCard</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setId"></a>
+                        <div class="element clickable method public  method_setId" data-toggle="collapse" data-target=".method_setId .collapse">
+                            <h2>Set an id of credit card in a shop.</h2>
+                            <pre>setId(integer $id) : \Dotpay\Model\CreditCard</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>integer</code><p><p>Id of credit card in a shop</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.CreditCard.html">\Dotpay\Model\CreditCard</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setIssuerId"></a>
+                        <div class="element clickable method public  method_setIssuerId" data-toggle="collapse" data-target=".method_setIssuerId .collapse">
+                            <h2>Set a card issuer id.</h2>
+                            <pre>setIssuerId(string $issuerId) : \Dotpay\Model\CreditCard</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$issuerId</h4>
+                                                <code>string</code><p><p>Card issuer id</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.CreditCard.html">\Dotpay\Model\CreditCard</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setMask"></a>
+                        <div class="element clickable method public  method_setMask" data-toggle="collapse" data-target=".method_setMask .collapse">
+                            <h2>Set a card masked number.</h2>
+                            <pre>setMask(string $mask) : \Dotpay\Model\CreditCard</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                            <tr>
+                                                <th>Throws</th>
+                                                <td>
+                                                    <dl>
+                                                                                                            <dt>\Dotpay\Exception\BadParameter\CardMaskException</dt>
+                                                        <dd><p>Thrown when the given card masked number is incorrect</p></dd>
+                                                                                                                                                            </dl>
+                                                </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$mask</h4>
+                                                <code>string</code><p><p>Card masked number</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.CreditCard.html">\Dotpay\Model\CreditCard</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setOrderId"></a>
+                        <div class="element clickable method public  method_setOrderId" data-toggle="collapse" data-target=".method_setOrderId .collapse">
+                            <h2>Set an id of the first order made using the card.</h2>
+                            <pre>setOrderId(integer $orderId) : \Dotpay\Model\getCreditCardByOrder</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$orderId</h4>
+                                                <code>integer</code><p><p>Id of the first order made using the card</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\Dotpay\Model\getCreditCardByOrder</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setRegisterDate"></a>
+                        <div class="element clickable method public  method_setRegisterDate" data-toggle="collapse" data-target=".method_setRegisterDate .collapse">
+                            <h2>Set a date when the card has beed registered.</h2>
+                            <pre>setRegisterDate(\DateTime $registerDate) : \Dotpay\Model\CreditCard</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$registerDate</h4>
+                                                <code>\DateTime</code><p><p>Date when the card has beed registered</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.CreditCard.html">\Dotpay\Model\CreditCard</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setUserId"></a>
+                        <div class="element clickable method public  method_setUserId" data-toggle="collapse" data-target=".method_setUserId .collapse">
+                            <h2>Set an identificator of a credit card user.</h2>
+                            <pre>setUserId(string $userId) : \Dotpay\Model\CreditCard</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$userId</h4>
+                                                <code>string</code><p><p>Identificator of a credit card user</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.CreditCard.html">\Dotpay\Model\CreditCard</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                    
+                    
+                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property_id"> </a>
+                            <div class="element clickable property  private property_id" data-toggle="collapse" data-target=".property_id .collapse">
+                                <h2>Id of credit card in a shop</h2>
+                                <pre>id : integer|null</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Id of credit card in a shop</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>integer|null</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_mask"> </a>
+                            <div class="element clickable property  private property_mask" data-toggle="collapse" data-target=".property_mask .collapse">
+                                <h2>Card masked number</h2>
+                                <pre>mask : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Card masked number</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_brand"> </a>
+                            <div class="element clickable property  private property_brand" data-toggle="collapse" data-target=".property_brand .collapse">
+                                <h2>Brand object for the credit card</h2>
+                                <pre>brand : \Dotpay\Model\CardBrand|null</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Brand object for the credit card</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/Dotpay.Model.CardBrand.html">\Dotpay\Model\CardBrand</a>|null</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_userId"> </a>
+                            <div class="element clickable property  private property_userId" data-toggle="collapse" data-target=".property_userId .collapse">
+                                <h2>Identificator of a credit card user</h2>
+                                <pre>userId : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Identificator of a credit card user</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_cardId"> </a>
+                            <div class="element clickable property  private property_cardId" data-toggle="collapse" data-target=".property_cardId .collapse">
+                                <h2>Identificator of credit card which is assigned by Dotpay system</h2>
+                                <pre>cardId : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Identificator of credit card which is assigned by Dotpay system</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_issuerId"> </a>
+                            <div class="element clickable property  private property_issuerId" data-toggle="collapse" data-target=".property_issuerId .collapse">
+                                <h2>Card issuer id</h2>
+                                <pre>issuerId : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Card issuer id</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_customerHash"> </a>
+                            <div class="element clickable property  private property_customerHash" data-toggle="collapse" data-target=".property_customerHash .collapse">
+                                <h2>Customer hash</h2>
+                                <pre>customerHash : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Customer hash</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_href"> </a>
+                            <div class="element clickable property  private property_href" data-toggle="collapse" data-target=".property_href .collapse">
+                                <h2>URL on Dotpay server where is located information about this card</h2>
+                                <pre>href : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>URL on Dotpay server where is located information about this card</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_registerDate"> </a>
+                            <div class="element clickable property  private property_registerDate" data-toggle="collapse" data-target=".property_registerDate .collapse">
+                                <h2>Date when the card has beed registered</h2>
+                                <pre>registerDate : \DateTime|null</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Date when the card has beed registered</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>\DateTime|null</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_orderId"> </a>
+                            <div class="element clickable property  private property_orderId" data-toggle="collapse" data-target=".property_orderId .collapse">
+                                <h2>Id of the first order made using the card</h2>
+                                <pre>orderId : integer|null</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Id of the first order made using the card</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>integer|null</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\Dotpay\Model\CreditCard"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/Dotpay.Model.html">Model</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/Dotpay.Model.CreditCard.html">CreditCard</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Fri, 29 Sep 2017 20:39:04 +0000.<br/>
+    </footer>
+    </body>
+</html>

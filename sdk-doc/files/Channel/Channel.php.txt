@@ -1,0 +1,290 @@
+<?php
+/**
+ * @package Dotpay\Channel
+ */
+namespace Dotpay\Channel;
+
+use Dotpay\Validator\ChannelId;
+use Dotpay\Resource\Payment as PaymentResource;
+use Dotpay\Model\Transaction;
+use Dotpay\Model\Configuration;
+use Dotpay\Exception\BadParameter\ChannelIdException;
+use Dotpay\Exception\Resource\Channel\NotFoundException;
+
+/**
+ * Class provides a special functionality for customization of payments channel
+ */
+class Channel
+{
+    /**
+     * @var int Code number of payment channel in Dotpay system
+     */
+    protected $code;
+    
+    /**
+     * @var array Array of values which can be set for saving some additional informations
+     */
+    protected $reqistry = [];
+    
+    /**
+     * @var Configuration Dotpay configuration object
+     */
+    protected $config;
+    
+    /**
+     * @var \Dotpay\Resource\ChannelInfo Channel info struct, downloaded from Dotpay server
+     */
+    protected $channelInfo;
+    
+    /**
+     * @var \Dotpay\Resource\Agreement Agreement struct, downloaded from Dotpay server
+     */
+    protected $agreements;
+    
+    /**
+     * @var bool Flag of a visibility of the channel
+     */
+    protected $visibility;
+    
+    /**
+     * @var bool Flag of an availability of the channel
+     */
+    protected $available;
+    
+    /**
+     * @var Transaction Object with transaction details
+     */
+    protected $transaction;
+    
+    /**
+     * @var PaymentResource Payment resource which can be used for Payment API
+     */
+    protected $resource;
+
+    /**
+     * Initializes a separate channel
+     * @param int $channelId Code number of payment channel in Dotpay system
+     * @param string $code Short string code which can be used to identify
+     * @param Configuration $config Dotpay configuration object
+     * @param Transaction $transaction Object with transaction details
+     * @param PaymentResource $paymentResource Payment resource which can be used for Payment API
+     * @throws ChannelIdException Thrown if the given channel id isn't correct
+     */
+    public function __construct($channelId, $code, Configuration $config, Transaction $transaction, PaymentResource $paymentResource)
+    {
+        if ($channelId !== null && !ChannelId::validate($channelId)) {
+            throw new ChannelIdException($channelId);
+        }
+        $this->code = $code;
+        $this->config = $config;
+        $this->transaction = $transaction;
+        $this->visibility = true;
+        $this->resource = $paymentResource;
+        $this->setChannelInfo($channelId);
+    }
+    
+    /**
+     * Saves the given value for the name
+     * @param string $name The name of the value
+     * @param mixed $value The value to saving
+     */
+    public function set($name, $value)
+    {
+        $this->reqistry[$name] = $value;
+    }
+    
+    /**
+     * Gets the saved value by the given name
+     * @param string $name Name of the saved value
+     * @return mixed
+     */
+    public function get($name)
+    {
+        if (isset($this->reqistry[$name])) {
+            return $this->reqistry[$name];
+        } else {
+            return null;
+        }
+    }
+    
+    /**
+     * Returns a code number of payment channel in Dotpay system
+     * @return int|null
+     */
+    public function getChannelId()
+    {
+        if ($this->channelInfo !== null) {
+            return $this->channelInfo->getId();
+        } else {
+            return null;
+        }
+    }
+    
+    /**
+     * Returns a readable name of the channel
+     * @return string|null
+     */
+    public function getName()
+    {
+        if ($this->channelInfo !== null) {
+            return $this->channelInfo->getName();
+        } else {
+            return null;
+        }
+    }
+    
+    /**
+     * Returns a name of a group to which it belongs the channel
+     * @return string|null
+     */
+    public function getGroup()
+    {
+        if ($this->channelInfo !== null) {
+            return $this->channelInfo->getGroup();
+        } else {
+            return null;
+        }
+    }
+    
+    /**
+     * Returns an URL of a image with logo of the payment channel
+     * @return string|null
+     */
+    public function getLogo()
+    {
+        if ($this->channelInfo !== null) {
+            return $this->channelInfo->getLogo();
+        } else {
+            return null;
+        }
+    }
+    
+    /**
+     * Returns a short string code of the payment channel
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+    
+    /**
+     * Sets a visibility of the channel on a channels list
+     * @param bool $visibility Flag of a visibility
+     */
+    public function setVisibility($visibility)
+    {
+        $this->visibility = (bool)$visibility;
+        return $this;
+    }
+    
+    /**
+     * Checks a visibility of the channel on a channels list
+     * @return bool
+     */
+    public function isVisible()
+    {
+        return $this->visibility;
+    }
+    
+    /**
+     * Checks an availability of the channel
+     * @return bool
+     */
+    final public function isAvailable()
+    {
+        return $this->available;
+    }
+    
+    /**
+     * Checks if the channel is enabled to using
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return $this->isVisible() &&
+               $this->isAvailable() &&
+               $this->config->isGatewayEnabled(
+                    $this->transaction->getPayment()->getOrder()->getCurrency()
+               );
+    }
+    
+    /**
+     * Returns an array of fields which can be displayed on a list of payment channels.
+     * They can contain aditional fields with information which are needed before continue a payment process.
+     * @return array
+     */
+    public function getViewFields()
+    {
+        $data = array();
+        return $data;
+    }
+    
+    /**
+     * Returns array of hidden fields for a form to redirecting to a Dotpay site with all needed information about a current payment
+     * @return array
+     */
+    public function getHiddenFields()
+    {
+        $data = [];
+        $data['id'] = $this->config->getId();
+        $data['control'] = $this->transaction->getPayment()->getOrder()->getReference();
+        $data['p_info'] = $this->config->getShopName();
+        $data['amount'] = $this->transaction->getPayment()->getOrder()->getAmount();
+        $data['currency'] = $this->transaction->getPayment()->getOrder()->getCurrency();
+        $data['description'] = $this->transaction->getPayment()->getOrder()->getDescription();
+        $data['lang'] = $this->transaction->getPayment()->getCustomer()->getLanguage();
+        $data['URL'] = $this->transaction->getBackUrl();
+        $data['URLC'] = $this->transaction->getConfirmUrl();
+        $data['api_version'] = $this->config->getApi();
+        $data['type'] = 4;
+        $data['ch_lock'] = 1;
+        $data['firstname'] = $this->transaction->getPayment()->getCustomer()->getFirstName();
+        $data['lastname'] = $this->transaction->getPayment()->getCustomer()->getLastName();
+        $data['email'] = $this->transaction->getPayment()->getCustomer()->getEmail();
+        $data['phone'] = $this->transaction->getPayment()->getCustomer()->getPhone();
+        $data['street'] = $this->transaction->getPayment()->getCustomer()->getStreet();
+        $data['street_n1'] = $this->transaction->getPayment()->getCustomer()->getBuildingNumber();
+        $data['city'] = $this->transaction->getPayment()->getCustomer()->getCity();
+        $data['postcode'] = $this->transaction->getPayment()->getCustomer()->getPostCode();
+        $data['country'] = $this->transaction->getPayment()->getCustomer()->getCountry();
+        $data['bylaw'] = 1;
+        $data['personal_data'] = 1;
+        return $data;
+    }
+    
+    /**
+     * Returns an agreement struct, downloaded from Dotpay server
+     * @return \Dotpay\Resource\Agreement
+     */
+    public function getAgreements()
+    {
+        return $this->agreements;
+    }
+    
+    /**
+     * Object with transaction details
+     * @return Transaction
+     */
+    public function getTransaction()
+    {
+        return $this->transaction;
+    }
+    
+    /**
+     * Retrieves informations about the channel from Dotpay server
+     * @param int $channelId Code number of payment channel in Dotpay system
+     */
+    protected function setChannelInfo($channelId)
+    {
+        try {
+            $channelsData = $this->resource->getChannelList($this->transaction->getPayment());
+            $this->channelInfo = $channelsData->getChannelInfo($channelId);
+            $this->agreements = $channelsData->getAgreements($channelId);
+            $this->available = true;
+        } catch (NotFoundException $e) {
+            $this->available = false;
+        }
+    }
+}
+

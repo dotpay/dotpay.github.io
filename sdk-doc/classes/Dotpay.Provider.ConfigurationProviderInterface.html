@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    Dotpay SDK &raquo; \Dotpay\Provider\ConfigurationProviderInterface
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">Dotpay SDK</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                    <li><a>Namespaces</a></li>
+                                                                        <li><a href="../namespaces/Dotpay.html">Dotpay</a></li>
+                                                                                                                                </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method_getApi" title="getApi :: Return a payment API version.">
+            <span class="description">Return a payment API version.</span><pre>getApi</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getBlikVisible" title="getBlikVisible :: Check if BLIK channel is set as visible.">
+            <span class="description">Check if BLIK channel is set as visible.</span><pre>getBlikVisible</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCcVisible" title="getCcVisible :: Check if normal card channel is set as visible.">
+            <span class="description">Check if normal card channel is set as visible.</span><pre>getCcVisible</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getEnable" title="getEnable :: Return an information if Dotpay payment is enabled on the shop site.">
+            <span class="description">Return an information if Dotpay payment is enabled on the shop site.</span><pre>getEnable</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getFccCurrencies" title="getFccCurrencies :: Return a string which contains a list with currency codes for which card channel for foreign currencies is enabled.">
+            <span class="description">Return a string which contains a list with currency codes for which card channel for foreign currencies is enabled.</span><pre>getFccCurrencies</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getFccId" title="getFccId :: Return seller id for the account which is asigned to card channel for foreign currency.">
+            <span class="description">Return seller id for the account which is asigned to card channel for foreign currency.</span><pre>getFccId</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getFccPin" title="getFccPin :: Return seller pin for the account which is asigned to card channel for foreign currency.">
+            <span class="description">Return seller pin for the account which is asigned to card channel for foreign currency.</span><pre>getFccPin</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getFccVisible" title="getFccVisible :: Check if the One Click card channel is enabled to use.">
+            <span class="description">Check if the One Click card channel is enabled to use.</span><pre>getFccVisible</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getId" title="getId :: Return seller id.">
+            <span class="description">Return seller id.</span><pre>getId</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getInstructionVisible" title="getInstructionVisible :: Check if payment instruction of cash or transfer channels should be visible on a shop site.">
+            <span class="description">Check if payment instruction of cash or transfer channels should be visible on a shop site.</span><pre>getInstructionVisible</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getMpVisible" title="getMpVisible :: Check if MasterPass channel is set as visible.">
+            <span class="description">Check if MasterPass channel is set as visible.</span><pre>getMpVisible</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getMultimerchant" title="getMultimerchant :: Return a flag if multimerchant is enabled.">
+            <span class="description">Return a flag if multimerchant is enabled.</span><pre>getMultimerchant</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getOcVisible" title="getOcVisible :: Check if the One Click card channel is set as visible.">
+            <span class="description">Check if the One Click card channel is set as visible.</span><pre>getOcVisible</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getPassword" title="getPassword :: Return password of Dotpay seller dashboard.">
+            <span class="description">Return password of Dotpay seller dashboard.</span><pre>getPassword</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getPaypalVisible" title="getPaypalVisible :: Check if Paypal channel is set as visible.">
+            <span class="description">Check if Paypal channel is set as visible.</span><pre>getPaypalVisible</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getPin" title="getPin :: Return seller pin.">
+            <span class="description">Return seller pin.</span><pre>getPin</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getPluginId" title="getPluginId :: Return plugin id.">
+            <span class="description">Return plugin id.</span><pre>getPluginId</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getRefundsEnable" title="getRefundsEnable :: Check if refunds requesting is enabled from a shop system.">
+            <span class="description">Check if refunds requesting is enabled from a shop system.</span><pre>getRefundsEnable</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getRenew" title="getRenew :: Check if payments renew option is enabled.">
+            <span class="description">Check if payments renew option is enabled.</span><pre>getRenew</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getRenewDays" title="getRenewDays :: Return a number of days after creating an order when payment can be renewed.">
+            <span class="description">Return a number of days after creating an order when payment can be renewed.</span><pre>getRenewDays</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getShopName" title="getShopName :: Return a name of shop which is sent to Dotpay server.">
+            <span class="description">Return a name of shop which is sent to Dotpay server.</span><pre>getShopName</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getSurcharge" title="getSurcharge :: Return a flag if special surcharge is enabled.">
+            <span class="description">Return a flag if special surcharge is enabled.</span><pre>getSurcharge</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getSurchargeAmount" title="getSurchargeAmount :: Return an amount which will be added as a surcharge.">
+            <span class="description">Return an amount which will be added as a surcharge.</span><pre>getSurchargeAmount</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getSurchargePercent" title="getSurchargePercent :: Return a percent of value of order which will be added as a surcharge.">
+            <span class="description">Return a percent of value of order which will be added as a surcharge.</span><pre>getSurchargePercent</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getTestMode" title="getTestMode :: Check if test mode is enabled.">
+            <span class="description">Check if test mode is enabled.</span><pre>getTestMode</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getUsername" title="getUsername :: Return username of Dotpay seller dashboard.">
+            <span class="description">Return username of Dotpay seller dashboard.</span><pre>getUsername</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getWidgetCurrencies" title="getWidgetCurrencies :: Return a string which contains a list with currency codes for which main Dotpay channel is disabled.">
+            <span class="description">Return a string which contains a list with currency codes for which main Dotpay channel is disabled.</span><pre>getWidgetCurrencies</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getWidgetVisible" title="getWidgetVisible :: Check if Dotpay widget is set as visible.">
+            <span class="description">Check if Dotpay widget is set as visible.</span><pre>getWidgetVisible</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>ConfigurationProviderInterface</h1>
+                <small style="display: block; text-align: right">
+                                            Extends 
+                                                        </small>
+                <p class="short_description">Interface of configuration data providers from shop.</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Default</p>
+                                    </td>
+                                </tr>
+                                                                                                                            </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method_getApi"></a>
+                        <div class="element clickable method public  method_getApi" data-toggle="collapse" data-target=".method_getApi .collapse">
+                            <h2>Return a payment API version.</h2>
+                            <pre>getApi() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getBlikVisible"></a>
+                        <div class="element clickable method public  method_getBlikVisible" data-toggle="collapse" data-target=".method_getBlikVisible .collapse">
+                            <h2>Check if BLIK channel is set as visible.</h2>
+                            <pre>getBlikVisible() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getCcVisible"></a>
+                        <div class="element clickable method public  method_getCcVisible" data-toggle="collapse" data-target=".method_getCcVisible .collapse">
+                            <h2>Check if normal card channel is set as visible.</h2>
+                            <pre>getCcVisible() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getEnable"></a>
+                        <div class="element clickable method public  method_getEnable" data-toggle="collapse" data-target=".method_getEnable .collapse">
+                            <h2>Return an information if Dotpay payment is enabled on the shop site.</h2>
+                            <pre>getEnable() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getFccCurrencies"></a>
+                        <div class="element clickable method public  method_getFccCurrencies" data-toggle="collapse" data-target=".method_getFccCurrencies .collapse">
+                            <h2>Return a string which contains a list with currency codes for which card channel for foreign currencies is enabled.</h2>
+                            <pre>getFccCurrencies() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getFccId"></a>
+                        <div class="element clickable method public  method_getFccId" data-toggle="collapse" data-target=".method_getFccId .collapse">
+                            <h2>Return seller id for the account which is asigned to card channel for foreign currency.</h2>
+                            <pre>getFccId() : integer|null</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>integer|null</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getFccPin"></a>
+                        <div class="element clickable method public  method_getFccPin" data-toggle="collapse" data-target=".method_getFccPin .collapse">
+                            <h2>Return seller pin for the account which is asigned to card channel for foreign currency.</h2>
+                            <pre>getFccPin() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getFccVisible"></a>
+                        <div class="element clickable method public  method_getFccVisible" data-toggle="collapse" data-target=".method_getFccVisible .collapse">
+                            <h2>Check if the One Click card channel is enabled to use.</h2>
+                            <pre>getFccVisible() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getId"></a>
+                        <div class="element clickable method public  method_getId" data-toggle="collapse" data-target=".method_getId .collapse">
+                            <h2>Return seller id.</h2>
+                            <pre>getId() : integer|null</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>integer|null</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getInstructionVisible"></a>
+                        <div class="element clickable method public  method_getInstructionVisible" data-toggle="collapse" data-target=".method_getInstructionVisible .collapse">
+                            <h2>Check if payment instruction of cash or transfer channels should be visible on a shop site.</h2>
+                            <pre>getInstructionVisible() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getMpVisible"></a>
+                        <div class="element clickable method public  method_getMpVisible" data-toggle="collapse" data-target=".method_getMpVisible .collapse">
+                            <h2>Check if MasterPass channel is set as visible.</h2>
+                            <pre>getMpVisible() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getMultimerchant"></a>
+                        <div class="element clickable method public  method_getMultimerchant" data-toggle="collapse" data-target=".method_getMultimerchant .collapse">
+                            <h2>Return a flag if multimerchant is enabled.</h2>
+                            <pre>getMultimerchant() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getOcVisible"></a>
+                        <div class="element clickable method public  method_getOcVisible" data-toggle="collapse" data-target=".method_getOcVisible .collapse">
+                            <h2>Check if the One Click card channel is set as visible.</h2>
+                            <pre>getOcVisible() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getPassword"></a>
+                        <div class="element clickable method public  method_getPassword" data-toggle="collapse" data-target=".method_getPassword .collapse">
+                            <h2>Return password of Dotpay seller dashboard.</h2>
+                            <pre>getPassword() : \Dotpay\Provider\password</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>\Dotpay\Provider\password</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getPaypalVisible"></a>
+                        <div class="element clickable method public  method_getPaypalVisible" data-toggle="collapse" data-target=".method_getPaypalVisible .collapse">
+                            <h2>Check if Paypal channel is set as visible.</h2>
+                            <pre>getPaypalVisible() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getPin"></a>
+                        <div class="element clickable method public  method_getPin" data-toggle="collapse" data-target=".method_getPin .collapse">
+                            <h2>Return seller pin.</h2>
+                            <pre>getPin() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getPluginId"></a>
+                        <div class="element clickable method public  method_getPluginId" data-toggle="collapse" data-target=".method_getPluginId .collapse">
+                            <h2>Return plugin id.</h2>
+                            <pre>getPluginId() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getRefundsEnable"></a>
+                        <div class="element clickable method public  method_getRefundsEnable" data-toggle="collapse" data-target=".method_getRefundsEnable .collapse">
+                            <h2>Check if refunds requesting is enabled from a shop system.</h2>
+                            <pre>getRefundsEnable() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getRenew"></a>
+                        <div class="element clickable method public  method_getRenew" data-toggle="collapse" data-target=".method_getRenew .collapse">
+                            <h2>Check if payments renew option is enabled.</h2>
+                            <pre>getRenew() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getRenewDays"></a>
+                        <div class="element clickable method public  method_getRenewDays" data-toggle="collapse" data-target=".method_getRenewDays .collapse">
+                            <h2>Return a number of days after creating an order when payment can be renewed.</h2>
+                            <pre>getRenewDays() : integer</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>integer</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getShopName"></a>
+                        <div class="element clickable method public  method_getShopName" data-toggle="collapse" data-target=".method_getShopName .collapse">
+                            <h2>Return a name of shop which is sent to Dotpay server.</h2>
+                            <pre>getShopName() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getSurcharge"></a>
+                        <div class="element clickable method public  method_getSurcharge" data-toggle="collapse" data-target=".method_getSurcharge .collapse">
+                            <h2>Return a flag if special surcharge is enabled.</h2>
+                            <pre>getSurcharge() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getSurchargeAmount"></a>
+                        <div class="element clickable method public  method_getSurchargeAmount" data-toggle="collapse" data-target=".method_getSurchargeAmount .collapse">
+                            <h2>Return an amount which will be added as a surcharge.</h2>
+                            <pre>getSurchargeAmount() : float</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>float</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getSurchargePercent"></a>
+                        <div class="element clickable method public  method_getSurchargePercent" data-toggle="collapse" data-target=".method_getSurchargePercent .collapse">
+                            <h2>Return a percent of value of order which will be added as a surcharge.</h2>
+                            <pre>getSurchargePercent() : float</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>float</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getTestMode"></a>
+                        <div class="element clickable method public  method_getTestMode" data-toggle="collapse" data-target=".method_getTestMode .collapse">
+                            <h2>Check if test mode is enabled.</h2>
+                            <pre>getTestMode() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getUsername"></a>
+                        <div class="element clickable method public  method_getUsername" data-toggle="collapse" data-target=".method_getUsername .collapse">
+                            <h2>Return username of Dotpay seller dashboard.</h2>
+                            <pre>getUsername() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getWidgetCurrencies"></a>
+                        <div class="element clickable method public  method_getWidgetCurrencies" data-toggle="collapse" data-target=".method_getWidgetCurrencies .collapse">
+                            <h2>Return a string which contains a list with currency codes for which main Dotpay channel is disabled.</h2>
+                            <pre>getWidgetCurrencies() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getWidgetVisible"></a>
+                        <div class="element clickable method public  method_getWidgetVisible" data-toggle="collapse" data-target=".method_getWidgetVisible .collapse">
+                            <h2>Check if Dotpay widget is set as visible.</h2>
+                            <pre>getWidgetVisible() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                    
+                    
+                                                        </div>
+            </div>
+            <a id="\Dotpay\Provider\ConfigurationProviderInterface"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/Dotpay.Provider.html">Provider</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/Dotpay.Provider.ConfigurationProviderInterface.html">ConfigurationProviderInterface</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Fri, 29 Sep 2017 20:39:09 +0000.<br/>
+    </footer>
+    </body>
+</html>

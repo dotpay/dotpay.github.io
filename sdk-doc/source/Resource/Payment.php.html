@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Resource;
+
+use Dotpay\Model\Payment as ModelPayment;
+use Dotpay\Resource\Channel\Info;
+use Dotpay\Exception\Resource\ApiException;
+use Dotpay\Exception\BadReturn\TypeNotCompatibleException;
+
+class Payment extends Resource {
+    private $buffer;
+    
+    public function getChannelList(ModelPayment $payment) {
+        $id = $payment-&gt;getIdentifier();
+        if(!isset($this-&gt;buffer[$id])) {
+            $content = $this-&gt;getContent($this-&gt;getUrl($payment));
+            if(!is_array($content))
+                throw new TypeNotCompatibleException(gettype($content));
+            if(isset($content['error_code'])) {
+                $exception = new ApiException($content['detail']);
+                throw $exception-&gt;setApiCode($content['error_code']);
+            }
+            $this-&gt;buffer[$id] = new Info($content['channels'], $content['forms']);
+        }
+        return $this-&gt;buffer[$id];
+    }
+    
+    public function checkSeller($id) {
+        $url = $this-&gt;config-&gt;getPaymentUrl().
+               'payment_api/channels/'.
+               '?id='.$id.
+               '&amp;format=json';
+        $content = $this-&gt;getContent($url);
+        if(!is_array($content))
+            throw new TypeNotCompatibleException(gettype($content));
+        if(isset($content['error_code']) &amp;&amp; $result['error_code'] == 'UNKNOWN_ACCOUNT') {
+            return false;
+        }
+        return true;
+    }
+    
+    private function getUrl(ModelPayment $payment) {
+        $lang = $payment-&gt;getCustomer()-&gt;getLanguage();
+        if(!$lang)
+            $lang = 'en';
+        return $this-&gt;config-&gt;getPaymentUrl().'payment_api/channels/'.
+               '?id='.$payment-&gt;getSeller()-&gt;getId().
+               '&amp;amount='.$payment-&gt;getOrder()-&gt;getAmount().
+               '&amp;currency='.$payment-&gt;getOrder()-&gt;getCurrency().
+               '&amp;lang='.$lang.
+               '&amp;format=json';
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

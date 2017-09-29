@@ -1,0 +1,197 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Channel;
+
+use Dotpay\Model\Configuration;
+use Dotpay\Model\Transaction;
+use Dotpay\Resource\Payment as PaymentResource;
+use Dotpay\Resource\Seller as SellerResource;
+use Dotpay\Model\CreditCard;
+use Dotpay\Html\Form\Label;
+use Dotpay\Html\Form\Radio;
+use Dotpay\Html\Form\Select;
+use Dotpay\Html\Form\Option;
+use Dotpay\Html\Container\A;
+use Dotpay\Html\Container\Div;
+use Dotpay\Html\Img;
+use Dotpay\Html\Element;
+
+/**
+ * Class provides a special functionality for credit card payments, realized as an one Click method
+ */
+class Oc extends Channel {
+    private $card;
+    private $cardList = [];
+    private $sellerResource;
+    private $manageCardsUrl;
+    
+    /**
+     * Initializes a credit card channel for the One Click method
+     * @param Configuration $config Dotpay configuration object
+     * @param Transaction $transaction Object with transaction details
+     * @param PaymentResource $paymentResource Payment resource which can be used for Payment API
+     * @param SellerResource $sellerResource Seller resource which can be used for Seller API
+     */
+    public function __construct(Configuration $config, Transaction $transaction, PaymentResource $paymentResource, SellerResource $sellerResource) {
+        parent::__construct(Configuration::OC_CHANNEL, 'oc', $config, $transaction, $paymentResource);
+        $this-&gt;sellerResource = $sellerResource;
+    }
+    
+    /**
+     * Checks if the channel is enabled to using
+     * @return bool
+     */
+    public function isEnabled() {
+        return parent::isEnabled() &amp;&amp; $this-&gt;config-&gt;isOcEnable();
+    }
+    
+    public function getCard() {
+        return $this-&gt;card;
+    }
+    
+    public function setCard(CreditCard $card) {
+        $this-&gt;card = $card;
+        return $this;
+    }
+    
+    public function addCard(CreditCard $card) {
+        $this-&gt;cardList[] = $card;
+        return $this;
+    }
+    
+    public function getCardList() {
+        return $this-&gt;cardList;
+    }
+    
+    public function getManageCardsUrl() {
+        return $this-&gt;manageCardsUrl;
+    }
+    
+    public function setManageCardsUrl($url) {
+        $this-&gt;manageCardsUrl = $url;
+        return $this;
+    }
+    
+    /**
+     * Returns array of hidden fields for a form to redirecting to a Dotpay site with all needed information about a current payment
+     * @return array
+     */
+    public function getHiddenFields() {
+        $data = parent::getHiddenFields();
+        $data['credit_card_customer_id'] = $this-&gt;getCard()-&gt;getUserId();
+        if($this-&gt;getCard()-&gt;getCardId() == null) {
+            $data['credit_card_store'] = 1;
+        } else {
+            $data['credit_card_id'] = $this-&gt;getCard()-&gt;getCardId();
+        }
+        return $data;
+    }
+    
+    /**
+     * Returns an array of fields which can be displayed on a list of payment channels.
+     * They can contain aditional fields with information which are needed before continue a payment process.
+     * @return array
+     */
+    public function getViewFields() {
+        $data = parent::getViewFields();
+        $numberOfcards = count($this-&gt;getCardList());
+        if($numberOfcards) {
+            $data[] = new Radio('dotpay_select_card', 1);
+            $select = new Select('dotpay_card_list');
+            foreach($this-&gt;getCardList() as $card)
+                if($card-&gt;isRegistered())
+                    $select-&gt;addOption(new Option($card-&gt;getMask(), $card-&gt;getId()));
+            if($numberOfcards == 1)
+                $select-&gt;setSelected($this-&gt;cardList[0]-&gt;getId());
+            $data[] = $select;
+        }
+        $data[] = new Radio('dotpay_register_card', 1);
+        return $data;
+    }
+    
+    /**
+     * Returns view fields enriched by an additional piece of HTML code
+     * @return array
+     */
+    public function getViewFieldsHtml() {
+        $data = $this-&gt;getViewFields();
+        return [
+            $this-&gt;createSelectCardOption($data[0]),
+            $this-&gt;createSelectCardList($data[1]),
+            $this-&gt;createRegisterCardOption($data[2])
+        ];
+    }
+    
+    protected function createSelectCardOption(Element $element) {
+        $a = new A($this-&gt;getManageCardsUrl(), 'Manage your saved credit cards');
+        $a-&gt;setAttribute('target', '_blank');
+        $checkLabel = new Label($element, '', 'Select from saved cards'.' ('.$a.')');
+        $checkLabel-&gt;setAttribute('class', $element-&gt;getName());
+        return $checkLabel;
+    }
+    
+    protected function createSelectCardList(Element $element) {
+        $img = new Img('');
+        $img-&gt;setClass('dotpay-card-logo');
+        foreach($this-&gt;getCardList() as $card) {
+            if($card-&gt;isRegistered())
+                $img-&gt;setData('card-'.$card-&gt;getId(), $card-&gt;getBrand()-&gt;getLogo());
+        }
+        $div = new Div([$element, $img]);
+        $div-&gt;setAttribute('class', $element-&gt;getName());
+        return $div;
+    }
+    
+    protected function createRegisterCardOption(Element $element) {
+        $regLabel = new Label($element, '', 'Register new card');
+        $regLabel-&gt;setAttribute('class', $element-&gt;getName());
+        return $regLabel;
+    }
+}
+
+?&gt;
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

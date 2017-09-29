@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * @package Dotpay\Action
+ */
+namespace Dotpay\Action;
+
+use Dotpay\Model\CreditCard;
+
+/**
+ * Action which is executed during updating informations about credit card
+ */
+class UpdateCcInfo extends Action {
+    /**
+     * Returns a credit card which is set as an argument for a callback.
+     * @return CreditCard
+     */
+    public function getCreditCard() {
+        return $this-&gt;getOneArgument();
+    }
+    
+    /**
+     * Sets a credit card which can be passed to callback function.
+     * @param CreditCard $cc Credit card object
+     * @return UpdateCcInfo
+     */
+    public function setCreditCard(CreditCard $cc) {
+        return $this-&gt;setOneArgument($cc);
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

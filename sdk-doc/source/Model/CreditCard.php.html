@@ -1,0 +1,174 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Model;
+
+use Dotpay\Validator\CardMask;
+use Dotpay\Validator\Url;
+use Dotpay\Exception\BadParameter\CardMaskException;
+use Dotpay\Exception\BadParameter\UrlException;
+
+class CreditCard {
+    private $id;
+    private $mask;
+    private $brand;
+    private $userId;
+    private $cardId;
+    private $issuerId;
+    private $href;
+
+    public function __construct($id, $userId) {
+        $this-&gt;setId($id);
+        $this-&gt;setUserId($userId);
+    }
+    
+    public function getId() {
+        return $this-&gt;id;
+    }
+
+    public function getMask() {
+        return $this-&gt;mask;
+    }
+
+    public function getBrand() {
+        return $this-&gt;brand;
+    }
+
+    public function getUserId() {
+        return $this-&gt;userId;
+    }
+
+    public function getCardId() {
+        return $this-&gt;cardId;
+    }
+    
+    public function getIssuerId() {
+        return $this-&gt;issuerId;
+    }
+    
+    public function getHref() {
+        return $this-&gt;href;
+    }
+    
+    public function isRegistered() {
+        return !($this-&gt;getCardId() === null ||
+                $this-&gt;getBrand() === null ||
+                $this-&gt;getMask() === null);
+    }
+
+    public function setId($id) {
+        $this-&gt;id = $id;
+        return $this;
+    }
+
+    public function setMask($mask) {
+        $mask = str_replace(' ', '-', strtoupper($mask));
+        if(!CardMask::validate($mask))
+            throw new CardMaskException($mask);
+        $this-&gt;mask = $mask;
+        return $this;
+    }
+
+    public function setBrand(CardBrand $brand) {
+        $this-&gt;brand = $brand;
+        return $this;
+    }
+
+    public function setUserId($userId) {
+        $this-&gt;userId = $userId;
+        return $this;
+    }
+
+    public function setCardId($cardId) {
+        $this-&gt;cardId = $cardId;
+        return $this;
+    }
+    
+    public function setIssuerId($issuerId) {
+        $this-&gt;issuerId = $issuerId;
+        return $this;
+    }
+    
+    public function setHref($href) {
+        if(!Url::validate($href))
+            throw new UrlException($href);
+        $this-&gt;href = $href;
+        return $this;
+    }
+    
+    public function generateUserId() {
+        $microtime = '' . $this-&gt;generateTimeValue();
+        $md5 = md5($microtime);
+
+        $mtRand = $this-&gt;generateRandomValue();
+
+        $md5Substr = substr($md5, $mtRand, 21);
+
+        $a = substr($md5Substr, 0, 6);
+        $b = substr($md5Substr, 6, 5);
+        $c = substr($md5Substr, 11, 6);
+        $d = substr($md5Substr, 17, 4);
+
+        return $this-&gt;setUserId(&quot;{$a}-{$b}-{$c}-{$d}&quot;);
+    }
+    
+    /**
+     * @codeCoverageIgnore
+     */
+    protected function generateTimeValue() {
+        return microtime(true);
+    }
+    
+    /**
+     * @codeCoverageIgnore
+     */
+    protected function generateRandomValue() {
+        return mt_rand(0, 11);
+    }
+}
+
+?&gt;
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

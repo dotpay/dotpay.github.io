@@ -1,0 +1,251 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Processor;
+
+use Dotpay\Action\UpdateCcInfo;
+use Dotpay\Action\MakePaymentOrRefund;
+use Dotpay\Model\Configuration;
+use Dotpay\Model\Payment;
+use Dotpay\Model\Notification;
+use Dotpay\Model\Seller;
+use Dotpay\Resource\Payment as PaymentResource;
+use Dotpay\Resource\Seller as SellerResource;
+use Dotpay\Exception\Processor\SellerNotRecognizedException;
+use Dotpay\Exception\Processor\ConfirmationDataException;
+use Dotpay\Exception\Processor\ConfirmationInfoException;
+
+class Confirmation {
+    private $outputMessage;
+    private $config;
+    private $paymentApi;
+    private $sellerApi;
+    private $payment;
+    private $notification;
+    
+    private $updateCcAction;
+    private $makePaymentAction;
+    private $makeRefundAction;
+    
+    public function __construct(Configuration $config, PaymentResource $paymentApi, SellerResource $sellerApi) {
+        $this-&gt;config = $config;
+        $this-&gt;paymentApi = $paymentApi;
+        $this-&gt;sellerApi = $sellerApi;
+        $this-&gt;outputMessage = '';
+    }
+    
+    public function setUpdateCcAction(UpdateCcInfo $updateCcAction) {
+        $this-&gt;updateCcAction = $updateCcAction;
+    }
+    
+    public function setMakePaymentAction(MakePaymentOrRefund $makePaymentAction) {
+        $this-&gt;makePaymentAction = $makePaymentAction;
+    }
+    
+    public function setMakeRefundAction(MakePaymentOrRefund $makeRefundAction) {
+        $this-&gt;makeRefundAction = $makeRefundAction;
+    }
+
+    public function execute(Payment $payment, Notification $notification) {
+        $this-&gt;payment = $payment;
+        $this-&gt;notification = $notification;
+        $config = $this-&gt;config;
+        if ($_SERVER['REMOTE_ADDR'] == $config::OFFICE_IP &amp;&amp; 
+            $_SERVER['REQUEST_METHOD'] == 'GET'
+        ) {
+            $this-&gt;completeInformations();
+            throw new ConfirmationInfoException($this-&gt;outputMessage);
+        }
+        $this-&gt;checkIp();
+        $this-&gt;checkMethod();
+        $this-&gt;checkSignature();
+        $this-&gt;checkCurrency();
+        
+        $operation = $this-&gt;notification-&gt;getOperation();
+        switch($operation-&gt;getType()) {
+            case $operation::TYPE_PAYMENT:
+                return $this-&gt;makePayment();
+            case $operation::TYPE_REFUND:
+                return $this-&gt;makeRefund();
+            default:
+                return false;
+        }
+    }
+    
+    protected function completeInformations() {
+        $config = $this-&gt;config;
+        $this-&gt;addOutputMessage('--- Dotpay Diagnostic Information ---')
+             -&gt;addOutputMessage('Sdk Version: '.$config::SDK_VERSION)
+             -&gt;addOutputMessage('Enabled: '.(int)$config-&gt;getEnable(), true)
+             -&gt;addOutputMessage('--- Dotpay PLN ---')
+             -&gt;addOutputMessage('Id: '.$config-&gt;getId())
+             -&gt;addOutputMessage('Correct Id: '.(int)$this-&gt;paymentApi-&gt;checkSeller($config-&gt;getId()))
+             -&gt;addOutputMessage('Correct Pin: '.(int)$this-&gt;sellerApi-&gt;checkPin())
+             -&gt;addOutputMessage('API Version: '.$config-&gt;getApi())
+             -&gt;addOutputMessage('Test Mode: '.(int)$config-&gt;getTestMode())
+             -&gt;addOutputMessage('Refunds: '.(int)$config-&gt;getRefundsEnable())
+             -&gt;addOutputMessage('Widget: '.(int)$config-&gt;getWidgetVisible())
+             -&gt;addOutputMessage('Widget currencies: '.$config-&gt;getWidgetCurrencies())
+             -&gt;addOutputMessage('Instructions: '.(int)$config-&gt;getInstructionVisible(), true)
+             -&gt;addOutputMessage('--- Separate Channels ---')
+             -&gt;addOutputMessage('One Click: '.(int)$config-&gt;getOcVisible())
+             -&gt;addOutputMessage('Credit Card: '.(int)$config-&gt;getCcVisible())
+             -&gt;addOutputMessage('MasterPass: '.(int)$config-&gt;getMpVisible())
+             -&gt;addOutputMessage('Blik: '.(int)$config-&gt;getBlikVisible(), true)
+             -&gt;addOutputMessage('--- Dotpay FCC ---')
+             -&gt;addOutputMessage('FCC Mode: '.(int)$config-&gt;getFccVisible())
+             -&gt;addOutputMessage('FCC Id: '.$config-&gt;getFccId())
+             -&gt;addOutputMessage('FCC Correct Id: '.(int)$this-&gt;paymentApi-&gt;checkSeller($config-&gt;getFccId()))
+             -&gt;addOutputMessage('FCC Correct Pin: '.(int)$this-&gt;sellerApi-&gt;checkFccPin())
+             -&gt;addOutputMessage('FCC Currencies: '.$config-&gt;getFccCurrencies(), true)
+             -&gt;addOutputMessage('--- Dotpay API ---')
+             -&gt;addOutputMessage('Data: '.(($config-&gt;isGoodApiData())?'&lt;given&gt;':'&lt;empty&gt;'))
+             -&gt;addOutputMessage('Login: '.$config-&gt;getUsername());
+        $isAccountRight = false;
+        try {
+            $isAccountRight = $this-&gt;sellerApi-&gt;isAccountRight();
+        } catch (Exception $ex) {}
+        $this-&gt;addOutputMessage('Correct data: '.$isAccountRight,true);
+    }
+    
+    protected function addOutputMessage($message, $endOfSection = false) {
+        $this-&gt;outputMessage .= $message.&quot;&lt;br /&gt;&quot;;
+        if($endOfSection)
+            $this-&gt;outputMessage .= &quot;&lt;br /&gt;&quot;;
+        return $this;
+    }
+    
+    protected function checkIp() {
+        $config = $this-&gt;config;
+        if (
+            !($_SERVER['REMOTE_ADDR'] == $config::CALLBACK_IP ||
+                ($this-&gt;config-&gt;getTestMode() &amp;&amp;
+                 ($_SERVER['REMOTE_ADDR'] == $config::OFFICE_IP ||
+                  $_SERVER['REMOTE_ADDR'] == $config::LOCAL_IP
+                 )
+                )
+            )
+        ) {
+            throw new ConfirmationDataException(&quot;ERROR (REMOTE ADDRESS: &quot;.$_SERVER['REMOTE_ADDR'].&quot;)&quot;);
+        }
+    }
+    
+    protected function checkMethod() {
+        if (strtoupper($_SERVER['REQUEST_METHOD']) != 'POST') {
+            throw new ConfirmationDataException(&quot;ERROR (METHOD &lt;&gt; POST)&quot;);
+        }
+    }
+    
+    protected function checkSignature() {
+        $seller = $this-&gt;getSeller();
+        if ($this-&gt;notification-&gt;calculateSignature($seller-&gt;getPin()) != $this-&gt;notification-&gt;getSignature()) {
+            throw new ConfirmationDataException(&quot;ERROR SIGNATURE - CHECK PIN&quot;);
+        }
+    }
+
+    protected function checkCurrency() {
+        $receivedCurrency = $this-&gt;notification-&gt;getOperation()-&gt;getOriginalCurrency();
+        $orderCurrency = $this-&gt;payment-&gt;getOrder()-&gt;getCurrency();
+        if ($receivedCurrency != $orderCurrency) {
+            throw new ConfirmationDataException('ERROR NO MATCH OR WRONG CURRENCY - '.$receivedCurrency.' &lt;&gt; '.$orderCurrency);
+        }
+    }
+    
+    protected function checkPaymentAmount() {
+        $receivedAmount = $this-&gt;notification-&gt;getOperation()-&gt;getOriginalAmount();
+        $orderAmount = $this-&gt;payment-&gt;getOrder()-&gt;getAmount();
+        if ($receivedAmount != $orderAmount) {
+            throw new ConfirmationDataException('ERROR NO MATCH OR WRONG AMOUNT - '.$receivedAmount.' &lt;&gt; '.$orderAmount);
+        }
+    }
+    
+    protected function makePayment() {
+        $config = $this-&gt;config;
+        $this-&gt;checkPaymentAmount();
+        $operation = $this-&gt;notification-&gt;getOperation();
+        if(
+           $operation-&gt;getStatus() == $operation::STATUS_COMPLETE &amp;&amp;
+           $this-&gt;notification-&gt;getChannelId() == $config::OC_CHANNEL &amp;&amp;
+           $this-&gt;updateCcAction !== null
+          ) {
+            $creditCard = null;
+            if($this-&gt;notification-&gt;getCreditCard() !== null) {
+                $creditCard = $this-&gt;notification-&gt;getCreditCard();
+            } else {
+                $operation = $this-&gt;sellerApi-&gt;getOperationByNumber($this-&gt;notification-&gt;getOperation()-&gt;getNumber());
+                $paymentMethod = $operation-&gt;getPaymentMethod();
+                if($paymentMethod-&gt;getDetailsType() == $paymentMethod::CREDIT_CARD)
+                    $creditCard = $paymentMethod-&gt;getDetails();
+            }
+            if($creditCard !== null)
+                $this-&gt;updateCcAction-&gt;setCreditCard($creditCard);
+        }
+        return ($this-&gt;makePaymentAction !== null)?$this-&gt;makePaymentAction-&gt;execute():true;
+    }
+    
+    protected function makeRefund() {
+        return ($this-&gt;makeRefundAction !== null)?$this-&gt;makeRefundAction-&gt;execute():true;
+    }
+
+    protected function getSeller() {
+        switch($this-&gt;notification-&gt;getAccountId()) {
+            case $this-&gt;config-&gt;getId():
+                return new Seller($this-&gt;config-&gt;getId(), $this-&gt;config-&gt;getPin());
+            case $this-&gt;config-&gt;getFccId():
+                if(
+                    $this-&gt;config-&gt;getFccVisible() &amp;&amp; 
+                    $this-&gt;config-&gt;isCurrencyForFcc(
+                        $this-&gt;notification-&gt;getOperation()-&gt;getOriginalCurrency()
+                    )
+                  ) {
+                    return new Seller($this-&gt;config-&gt;getFccId(), $this-&gt;config-&gt;getFccPin());
+                }
+            default:
+                throw new SellerNotRecognizedException($this-&gt;notification-&gt;getAccountId());
+        }
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

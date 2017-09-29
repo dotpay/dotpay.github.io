@@ -1,0 +1,110 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Model;
+
+use Dotpay\Validator\Url;
+use Dotpay\Exception\BadParameter\UrlException;
+use Dotpay\Exception\BadParameter\MethodException;
+
+class Redirect {
+    const ALLOWED_METHODS = [
+        'get', 'post', 'put', 'delete'
+    ];
+    
+    private $url;
+    private $data;
+    private $method;
+    private $encoding;
+    
+    public function __construct($url, array $data, $method = 'post', $encoding = 'utf-8') {
+        $this-&gt;setUrl($url);
+        $this-&gt;setData($data);
+        $this-&gt;setMethod($method);
+        $this-&gt;setEncoding($encoding);
+    }
+    
+    public function getUrl() {
+        return $this-&gt;url;
+    }
+
+    public function getData() {
+        return $this-&gt;data;
+    }
+
+    public function getMethod() {
+        return $this-&gt;method;
+    }
+
+    public function getEncoding() {
+        return $this-&gt;encoding;
+    }
+
+    public function setUrl($url) {
+        if(!Url::validate($url))
+            throw new UrlException($url);
+        $this-&gt;url = $url;
+        return $this;
+    }
+
+    public function setData(array $data) {
+        $this-&gt;data = $data;
+        return $this;
+    }
+
+    public function setMethod($method) {
+        $method = strtolower($method);
+        if(array_search($method, self::ALLOWED_METHODS) === false)
+            throw new MethodException($method);
+        $this-&gt;method = $method;
+        return $this;
+    }
+
+    public function setEncoding($encoding) {
+        $this-&gt;encoding = $encoding;
+        return $this;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

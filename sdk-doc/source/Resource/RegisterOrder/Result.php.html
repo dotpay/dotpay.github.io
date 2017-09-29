@@ -1,0 +1,105 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Resource\RegisterOrder;
+
+use Dotpay\Validator\Url;
+use Dotpay\Model\Redirect;
+use Dotpay\Model\Operation;
+use Dotpay\Model\Instruction;
+use Dotpay\Exception\BadParameter\UrlException;
+
+class Result {
+    private $statusUrl;
+    private $redirect;
+    private $operation;
+    private $instruction;
+    
+    public function __construct($statusUrl, Operation $operation) {
+        $this-&gt;setStatusUrl($statusUrl);
+        $this-&gt;setOperation($operation);
+    }
+    
+    public function getStatusUrl() {
+        return $this-&gt;statusUrl;
+    }
+
+    public function getRedirect() {
+        return $this-&gt;redirect;
+    }
+
+    public function getOperation() {
+        return $this-&gt;operation;
+    }
+
+    public function getInstruction() {
+        return $this-&gt;instruction;
+    }
+
+    public function setStatusUrl($statusUrl) {
+        if(!Url::validate($statusUrl))
+            throw new UrlException($statusUrl);
+        $this-&gt;statusUrl = $statusUrl;
+        return $this;
+    }
+
+    public function setRedirect(Redirect $redirect) {
+        $this-&gt;redirect = $redirect;
+        return $this;
+    }
+
+    public function setOperation(Operation $operation) {
+        $this-&gt;operation = $operation;
+        return $this;
+    }
+
+    public function setInstruction(Instruction $instruction) {
+        $this-&gt;instruction = $instruction;
+        return $this;
+    }
+
+
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

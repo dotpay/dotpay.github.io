@@ -1,0 +1,47 @@
+<?php
+
+namespace Dotpay\Channel;
+
+use Dotpay\Model\Configuration;
+use Dotpay\Model\Transaction;
+use Dotpay\Resource\Payment as PaymentResource;
+
+/**
+ * Class provides a special functionality for credit card payments, realized for special currencies
+ */
+class Fcc extends Channel {
+    /**
+     * Initializes a payment channel for credit cards with special currencies
+     * @param Configuration $config Dotpay configuration object
+     * @param Transaction $transaction Object with transaction details
+     * @param PaymentResource $paymentResource Payment resource which can be used for Payment API
+     */
+    public function __construct(Configuration $config, Transaction $transaction, PaymentResource $paymentResource) {
+        parent::__construct(Configuration::FCC_CHANNEL, 'fcc', $config, $transaction, $paymentResource);
+    }
+    
+    /**
+     * Checks if the channel is enabled to using
+     * @return bool
+     */
+    public function isEnabled() {
+        return parent::isEnabled() &&
+               $this->config->isFccEnable() && 
+               $this->config->isCurrencyForFcc(
+                    $this->transaction->getPayment()->getOrder()->getCurrency()
+               );
+    }
+    
+    /**
+     * Returns array of hidden fields for a form to redirecting to a Dotpay site with all needed information about a current payment
+     * @return array
+     */
+    public function getHiddenFields() {
+        $data = parent::getHiddenFields();
+        $data['id'] = $this->config->getFccId();
+        return $data;
+    }
+}
+
+?>
+

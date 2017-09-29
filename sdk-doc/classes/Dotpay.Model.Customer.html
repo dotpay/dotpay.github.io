@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    Dotpay SDK &raquo; \Dotpay\Model\Customer
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">Dotpay SDK</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                    <li><a>Namespaces</a></li>
+                                                                        <li><a href="../namespaces/Dotpay.html">Dotpay</a></li>
+                                                                                                                                </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public inherited">
+        <a href="#method___construct" title="__construct :: Initialize the model.">
+            <span class="description">Initialize the model.</span><pre>__construct</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_createFromData" title="createFromData :: Create the model based on data provided from shop.">
+            <span class="description">Create the model based on data provided from shop.</span><pre>createFromData</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                <li class="method public">
+        <a href="#method_getBuildingNumber" title="getBuildingNumber :: Return a building number of the customer.">
+            <span class="description">Return a building number of the customer.</span><pre>getBuildingNumber</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCity" title="getCity :: Return a city of the customer.">
+            <span class="description">Return a city of the customer.</span><pre>getCity</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCountry" title="getCountry :: Return a country of the customer.">
+            <span class="description">Return a country of the customer.</span><pre>getCountry</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_getEmail" title="getEmail :: Return an email address of the payer.">
+            <span class="description">Return an email address of the payer.</span><pre>getEmail</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_getFirstName" title="getFirstName :: Return a first name of the payer.">
+            <span class="description">Return a first name of the payer.</span><pre>getFirstName</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getId" title="getId :: Return an id of the customer in a shop.">
+            <span class="description">Return an id of the customer in a shop.</span><pre>getId</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getLanguage" title="getLanguage :: Return a language used by the customer.">
+            <span class="description">Return a language used by the customer.</span><pre>getLanguage</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_getLastName" title="getLastName :: Return a last name of the payer.">
+            <span class="description">Return a last name of the payer.</span><pre>getLastName</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getPhone" title="getPhone :: Return a phone number of the customer.">
+            <span class="description">Return a phone number of the customer.</span><pre>getPhone</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getPostCode" title="getPostCode :: Return a post code of the customer.">
+            <span class="description">Return a post code of the customer.</span><pre>getPostCode</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getStreet" title="getStreet :: Return a street name of the customer.">
+            <span class="description">Return a street name of the customer.</span><pre>getStreet</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setBuildingNumber" title="setBuildingNumber :: Set a building number of the customer.">
+            <span class="description">Set a building number of the customer.</span><pre>setBuildingNumber</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setCity" title="setCity :: Set a city of the customer.">
+            <span class="description">Set a city of the customer.</span><pre>setCity</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setCountry" title="setCountry :: Set a country of the customer.">
+            <span class="description">Set a country of the customer.</span><pre>setCountry</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_setEmail" title="setEmail :: Set the email address of the payer.">
+            <span class="description">Set the email address of the payer.</span><pre>setEmail</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_setFirstName" title="setFirstName :: Set the first name of the payer.">
+            <span class="description">Set the first name of the payer.</span><pre>setFirstName</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setId" title="setId :: Set an id of the customer in a shop.">
+            <span class="description">Set an id of the customer in a shop.</span><pre>setId</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setLanguage" title="setLanguage :: Set a language used by the customer.">
+            <span class="description">Set a language used by the customer.</span><pre>setLanguage</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_setLastName" title="setLastName :: Set the last name of the payer.">
+            <span class="description">Set the last name of the payer.</span><pre>setLastName</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setPhone" title="setPhone :: Set a phone number of the customer.">
+            <span class="description">Set a phone number of the customer.</span><pre>setPhone</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setPostCode" title="setPostCode :: Set a post code of the customer.">
+            <span class="description">Set a post code of the customer.</span><pre>setPostCode</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setStreet" title="setStreet :: Set a street name of the customer.">
+            <span class="description">Set a street name of the customer.</span><pre>setStreet</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                    <li class="method private">
+                            <a href="#method_extractBnFromStreet" title="extractBnFromStreet :: Try to extract a building number from the street name if it&#039;s an empty field.">
+                                <span class="description">Try to extract a building number from the street name if it&#039;s an empty field.</span><pre>extractBnFromStreet</pre>
+                            </a>
+                        </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>Customer</h1>
+                <small style="display: block; text-align: right">
+                                            Extends <a href="../classes/Dotpay.Model.Payer.html">\Dotpay\Model\Payer</a>
+                                                        </small>
+                <p class="short_description">Informations about a bank acount of payer.</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Default</p>
+                                    </td>
+                                </tr>
+                                                                                                                                                                                </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method___construct"></a>
+                        <div class="element clickable method public  method___construct inherited" data-toggle="collapse" data-target=".method___construct .collapse">
+                            <h2>Initialize the model.</h2>
+                            <pre>__construct(string $email, string $firstName = &#039;&#039;, string $lastName = &#039;&#039;) </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$email</h4>
+                                                <code>string</code><p><p>Email address of the payer</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$firstName</h4>
+                                                <code>string</code><p><p>First name of the payer</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$lastName</h4>
+                                                <code>string</code><p><p>Last name of the payer</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_createFromData"></a>
+                        <div class="element clickable method public  method_createFromData" data-toggle="collapse" data-target=".method_createFromData .collapse">
+                            <h2>Create the model based on data provided from shop.</h2>
+                            <pre>createFromData(\Dotpay\Provider\CustomerProviderInterface $provider) : \Dotpay\Model\Customer</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$provider</h4>
+                                                <code><a href="../classes/Dotpay.Provider.CustomerProviderInterface.html">\Dotpay\Provider\CustomerProviderInterface</a></code><p><p>Provider which contains data from shop application</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.Customer.html">\Dotpay\Model\Customer</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_extractBnFromStreet"></a>
+                        <div class="element clickable method private  method_extractBnFromStreet" data-toggle="collapse" data-target=".method_extractBnFromStreet .collapse">
+                            <h2>Try to extract a building number from the street name if it&#039;s an empty field.</h2>
+                            <pre>extractBnFromStreet() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getBuildingNumber"></a>
+                        <div class="element clickable method public  method_getBuildingNumber" data-toggle="collapse" data-target=".method_getBuildingNumber .collapse">
+                            <h2>Return a building number of the customer.</h2>
+                            <pre>getBuildingNumber() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getCity"></a>
+                        <div class="element clickable method public  method_getCity" data-toggle="collapse" data-target=".method_getCity .collapse">
+                            <h2>Return a city of the customer.</h2>
+                            <pre>getCity() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getCountry"></a>
+                        <div class="element clickable method public  method_getCountry" data-toggle="collapse" data-target=".method_getCountry .collapse">
+                            <h2>Return a country of the customer.</h2>
+                            <pre>getCountry() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getEmail"></a>
+                        <div class="element clickable method public  method_getEmail inherited" data-toggle="collapse" data-target=".method_getEmail .collapse">
+                            <h2>Return an email address of the payer.</h2>
+                            <pre>getEmail() : string</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getFirstName"></a>
+                        <div class="element clickable method public  method_getFirstName inherited" data-toggle="collapse" data-target=".method_getFirstName .collapse">
+                            <h2>Return a first name of the payer.</h2>
+                            <pre>getFirstName() : string</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getId"></a>
+                        <div class="element clickable method public  method_getId" data-toggle="collapse" data-target=".method_getId .collapse">
+                            <h2>Return an id of the customer in a shop.</h2>
+                            <pre>getId() : integer|null</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>integer|null</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getLanguage"></a>
+                        <div class="element clickable method public  method_getLanguage" data-toggle="collapse" data-target=".method_getLanguage .collapse">
+                            <h2>Return a language used by the customer.</h2>
+                            <pre>getLanguage() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getLastName"></a>
+                        <div class="element clickable method public  method_getLastName inherited" data-toggle="collapse" data-target=".method_getLastName .collapse">
+                            <h2>Return a last name of the payer.</h2>
+                            <pre>getLastName() : string</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getPhone"></a>
+                        <div class="element clickable method public  method_getPhone" data-toggle="collapse" data-target=".method_getPhone .collapse">
+                            <h2>Return a phone number of the customer.</h2>
+                            <pre>getPhone() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getPostCode"></a>
+                        <div class="element clickable method public  method_getPostCode" data-toggle="collapse" data-target=".method_getPostCode .collapse">
+                            <h2>Return a post code of the customer.</h2>
+                            <pre>getPostCode() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getStreet"></a>
+                        <div class="element clickable method public  method_getStreet" data-toggle="collapse" data-target=".method_getStreet .collapse">
+                            <h2>Return a street name of the customer.</h2>
+                            <pre>getStreet() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setBuildingNumber"></a>
+                        <div class="element clickable method public  method_setBuildingNumber" data-toggle="collapse" data-target=".method_setBuildingNumber .collapse">
+                            <h2>Set a building number of the customer.</h2>
+                            <pre>setBuildingNumber(string $buildingNumber) : \Dotpay\Model\Customer</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                            <tr>
+                                                <th>Throws</th>
+                                                <td>
+                                                    <dl>
+                                                                                                            <dt>\Dotpay\Exception\BadParameter\BNumberException</dt>
+                                                        <dd><p>Thrown when the given building number is incorrect</p></dd>
+                                                                                                                                                            </dl>
+                                                </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$buildingNumber</h4>
+                                                <code>string</code><p><p>Building number of the customer</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.Customer.html">\Dotpay\Model\Customer</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setCity"></a>
+                        <div class="element clickable method public  method_setCity" data-toggle="collapse" data-target=".method_setCity .collapse">
+                            <h2>Set a city of the customer.</h2>
+                            <pre>setCity(string $city) : \Dotpay\Model\Customer</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                            <tr>
+                                                <th>Throws</th>
+                                                <td>
+                                                    <dl>
+                                                                                                            <dt>\Dotpay\Exception\BadParameter\CityException</dt>
+                                                        <dd><p>Thrown when the given city is incorrect</p></dd>
+                                                                                                                                                            </dl>
+                                                </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$city</h4>
+                                                <code>string</code><p><p>City of the customer</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.Customer.html">\Dotpay\Model\Customer</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setCountry"></a>
+                        <div class="element clickable method public  method_setCountry" data-toggle="collapse" data-target=".method_setCountry .collapse">
+                            <h2>Set a country of the customer.</h2>
+                            <pre>setCountry(string $country) : \Dotpay\Model\Customer</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                            <tr>
+                                                <th>Throws</th>
+                                                <td>
+                                                    <dl>
+                                                                                                            <dt>\Dotpay\Exception\BadParameter\CountryException</dt>
+                                                        <dd><p>Thrown when the given country is incorrect</p></dd>
+                                                                                                                                                            </dl>
+                                                </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$country</h4>
+                                                <code>string</code><p><p>Country of the customer</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.Customer.html">\Dotpay\Model\Customer</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setEmail"></a>
+                        <div class="element clickable method public  method_setEmail inherited" data-toggle="collapse" data-target=".method_setEmail .collapse">
+                            <h2>Set the email address of the payer.</h2>
+                            <pre>setEmail(\Dotpay\Model\type $email) : \Dotpay\Model\Payer</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                            <tr>
+                                                <th>Throws</th>
+                                                <td>
+                                                    <dl>
+                                                                                                            <dt>\Dotpay\Exception\BadParameter\EmailException</dt>
+                                                        <dd><p>Thrown when the given email address is incorrect</p></dd>
+                                                                                                                                                            </dl>
+                                                </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$email</h4>
+                                                <code>\Dotpay\Model\type</code><p><p>Email address of the payer</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.Payer.html">\Dotpay\Model\Payer</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setFirstName"></a>
+                        <div class="element clickable method public  method_setFirstName inherited" data-toggle="collapse" data-target=".method_setFirstName .collapse">
+                            <h2>Set the first name of the payer.</h2>
+                            <pre>setFirstName(string $firstName) : \Dotpay\Model\Payer</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                            <tr>
+                                                <th>Throws</th>
+                                                <td>
+                                                    <dl>
+                                                                                                            <dt>\Dotpay\Exception\BadParameter\FirstnameException</dt>
+                                                        <dd><p>Thrown when the given first name is incorrect</p></dd>
+                                                                                                                                                            </dl>
+                                                </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$firstName</h4>
+                                                <code>string</code><p><p>First name of the payer</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.Payer.html">\Dotpay\Model\Payer</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setId"></a>
+                        <div class="element clickable method public  method_setId" data-toggle="collapse" data-target=".method_setId .collapse">
+                            <h2>Set an id of the customer in a shop.</h2>
+                            <pre>setId(string $id) : \Dotpay\Model\Customer</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>string</code><p><p>Id of the customer in a shop</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.Customer.html">\Dotpay\Model\Customer</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setLanguage"></a>
+                        <div class="element clickable method public  method_setLanguage" data-toggle="collapse" data-target=".method_setLanguage .collapse">
+                            <h2>Set a language used by the customer.</h2>
+                            <pre>setLanguage(string $language) : \Dotpay\Model\Customer</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                            <tr>
+                                                <th>Throws</th>
+                                                <td>
+                                                    <dl>
+                                                                                                            <dt>\Dotpay\Exception\BadParameter\LanguageException</dt>
+                                                        <dd><p>Thrown when the given language is incorrect</p></dd>
+                                                                                                                                                            </dl>
+                                                </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$language</h4>
+                                                <code>string</code><p><p>Language used by the customer</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.Customer.html">\Dotpay\Model\Customer</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setLastName"></a>
+                        <div class="element clickable method public  method_setLastName inherited" data-toggle="collapse" data-target=".method_setLastName .collapse">
+                            <h2>Set the last name of the payer.</h2>
+                            <pre>setLastName(\Dotpay\Model\type $lastName) : \Dotpay\Model\Payer</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                            <tr>
+                                                <th>Throws</th>
+                                                <td>
+                                                    <dl>
+                                                                                                            <dt>\Dotpay\Exception\BadParameter\LastnameException</dt>
+                                                        <dd><p>Thrown when the given last name is incorrect</p></dd>
+                                                                                                                                                            </dl>
+                                                </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$lastName</h4>
+                                                <code>\Dotpay\Model\type</code><p><p>Last name of the payer</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.Payer.html">\Dotpay\Model\Payer</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setPhone"></a>
+                        <div class="element clickable method public  method_setPhone" data-toggle="collapse" data-target=".method_setPhone .collapse">
+                            <h2>Set a phone number of the customer.</h2>
+                            <pre>setPhone(string $phone) : \Dotpay\Model\Customer</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                            <tr>
+                                                <th>Throws</th>
+                                                <td>
+                                                    <dl>
+                                                                                                            <dt>\Dotpay\Exception\BadParameter\PhoneException</dt>
+                                                        <dd><p>Thrown when the given phone number is incorrect</p></dd>
+                                                                                                                                                            </dl>
+                                                </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$phone</h4>
+                                                <code>string</code><p><p>Phone number of the customer</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.Customer.html">\Dotpay\Model\Customer</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setPostCode"></a>
+                        <div class="element clickable method public  method_setPostCode" data-toggle="collapse" data-target=".method_setPostCode .collapse">
+                            <h2>Set a post code of the customer.</h2>
+                            <pre>setPostCode(string $postCode) : \Dotpay\Model\Customer</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                            <tr>
+                                                <th>Throws</th>
+                                                <td>
+                                                    <dl>
+                                                                                                            <dt>\Dotpay\Exception\BadParameter\PostCodeException</dt>
+                                                        <dd><p>Thrown when the given post code is incorrect</p></dd>
+                                                                                                                                                            </dl>
+                                                </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$postCode</h4>
+                                                <code>string</code><p><p>Post code of the customer</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.Customer.html">\Dotpay\Model\Customer</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setStreet"></a>
+                        <div class="element clickable method public  method_setStreet" data-toggle="collapse" data-target=".method_setStreet .collapse">
+                            <h2>Set a street name of the customer.</h2>
+                            <pre>setStreet(string $street) : \Dotpay\Model\Customer</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                            <tr>
+                                                <th>Throws</th>
+                                                <td>
+                                                    <dl>
+                                                                                                            <dt>\Dotpay\Exception\BadParameter\StreetException</dt>
+                                                        <dd><p>Thrown when the given street is incorrect</p></dd>
+                                                                                                                                                            </dl>
+                                                </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$street</h4>
+                                                <code>string</code><p><p>Street name of the customer</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.Customer.html">\Dotpay\Model\Customer</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                    
+                    
+                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property_LANGUAGES"> </a>
+                            <div class="element clickable property  public property_LANGUAGES" data-toggle="collapse" data-target=".property_LANGUAGES .collapse">
+                                <h2>All available languages which are supported by Dotpay.</h2>
+                                <pre>LANGUAGES : </pre>
+                                <div class="labels">
+                                                                        <span class="label">static</span>                                </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_id"> </a>
+                            <div class="element clickable property  private property_id" data-toggle="collapse" data-target=".property_id .collapse">
+                                <h2>Id of the customer in a shop</h2>
+                                <pre>id : integer|null</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Id of the customer in a shop</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>integer|null</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_street"> </a>
+                            <div class="element clickable property  private property_street" data-toggle="collapse" data-target=".property_street .collapse">
+                                <h2>Street name of the customer</h2>
+                                <pre>street : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Street name of the customer</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_buildingNumber"> </a>
+                            <div class="element clickable property  private property_buildingNumber" data-toggle="collapse" data-target=".property_buildingNumber .collapse">
+                                <h2>Building number of the customer</h2>
+                                <pre>buildingNumber : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Building number of the customer</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_postCode"> </a>
+                            <div class="element clickable property  private property_postCode" data-toggle="collapse" data-target=".property_postCode .collapse">
+                                <h2>Post code of the customer</h2>
+                                <pre>postCode : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Post code of the customer</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_city"> </a>
+                            <div class="element clickable property  private property_city" data-toggle="collapse" data-target=".property_city .collapse">
+                                <h2>City of the customer</h2>
+                                <pre>city : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>City of the customer</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_country"> </a>
+                            <div class="element clickable property  private property_country" data-toggle="collapse" data-target=".property_country .collapse">
+                                <h2>Country of the customer</h2>
+                                <pre>country : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Country of the customer</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_phone"> </a>
+                            <div class="element clickable property  private property_phone" data-toggle="collapse" data-target=".property_phone .collapse">
+                                <h2>Phone number of the customer</h2>
+                                <pre>phone : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Phone number of the customer</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_language"> </a>
+                            <div class="element clickable property  private property_language" data-toggle="collapse" data-target=".property_language .collapse">
+                                <h2>Language used by the customer</h2>
+                                <pre>language : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Language used by the customer</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_email"> </a>
+                            <div class="element clickable property  private property_email inherited" data-toggle="collapse" data-target=".property_email .collapse">
+                                <h2>Email address of the payer</h2>
+                                <pre>email : string</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Email address of the payer</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_firstName"> </a>
+                            <div class="element clickable property  private property_firstName inherited" data-toggle="collapse" data-target=".property_firstName .collapse">
+                                <h2>First name of the payer</h2>
+                                <pre>firstName : string</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>First name of the payer</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_lastName"> </a>
+                            <div class="element clickable property  private property_lastName inherited" data-toggle="collapse" data-target=".property_lastName .collapse">
+                                <h2>Last name of the payer</h2>
+                                <pre>lastName : string</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Last name of the payer</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\Dotpay\Model\Customer"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/Dotpay.Model.html">Model</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/Dotpay.Model.Customer.html">Customer</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Fri, 29 Sep 2017 20:39:08 +0000.<br/>
+    </footer>
+    </body>
+</html>

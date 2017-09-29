@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Resource\Channel;
+
+use Dotpay\Exception\Resource\Channel\NotFoundException;
+
+class Info {
+    private $channels;
+    private $forms;
+    public function __construct(array $channels, array $forms) {
+        $this-&gt;channels = $channels;
+        $this-&gt;forms = $forms;
+    }
+    
+    public function getChannels() {
+        return $this-&gt;channels;
+    }
+    
+    public function getForms() {
+        return $this-&gt;forms;
+    }
+    
+    public function getChannelInfo($channelId) {
+        foreach ($this-&gt;getChannels() as $channel) {
+            if(isset($channel['id']) &amp;&amp; $channel['id'] == $channelId) {
+                return new OneChannel($channel);
+            }
+        }
+        throw new NotFoundException($channelId);
+    }
+    
+    public function getAgreements($channelId) {
+        $channelInfo = $this-&gt;getChannelInfo($channelId);
+        $fields = $channelInfo-&gt;getFormNames();
+        $agreements = [];
+        if(array_search('agreement', $fields) !== false) {
+            foreach ($this-&gt;getForms() as $form) {
+                if(isset($form['form_name']) &amp;&amp; $form['form_name'] == 'agreement' &amp;&amp; isset($form['fields']))
+                    foreach($form['fields'] as $field)
+                        if($field['required'])
+                            $agreements[] = new Agreement($field);
+            }
+        }
+        return $agreements;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

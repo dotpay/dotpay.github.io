@@ -1,0 +1,7 @@
+<?php
+
+namespace Dotpay\Translation;
+
+abstract class Adapter implements \Iterator {
+    
+}

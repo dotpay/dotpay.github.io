@@ -1,0 +1,105 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Tool;
+
+use Dotpay\Exception\ExtensionNotFoundException;
+
+class Curl {
+    private $curl;
+    private $info;
+    private $active = 0;
+    
+    public function __construct() {
+        if ($this-&gt;checkExtension() == false) {
+            throw new ExtensionNotFoundException('curl');
+        }
+        $this-&gt;curl = curl_init();
+        if($this-&gt;curl !== null)
+            $this-&gt;active = 1;
+    }
+    
+    public function __destruct() {
+        if($this-&gt;active) {
+            $this-&gt;close();
+            $this-&gt;active = 0;
+        }
+    }
+
+    public function addOption($option, $value) {
+        curl_setopt($this-&gt;curl, $option, $value);
+        return $this;
+    }
+    
+    public function exec() {
+        $response = curl_exec($this-&gt;curl);
+        $this-&gt;info = curl_getinfo($this-&gt;curl);
+        return $response;
+    }
+    
+    public function error() {
+        return curl_error($this-&gt;curl);
+    }
+    
+    public function getInfo() {
+        return $this-&gt;info;
+    }
+    
+    public function close() {
+        curl_close($this-&gt;curl);
+        $this-&gt;active = 0;
+    }
+    
+    /**
+     * @codeCoverageIgnore
+     */
+    protected function checkExtension() {
+        return extension_loaded('curl');
+    }
+}
+
+?&gt;
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

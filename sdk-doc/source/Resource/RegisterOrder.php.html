@@ -1,0 +1,169 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Resource;
+
+use \DateTime;
+use Dotpay\Channel\Channel;
+use Dotpay\Model\Redirect;
+use Dotpay\Model\Operation;
+use Dotpay\Model\Instruction;
+use Dotpay\Model\Payer;
+use Dotpay\Model\PaymentMethod;
+use Dotpay\Resource\RegisterOrder\Result;
+use Dotpay\Exception\Resource\PaymentNotCreatedException;
+use Dotpay\Exception\Resource\InstructionNotFoundException;
+
+class RegisterOrder extends Resource {
+    const TARGET = &quot;payment_api/v1/register_order/&quot;;
+
+    public function create(Channel $channel) {
+        $data2send = $this-&gt;getDataStructure($channel);
+        $resultArray = $this-&gt;postData($this-&gt;config-&gt;getPaymentUrl() . self::TARGET, $data2send);
+        $info = $this-&gt;curl-&gt;getInfo();
+        if ((int) $info['http_code'] !== 201) {
+            throw new PaymentNotCreatedException();
+        }
+        $config = $this-&gt;config;
+        $operation = new Operation($resultArray['operation']['type'], $resultArray['operation']['number']);
+        $operation-&gt;setUrl($resultArray['operation']['href'])
+                -&gt;setDateTime(new DateTime($resultArray['operation']['creation_datetime']))
+                -&gt;setStatus($resultArray['operation']['status'])
+                -&gt;setAmount($resultArray['operation']['amount'])
+                -&gt;setCurrency($resultArray['operation']['currency'])
+                -&gt;setOriginalAmount($resultArray['operation']['original_amount'])
+                -&gt;setOriginalCurrency($resultArray['operation']['original_currency'])
+                -&gt;setAccountId($resultArray['operation']['account_id'])
+                -&gt;setDescription($resultArray['operation']['description'])
+                -&gt;setPayer(new Payer(
+                    $resultArray['operation']['payer']['email'], $resultArray['operation']['payer']['first_name'], $resultArray['operation']['payer']['last_name']
+                ))
+                -&gt;setPaymentMethod(new PaymentMethod(
+                    $resultArray['operation']['payment_method']['channel_id']
+                )
+        );
+
+        $result = new Result(
+                $resultArray['info']['status_url'], $operation
+        );
+        if (isset($resultArray['redirect'])) {
+            $result-&gt;setRedirect(
+                    new Redirect(
+                    $resultArray['redirect']['url'], $resultArray['redirect']['data'], $resultArray['redirect']['method'], $resultArray['redirect']['encoding']
+                    )
+            );
+        }
+        switch ($channel-&gt;getGroup()) {
+            case $config::CASH_GROUP:
+            case $config::TRANSFER_GROUP:
+                return $this-&gt;processCashAndTransfer($resultArray, $result, $channel);
+            default:
+                return $result;
+        }
+    }
+
+    private function processCashAndTransfer(array $resultArray, Result $resultObject, Channel $channel) {
+        if (isset($resultArray['instruction'])) {
+            $config = $this-&gt;config;
+            $isCash = ($channel-&gt;getGroup() == $config::CASH_GROUP);
+            $instruction = new Instruction();
+            $instruction-&gt;setAmount($resultArray['instruction']['amount'])
+                    -&gt;setCurrency($resultArray['instruction']['currency'])
+                    -&gt;setNumber($resultArray['instruction']['title'])
+                    -&gt;setChannel($resultArray['operation']['payment_method']['channel_id'])
+                    -&gt;setIsCash($isCash)
+                    -&gt;setHash($this-&gt;getHashFromResultArray($resultArray));
+            if (!$isCash) {
+                $instruction-&gt;setBankAccount($resultArray['instruction']['recipient']['bank_account_number']);
+            }
+            $resultObject-&gt;setInstruction($instruction);
+        } else {
+            throw new InstructionNotFoundException($resultArray['operation']['number']);
+        }
+        return $resultObject;
+    }
+
+    private function getHashFromResultArray(array $payment) {
+        $parts = explode('/', $payment['instruction']['instruction_url']);
+        return $parts[count($parts) - 2];
+    }
+
+    private function getDataStructure(Channel $channel) {
+        return array(
+            'order' =&gt; array(
+                'amount' =&gt; $channel-&gt;getTransaction()-&gt;getPayment()-&gt;getOrder()-&gt;getAmount(),
+                'currency' =&gt; $channel-&gt;getTransaction()-&gt;getPayment()-&gt;getOrder()-&gt;getCurrency(),
+                'description' =&gt; $channel-&gt;getTransaction()-&gt;getPayment()-&gt;getOrder()-&gt;getDescription(),
+                'control' =&gt; $channel-&gt;getTransaction()-&gt;getPayment()-&gt;getOrder()-&gt;getId()
+            ),
+            'seller' =&gt; array(
+                'account_id' =&gt; $channel-&gt;getTransaction()-&gt;getPayment()-&gt;getSeller()-&gt;getId(),
+                'url' =&gt; $channel-&gt;getTransaction()-&gt;getBackUrl(),
+                'urlc' =&gt; $channel-&gt;getTransaction()-&gt;getConfirmUrl(),
+            ),
+            'payer' =&gt; array(
+                'first_name' =&gt; $channel-&gt;getTransaction()-&gt;getPayment()-&gt;getCustomer()-&gt;getFirstName(),
+                'last_name' =&gt; $channel-&gt;getTransaction()-&gt;getPayment()-&gt;getCustomer()-&gt;getLastName(),
+                'email' =&gt; $channel-&gt;getTransaction()-&gt;getPayment()-&gt;getCustomer()-&gt;getEmail(),
+                'address' =&gt; array(
+                    'street' =&gt; $channel-&gt;getTransaction()-&gt;getPayment()-&gt;getCustomer()-&gt;getStreet(),
+                    'building_number' =&gt; $channel-&gt;getTransaction()-&gt;getPayment()-&gt;getCustomer()-&gt;getBuildingNumber(),
+                    'postcode' =&gt; $channel-&gt;getTransaction()-&gt;getPayment()-&gt;getCustomer()-&gt;getPostCode(),
+                    'city' =&gt; $channel-&gt;getTransaction()-&gt;getPayment()-&gt;getCustomer()-&gt;getCity(),
+                    'country' =&gt; $channel-&gt;getTransaction()-&gt;getPayment()-&gt;getCustomer()-&gt;getCountry()
+                )
+            ),
+            'payment_method' =&gt; array(
+                'channel_id' =&gt; $channel-&gt;getChannelId()
+            ),
+            'request_context' =&gt; array(
+                'ip' =&gt; $_SERVER['REMOTE_ADDR']
+            )
+        );
+    }
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    Dotpay SDK &raquo; \Dotpay\Channel\Channel
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">Dotpay SDK</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                    <li><a>Namespaces</a></li>
+                                                                        <li><a href="../namespaces/Dotpay.html">Dotpay</a></li>
+                                                                                                                                </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method___construct" title="__construct :: Initialize a separate channel.">
+            <span class="description">Initialize a separate channel.</span><pre>__construct</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_addAgreement" title="addAgreement :: Add a new Agreement object for channel.">
+            <span class="description">Add a new Agreement object for channel.</span><pre>addAgreement</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_canHaveInstruction" title="canHaveInstruction :: Check if the channel can have an instruction.">
+            <span class="description">Check if the channel can have an instruction.</span><pre>canHaveInstruction</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                <li class="method public">
+        <a href="#method_get" title="get :: Get the saved value by the given name.">
+            <span class="description">Get the saved value by the given name.</span><pre>get</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getAgreements" title="getAgreements :: Return an array with agreement structs, downloaded from Dotpay server.">
+            <span class="description">Return an array with agreement structs, downloaded from Dotpay server.</span><pre>getAgreements</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getAllHiddenFields" title="getAllHiddenFields :: Return an array with all hidden fields including CHK.">
+            <span class="description">Return an array with all hidden fields including CHK.</span><pre>getAllHiddenFields</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getChannelId" title="getChannelId :: Return a code number of payment channel in Dotpay system.">
+            <span class="description">Return a code number of payment channel in Dotpay system.</span><pre>getChannelId</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCHK" title="getCHK :: Calculate CHK for the given data.">
+            <span class="description">Calculate CHK for the given data.</span><pre>getCHK</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCode" title="getCode :: Return a short string code of the payment channel.">
+            <span class="description">Return a short string code of the payment channel.</span><pre>getCode</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getConfig" title="getConfig :: Return a configuration object.">
+            <span class="description">Return a configuration object.</span><pre>getConfig</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getGroup" title="getGroup :: Return a name of a group to which it belongs the channel.">
+            <span class="description">Return a name of a group to which it belongs the channel.</span><pre>getGroup</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getHiddenForm" title="getHiddenForm :: Return a form with all hidden fields for payment.">
+            <span class="description">Return a form with all hidden fields for payment.</span><pre>getHiddenForm</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getLogo" title="getLogo :: Return an URL of a image with logo of the payment channel.">
+            <span class="description">Return an URL of a image with logo of the payment channel.</span><pre>getLogo</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getName" title="getName :: Return a readable name of the channel.">
+            <span class="description">Return a readable name of the channel.</span><pre>getName</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getSeller" title="getSeller :: Return saved Seller model.">
+            <span class="description">Return saved Seller model.</span><pre>getSeller</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getTitle" title="getTitle :: Return a title which can be displayed on the channel list.">
+            <span class="description">Return a title which can be displayed on the channel list.</span><pre>getTitle</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getTransaction" title="getTransaction :: Return object with transaction details.">
+            <span class="description">Return object with transaction details.</span><pre>getTransaction</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getViewFields" title="getViewFields :: Return an array of fields which can be displayed on a list of payment channels.">
+            <span class="description">Return an array of fields which can be displayed on a list of payment channels.</span><pre>getViewFields</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getViewFieldsHtml" title="getViewFieldsHtml :: Return view fields enriched by an additional piece of HTML code.">
+            <span class="description">Return view fields enriched by an additional piece of HTML code.</span><pre>getViewFieldsHtml</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_isAvailable" title="isAvailable :: Check an availability of the channel.">
+            <span class="description">Check an availability of the channel.</span><pre>isAvailable</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_isEnabled" title="isEnabled :: Check if the channel is enabled to using.">
+            <span class="description">Check if the channel is enabled to using.</span><pre>isEnabled</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_isVisible" title="isVisible :: Check a visibility of the channel on a channels list.">
+            <span class="description">Check a visibility of the channel on a channels list.</span><pre>isVisible</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                <li class="method public">
+        <a href="#method_set" title="set :: Save the given value for the name.">
+            <span class="description">Save the given value for the name.</span><pre>set</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                <li class="method public">
+        <a href="#method_setSeller" title="setSeller :: Set the given seller.">
+            <span class="description">Set the given seller.</span><pre>setSeller</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setTitle" title="setTitle :: Set a title which can be displayed on the channel list.">
+            <span class="description">Set a title which can be displayed on the channel list.</span><pre>setTitle</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                        <li class="method protected">
+                            <a href="#method_chooseSeller" title="chooseSeller :: Set the seller model with the correct data from plugin Configuration.">
+                                <span class="description">Set the seller model with the correct data from plugin Configuration.</span><pre>chooseSeller</pre>
+                            </a>
+                        </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <li class="method protected">
+                            <a href="#method_prepareHiddenFields" title="prepareHiddenFields :: Return array of hidden fields for a form to redirecting to a Dotpay site with all needed information about a current payment.">
+                                <span class="description">Return array of hidden fields for a form to redirecting to a Dotpay site with all needed information about a current payment.</span><pre>prepareHiddenFields</pre>
+                            </a>
+                        </li>
+                                                                                                                    <li class="method protected">
+                            <a href="#method_setChannelInfo" title="setChannelInfo :: Retrieve informations about the channel from Dotpay server.">
+                                <span class="description">Retrieve informations about the channel from Dotpay server.</span><pre>setChannelInfo</pre>
+                            </a>
+                        </li>
+                                                                                                                        </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                                <li class="constant ">
+                    <a href="#constant_CASH_GROUP" title="CASH_GROUP :: Name of cash channels group.">
+                        <span class="description">Name of cash channels group.</span><pre>CASH_GROUP</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TRANSFER_GROUP" title="TRANSFER_GROUP :: Name of transfer channels group.">
+                        <span class="description">Name of transfer channels group.</span><pre>TRANSFER_GROUP</pre>
+                    </a>
+                </li>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>Channel</h1>
+                <small style="display: block; text-align: right">
+                                                        </small>
+                <p class="short_description">Class provides a special functionality for customization of payments channel.</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Default</p>
+                                    </td>
+                                </tr>
+                                                                                                                                                                                                                                                                                                                                            </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method___construct"></a>
+                        <div class="element clickable method public  method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+                            <h2>Initialize a separate channel.</h2>
+                            <pre>__construct(integer $channelId, string $code, \Dotpay\Model\Configuration $config, \Dotpay\Model\Transaction $transaction, \Dotpay\Resource\Payment $paymentResource, \Dotpay\Resource\Seller $sellerResource) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$channelId</h4>
+                                                <code>integer</code><p><p>Code number of payment channel in Dotpay system</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$code</h4>
+                                                <code>string</code><p><p>Short string code which can be used to identify</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$config</h4>
+                                                <code><a href="../classes/Dotpay.Model.Configuration.html">\Dotpay\Model\Configuration</a></code><p><p>Dotpay configuration object</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$transaction</h4>
+                                                <code><a href="../classes/Dotpay.Model.Transaction.html">\Dotpay\Model\Transaction</a></code><p><p>Object with transaction details</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$paymentResource</h4>
+                                                <code><a href="../classes/Dotpay.Resource.Payment.html">\Dotpay\Resource\Payment</a></code><p><p>Payment resource which can be used for Payment API</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$sellerResource</h4>
+                                                <code><a href="../classes/Dotpay.Resource.Seller.html">\Dotpay\Resource\Seller</a></code><p><p>Seller resource which can be used for Seller API</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_addAgreement"></a>
+                        <div class="element clickable method public  method_addAgreement" data-toggle="collapse" data-target=".method_addAgreement .collapse">
+                            <h2>Add a new Agreement object for channel.</h2>
+                            <pre>addAgreement(\Dotpay\Resource\Channel\Agreement $agreement) : \Dotpay\Channel\Channel</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$agreement</h4>
+                                                <code><a href="../classes/Dotpay.Resource.Channel.Agreement.html">\Dotpay\Resource\Channel\Agreement</a></code><p><p>The agreement to add to channel</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Channel.Channel.html">\Dotpay\Channel\Channel</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_canHaveInstruction"></a>
+                        <div class="element clickable method public  method_canHaveInstruction" data-toggle="collapse" data-target=".method_canHaveInstruction .collapse">
+                            <h2>Check if the channel can have an instruction.</h2>
+                            <pre>canHaveInstruction() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_chooseSeller"></a>
+                        <div class="element clickable method protected  method_chooseSeller" data-toggle="collapse" data-target=".method_chooseSeller .collapse">
+                            <h2>Set the seller model with the correct data from plugin Configuration.</h2>
+                            <pre>chooseSeller() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_get"></a>
+                        <div class="element clickable method public  method_get" data-toggle="collapse" data-target=".method_get .collapse">
+                            <h2>Get the saved value by the given name.</h2>
+                            <pre>get(string $name) : mixed</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$name</h4>
+                                                <code>string</code><p><p>Name of the saved value</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getAgreements"></a>
+                        <div class="element clickable method public  method_getAgreements" data-toggle="collapse" data-target=".method_getAgreements .collapse">
+                            <h2>Return an array with agreement structs, downloaded from Dotpay server.</h2>
+                            <pre>getAgreements() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getAllHiddenFields"></a>
+                        <div class="element clickable method public  method_getAllHiddenFields" data-toggle="collapse" data-target=".method_getAllHiddenFields .collapse">
+                            <h2>Return an array with all hidden fields including CHK.</h2>
+                            <pre>getAllHiddenFields() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getChannelId"></a>
+                        <div class="element clickable method public  method_getChannelId" data-toggle="collapse" data-target=".method_getChannelId .collapse">
+                            <h2>Return a code number of payment channel in Dotpay system.</h2>
+                            <pre>getChannelId() : integer|null</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>integer|null</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getCHK"></a>
+                        <div class="element clickable method public  method_getCHK" data-toggle="collapse" data-target=".method_getCHK .collapse">
+                            <h2>Calculate CHK for the given data.</h2>
+                            <pre>getCHK(array $inputParameters, string $pin, array $subPayments = array()) : string</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$inputParameters</h4>
+                                                <code>array</code><p><p>Array with transaction parameters</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$pin</h4>
+                                                <code>string</code><p><p>Seller pin to sign the control sum</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$subPayments</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getCode"></a>
+                        <div class="element clickable method public  method_getCode" data-toggle="collapse" data-target=".method_getCode .collapse">
+                            <h2>Return a short string code of the payment channel.</h2>
+                            <pre>getCode() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getConfig"></a>
+                        <div class="element clickable method public  method_getConfig" data-toggle="collapse" data-target=".method_getConfig .collapse">
+                            <h2>Return a configuration object.</h2>
+                            <pre>getConfig() : \Dotpay\Model\Configuration</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.Configuration.html">\Dotpay\Model\Configuration</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getGroup"></a>
+                        <div class="element clickable method public  method_getGroup" data-toggle="collapse" data-target=".method_getGroup .collapse">
+                            <h2>Return a name of a group to which it belongs the channel.</h2>
+                            <pre>getGroup() : string|null</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string|null</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getHiddenForm"></a>
+                        <div class="element clickable method public  method_getHiddenForm" data-toggle="collapse" data-target=".method_getHiddenForm .collapse">
+                            <h2>Return a form with all hidden fields for payment.</h2>
+                            <pre>getHiddenForm() : \Dotpay\Html\Container\Form</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Html.Container.Form.html">\Dotpay\Html\Container\Form</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getLogo"></a>
+                        <div class="element clickable method public  method_getLogo" data-toggle="collapse" data-target=".method_getLogo .collapse">
+                            <h2>Return an URL of a image with logo of the payment channel.</h2>
+                            <pre>getLogo() : string|null</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string|null</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getName"></a>
+                        <div class="element clickable method public  method_getName" data-toggle="collapse" data-target=".method_getName .collapse">
+                            <h2>Return a readable name of the channel.</h2>
+                            <pre>getName() : string|null</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string|null</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getSeller"></a>
+                        <div class="element clickable method public  method_getSeller" data-toggle="collapse" data-target=".method_getSeller .collapse">
+                            <h2>Return saved Seller model.</h2>
+                            <pre>getSeller() : \Dotpay\Model\Seller</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.Seller.html">\Dotpay\Model\Seller</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getTitle"></a>
+                        <div class="element clickable method public  method_getTitle" data-toggle="collapse" data-target=".method_getTitle .collapse">
+                            <h2>Return a title which can be displayed on the channel list.</h2>
+                            <pre>getTitle() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getTransaction"></a>
+                        <div class="element clickable method public  method_getTransaction" data-toggle="collapse" data-target=".method_getTransaction .collapse">
+                            <h2>Return object with transaction details.</h2>
+                            <pre>getTransaction() : \Dotpay\Model\Transaction</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Model.Transaction.html">\Dotpay\Model\Transaction</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getViewFields"></a>
+                        <div class="element clickable method public  method_getViewFields" data-toggle="collapse" data-target=".method_getViewFields .collapse">
+                            <h2>Return an array of fields which can be displayed on a list of payment channels.</h2>
+                            <pre>getViewFields() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>They can contain aditional fields with information which are needed before continue a payment process.</p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getViewFieldsHtml"></a>
+                        <div class="element clickable method public  method_getViewFieldsHtml" data-toggle="collapse" data-target=".method_getViewFieldsHtml .collapse">
+                            <h2>Return view fields enriched by an additional piece of HTML code.</h2>
+                            <pre>getViewFieldsHtml() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_isAvailable"></a>
+                        <div class="element clickable method public  method_isAvailable" data-toggle="collapse" data-target=".method_isAvailable .collapse">
+                            <h2>Check an availability of the channel.</h2>
+                            <pre>isAvailable() : boolean</pre>
+                            <div class="labels">
+                                                                                                <span class="label">final</span>                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_isEnabled"></a>
+                        <div class="element clickable method public  method_isEnabled" data-toggle="collapse" data-target=".method_isEnabled .collapse">
+                            <h2>Check if the channel is enabled to using.</h2>
+                            <pre>isEnabled() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_isVisible"></a>
+                        <div class="element clickable method public  method_isVisible" data-toggle="collapse" data-target=".method_isVisible .collapse">
+                            <h2>Check a visibility of the channel on a channels list.</h2>
+                            <pre>isVisible() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_prepareHiddenFields"></a>
+                        <div class="element clickable method protected  method_prepareHiddenFields" data-toggle="collapse" data-target=".method_prepareHiddenFields .collapse">
+                            <h2>Return array of hidden fields for a form to redirecting to a Dotpay site with all needed information about a current payment.</h2>
+                            <pre>prepareHiddenFields() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                            <tr>
+                                                <th>Throws</th>
+                                                <td>
+                                                    <dl>
+                                                                                                            <dt>\Dotpay\Exception\Channel\SellerNotGivenException</dt>
+                                                        <dd><p>Thrown when seller object is not given to payment channel</p></dd>
+                                                                                                                                                            </dl>
+                                                </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_set"></a>
+                        <div class="element clickable method public  method_set" data-toggle="collapse" data-target=".method_set .collapse">
+                            <h2>Save the given value for the name.</h2>
+                            <pre>set(string $name, mixed $value) : \Dotpay\Channel\Channel</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$name</h4>
+                                                <code>string</code><p><p>The name of the value</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$value</h4>
+                                                <code>mixed</code><p><p>The value to saving</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Channel.Channel.html">\Dotpay\Channel\Channel</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setChannelInfo"></a>
+                        <div class="element clickable method protected  method_setChannelInfo" data-toggle="collapse" data-target=".method_setChannelInfo .collapse">
+                            <h2>Retrieve informations about the channel from Dotpay server.</h2>
+                            <pre>setChannelInfo(integer|null $channelId = null) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                            <tr>
+                                                <th>Throws</th>
+                                                <td>
+                                                    <dl>
+                                                                                                            <dt>\Dotpay\Exception\BadParameter\ChannelIdException</dt>
+                                                        <dd><p>Thrown if the given channel id isn't correct</p></dd>
+                                                                                                                                                            </dl>
+                                                </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$channelId</h4>
+                                                <code>integer|null</code><p><p>Code number of payment channel in Dotpay system</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setSeller"></a>
+                        <div class="element clickable method public  method_setSeller" data-toggle="collapse" data-target=".method_setSeller .collapse">
+                            <h2>Set the given seller.</h2>
+                            <pre>setSeller(\Dotpay\Model\Seller $seller) : \Dotpay\Channel\Channel</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$seller</h4>
+                                                <code><a href="../classes/Dotpay.Model.Seller.html">\Dotpay\Model\Seller</a></code><p><p>Model of shop seller</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Channel.Channel.html">\Dotpay\Channel\Channel</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setTitle"></a>
+                        <div class="element clickable method public  method_setTitle" data-toggle="collapse" data-target=".method_setTitle .collapse">
+                            <h2>Set a title which can be displayed on the channel list.</h2>
+                            <pre>setTitle(string $title) : \Dotpay\Channel\Channel</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$title</h4>
+                                                <code>string</code><p><p>Title which can be displayed on the channel list</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/Dotpay.Channel.Channel.html">\Dotpay\Channel\Channel</a></code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                    
+                                            <h3><i class="icon-custom icon-constant"></i> Constants</h3>
+                                                    <a id="constant_CASH_GROUP"> </a>
+                            <div class="element clickable constant  constant_CASH_GROUP" data-toggle="collapse" data-target=".constant_CASH_GROUP .collapse">
+                                <h2>Name of cash channels group.</h2>
+                                <pre>CASH_GROUP</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TRANSFER_GROUP"> </a>
+                            <div class="element clickable constant  constant_TRANSFER_GROUP" data-toggle="collapse" data-target=".constant_TRANSFER_GROUP .collapse">
+                                <h2>Name of transfer channels group.</h2>
+                                <pre>TRANSFER_GROUP</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                            
+                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property_code"> </a>
+                            <div class="element clickable property  protected property_code" data-toggle="collapse" data-target=".property_code .collapse">
+                                <h2>Code number of payment channel in Dotpay system</h2>
+                                <pre>code : integer</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Code number of payment channel in Dotpay system</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>integer</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_reqistry"> </a>
+                            <div class="element clickable property  protected property_reqistry" data-toggle="collapse" data-target=".property_reqistry .collapse">
+                                <h2>Array of values which can be set for saving some additional informations</h2>
+                                <pre>reqistry : array</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Array of values which can be set for saving some additional informations</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_config"> </a>
+                            <div class="element clickable property  protected property_config" data-toggle="collapse" data-target=".property_config .collapse">
+                                <h2>Dotpay configuration object</h2>
+                                <pre>config : \Dotpay\Model\Configuration</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Dotpay configuration object</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/Dotpay.Model.Configuration.html">\Dotpay\Model\Configuration</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_channelInfo"> </a>
+                            <div class="element clickable property  protected property_channelInfo" data-toggle="collapse" data-target=".property_channelInfo .collapse">
+                                <h2>A channel info struct, downloaded from Dotpay server</h2>
+                                <pre>channelInfo : \Dotpay\Resource\Channel\ChannelInfo</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>A channel info struct, downloaded from Dotpay server</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>\Dotpay\Resource\Channel\ChannelInfo</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_agreements"> </a>
+                            <div class="element clickable property  protected property_agreements" data-toggle="collapse" data-target=".property_agreements .collapse">
+                                <h2>An agreement struct, downloaded from Dotpay server</h2>
+                                <pre>agreements : array</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>An agreement struct, downloaded from Dotpay server</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_available"> </a>
+                            <div class="element clickable property  protected property_available" data-toggle="collapse" data-target=".property_available .collapse">
+                                <h2>Flag of an availability of the channel</h2>
+                                <pre>available : boolean</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Flag of an availability of the channel</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>boolean</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_transaction"> </a>
+                            <div class="element clickable property  protected property_transaction" data-toggle="collapse" data-target=".property_transaction .collapse">
+                                <h2>Object with transaction details</h2>
+                                <pre>transaction : \Dotpay\Model\Transaction</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Object with transaction details</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/Dotpay.Model.Transaction.html">\Dotpay\Model\Transaction</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_paymentResource"> </a>
+                            <div class="element clickable property  protected property_paymentResource" data-toggle="collapse" data-target=".property_paymentResource .collapse">
+                                <h2>Payment resource which can be used for Payment API</h2>
+                                <pre>paymentResource : \Dotpay\Resource\Payment</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Payment resource which can be used for Payment API</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/Dotpay.Resource.Payment.html">\Dotpay\Resource\Payment</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_sellerResource"> </a>
+                            <div class="element clickable property  protected property_sellerResource" data-toggle="collapse" data-target=".property_sellerResource .collapse">
+                                <h2>Seller resource which can be used for Payment API</h2>
+                                <pre>sellerResource : \Dotpay\Resource\Seller</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Seller resource which can be used for Payment API</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/Dotpay.Resource.Seller.html">\Dotpay\Resource\Seller</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_title"> </a>
+                            <div class="element clickable property  protected property_title" data-toggle="collapse" data-target=".property_title .collapse">
+                                <h2>Title which can be displayed on the channel list</h2>
+                                <pre>title : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Title which can be displayed on the channel list</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_seller"> </a>
+                            <div class="element clickable property  protected property_seller" data-toggle="collapse" data-target=".property_seller .collapse">
+                                <h2>Object of used seller</h2>
+                                <pre>seller : \Dotpay\Channel\Seller</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Object of used seller</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>\Dotpay\Channel\Seller</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\Dotpay\Channel\Channel"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/Dotpay.Channel.html">Channel</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/Dotpay.Channel.Channel.html">Channel</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Fri, 29 Sep 2017 20:39:04 +0000.<br/>
+    </footer>
+    </body>
+</html>

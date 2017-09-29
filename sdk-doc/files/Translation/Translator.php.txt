@@ -1,0 +1,39 @@
+<?php
+
+namespace Dotpay\Translation;
+
+class Translator {
+    private $languages;
+    private $defaultLang;
+    
+    public function addLanguage($name, Language $language) {
+        $this->languages[strtolower($name)] = $language;
+    }
+    
+    public function setDefault($name) {
+        $this->defaultLang = $name;
+    }
+    
+    public function _($original) {
+        $arguments = func_get_args();
+        unset($arguments[0]);
+        return $this->getTranslation($this->defaultLang, $original, $arguments);
+    }
+    
+    public function translate($lang, $original) {
+        $arguments = func_get_args();
+        unset($arguments[0]);
+        unset($arguments[1]);
+        return $this->getTranslation($lang, $original, $arguments);
+    }
+    
+    private function getTranslation($lang, $original, $arguments) {
+        $result = $this->languages[strtolower($name)][$original];
+        if(count($arguments)) {
+            foreach ($arguments as $argument) {
+                $result = str_replace('%%', $argument, $result);
+            }
+        }
+        return $result;
+    }
+}

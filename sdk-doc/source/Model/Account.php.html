@@ -1,0 +1,141 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Model;
+
+use Dotpay\Validator\Id;
+use Dotpay\Validator\Mcc;
+use Dotpay\Validator\Url;
+use Dotpay\Validator\Pin;
+use Dotpay\Exception\BadParameter\IdException;
+use Dotpay\Exception\BadParameter\MccException;
+use Dotpay\Exception\BadParameter\UrlException;
+use Dotpay\Exception\BadParameter\PinException;
+
+class Account {
+    private $id;
+    private $status;
+    private $name;
+    private $mcc;
+    private $urlc;
+    private $blockExternalUrlc;
+    private $pin;
+    
+    public function __construct($id) {
+        $this-&gt;setId($id);
+    }
+    
+    public function getId() {
+        return $this-&gt;id;
+    }
+
+    public function getStatus() {
+        return $this-&gt;status;
+    }
+
+    public function getName() {
+        return $this-&gt;name;
+    }
+
+    public function getMcc() {
+        return $this-&gt;mcc;
+    }
+
+    public function getUrlc() {
+        return $this-&gt;urlc;
+    }
+
+    public function getBlockExternalUrlc() {
+        return $this-&gt;blockExternalUrlc;
+    }
+
+    public function getPin() {
+        return $this-&gt;pin;
+    }
+
+    public function setId($id) {
+        if(!Id::validate($id))
+            throw new IdException($id);
+        $this-&gt;id = $id;
+        return $this;
+    }
+
+    public function setStatus($status) {
+        $this-&gt;status = $status;
+        return $this;
+    }
+
+    public function setName($name) {
+        $this-&gt;name = $name;
+        return $this;
+    }
+
+    public function setMcc($mcc) {
+        if(!empty($mcc) &amp;&amp; !Mcc::validate($mcc))
+            throw new MccException($mcc);
+        $this-&gt;mcc = $mcc;
+        return $this;
+    }
+
+    public function setUrlc($urlc) {
+        if(!empty($urlc) &amp;&amp; !Url::validate($urlc))
+            throw new UrlException($urlc);
+        $this-&gt;urlc = $urlc;
+        return $this;
+    }
+
+    public function setBlockExternalUrlc($blockExternalUrlc) {
+        $this-&gt;blockExternalUrlc = ($blockExternalUrlc == 'false');
+        return $this;
+    }
+
+    public function setPin($pin) {
+        if(!Pin::validate($pin))
+            throw new PinException($pin);
+        $this-&gt;pin = $pin;
+        return $this;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

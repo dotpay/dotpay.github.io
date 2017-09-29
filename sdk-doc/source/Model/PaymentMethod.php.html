@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Model;
+
+use Dotpay\Validator\ChannelId;
+use Dotpay\Exception\BadParameter\ChannelIdException;
+
+class PaymentMethod {
+    private $channelId;
+    private $details;
+    private $detailsType;
+    
+    const BANK_ACCOUNT = 1;
+    const CREDIT_CARD = 2;
+    
+    public function __construct($channelId, $details = null, $detailsType = null) {
+        $this-&gt;setChannelId($channelId);
+        $this-&gt;setDetails($details);
+        $this-&gt;setDetailsType($detailsType);
+    }
+    
+    public function getChannelId() {
+        return $this-&gt;channelId;
+    }
+
+    public function getDetails() {
+        return $this-&gt;details;
+    }
+    
+    public function getDetailsType() {
+        return $this-&gt;detailsType;
+    }
+
+    public function setChannelId($channelId) {
+        if(!ChannelId::validate($channelId))
+            throw new ChannelIdException($channelId);
+        $this-&gt;channelId = $channelId;
+        return $this;
+    }
+
+    public function setDetails($details) {
+        $this-&gt;details = $details;
+        return $this;
+    }
+    
+    public function setDetailsType($type) {
+        $this-&gt;detailsType = $type;
+        return $this;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

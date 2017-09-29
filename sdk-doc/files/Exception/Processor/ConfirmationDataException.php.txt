@@ -1,0 +1,7 @@
+<?php
+
+namespace Dotpay\Exception\Processor;
+
+class ConfirmationDataException extends \RuntimeException {
+    
+}

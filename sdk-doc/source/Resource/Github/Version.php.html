@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Resource\Github;
+
+use Dotpay\Validator\Url;
+use Dotpay\Exception\BadParameter\UrlException;
+
+class Version {
+    private $number;
+    private $url;
+    private $zip;
+    private $created;
+    private $published;
+
+    public function __construct($number, $zip) {
+        $this-&gt;setNumber($number);
+        $this-&gt;setZip($zip);
+    }
+    
+    public function getNumber() {
+        return $this-&gt;number;
+    }
+
+    public function getUrl() {
+        return $this-&gt;url;
+    }
+
+    public function getZip() {
+        return $this-&gt;zip;
+    }
+
+    public function getCreated() {
+        return $this-&gt;created;
+    }
+
+    public function getPublished() {
+        return $this-&gt;published;
+    }
+
+    public function setNumber($number) {
+        $this-&gt;number = str_replace('v', '', $number);
+        return $this;
+    }
+
+    public function setUrl($url) {
+        if(!Url::validate($url))
+            throw new UrlException($url);
+        $this-&gt;url = $url;
+        return $this;
+    }
+
+    public function setZip($zip) {
+        if(!Url::validate($zip))
+            throw new UrlException($zip);
+        $this-&gt;zip = $zip;
+        return $this;
+    }
+
+    public function setCreated(\DateTime $created) {
+        $this-&gt;created = $created;
+        return $this;
+    }
+
+    public function setPublished(\DateTime $published) {
+        $this-&gt;published = $published;
+        return $this;
+    }
+
+
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

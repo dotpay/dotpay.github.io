@@ -1,0 +1,171 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Loader;
+
+use \ReflectionClass;
+use Dotpay\Loader\Xml\Param;
+use Dotpay\Loader\Xml\Object;
+use Dotpay\Exception\Loader\ObjectNotFoundException;
+use Dotpay\Exception\Loader\ParamNotFoundException;
+use Dotpay\Exception\Loader\EmptyObjectNameException;
+
+class Loader {
+    private static $instance = null;
+    private $objects = [];
+    private $aliases = [];
+    
+    public static function load(Parser $current = null, Parser $default = null) {
+        if(empty(self::$instance))
+            self::$instance = new Loader($current, $default);
+        else if($current !== null || $default !== null)
+            self::$instance-&gt;initialize($current, $default);
+        return self::$instance;
+    }
+    
+    private function __construct(Parser $current = null, Parser $default = null) {
+        $this-&gt;initialize($current, $default);
+    }
+    
+    private function initialize(Parser $current = null, Parser $default = null) {
+        if($default !== null) {
+            $this-&gt;updateObjects($default-&gt;getObjects());
+        }
+        if($current !== null) {
+            $this-&gt;updateObjects($current-&gt;getObjects());
+        }
+    }
+    
+    public function get($name, array $params = []) {
+        $xmlObject = $this-&gt;findObject($name);
+        $arguments = [];
+        if(empty($params)) {
+            foreach($xmlObject-&gt;getParams() as $param) {
+                if(!empty($param-&gt;getClassName()))
+                    $arguments[] = $this-&gt;get($param-&gt;getClassName());
+                else
+                    $arguments[] = $param-&gt;getStoredValue();
+            }
+        } else {
+            $arguments = $params;
+        }
+        return $this-&gt;getObjectInstance($xmlObject, $arguments);
+    }
+    
+    public function set($className, $object, $alias = null) {
+        $newObject = new Object($className, [], $alias);
+        $newObject-&gt;setStoredInstance([], $object);
+        $this-&gt;objects[$className] = $newObject;
+        if($alias !== null)
+            $this-&gt;aliases[$alias] = $newObject;
+        return $newObject;
+    }
+    
+    public function object($className, array $params = [], $alias = null) {
+        $normalizedParams = [];
+        foreach($params as $key =&gt; $value) {
+            $paramName = is_string($key)?$key:null;
+            $objParam = new Param(null, $paramName, null);
+            $objParam-&gt;setStoredValue($value);
+            $normalizedParams[] = $objParam;
+        }
+        $newObject = new Object($className, $normalizedParams, $alias);
+        $this-&gt;objects[$className] = $newObject;
+        if($alias !== null)
+            $this-&gt;aliases[$alias] = $newObject;
+        return $newObject;
+    }
+    
+    public function parameter($name, $value) {
+        if(!strpos($name, ':'))
+            throw new ParamNotFoundException($name);
+        list($className, $paramName) = explode(':', $name);
+        $object = $this-&gt;findObject($className);
+        return $object-&gt;setParamVal($paramName, $value);
+    }
+    
+    private function findObject($name) {
+        if($name === null)
+            throw new EmptyObjectNameException();
+        if(isset($this-&gt;aliases[$name])) {
+            return $this-&gt;aliases[$name];
+        } else if(isset($this-&gt;objects[$name])) {
+            return $this-&gt;objects[$name];
+        } else throw new ObjectNotFoundException($name);
+    }
+    
+    private function getObjectInstance(Object $object, array $params = []) {
+        if(empty($object-&gt;getStoredInstance($params))) {
+            $reflection = new ReflectionClass($object-&gt;getClass());
+            $instance = $reflection-&gt;newInstanceArgs($params);
+            $object-&gt;setStoredInstance($params, $instance);
+        }
+        return $object-&gt;getStoredInstance($params);
+    }
+    
+    private function updateObjects(array $objects) {
+        foreach($objects as $object) {
+            //removing alias where object is overwritten
+            try {
+                $oldObject = $this-&gt;findObject($object-&gt;getClass());
+                if($this-&gt;findObject($oldObject-&gt;getAlias())) {
+                    unset($this-&gt;aliases[$oldObject-&gt;getAlias()]);
+                }
+            } catch (\InvalidArgumentException $ex) {}
+            //removing object where alias is overwritten
+            try {
+                $oldObject = $this-&gt;findObject($object-&gt;getAlias());
+                if($this-&gt;findObject($oldObject-&gt;getClass())) {
+                    unset($this-&gt;objects[$oldObject-&gt;getClass()]);
+                }
+            } catch (\InvalidArgumentException $ex) {}
+            $this-&gt;objects[$object-&gt;getClass()] = $object;
+            if(!empty($object-&gt;getAlias()))
+                $this-&gt;aliases[$object-&gt;getAlias()] = $object;
+        }
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

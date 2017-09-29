@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Resource;
+
+use Dotpay\Model\Configuration;
+use Dotpay\Tool\Curl;
+use Dotpay\Exception\Resource\ServerException;
+use Dotpay\Exception\Resource\ForbiddenException;
+use Dotpay\Exception\Resource\UnauthorizedException;
+use Dotpay\Exception\Resource\NotFoundException;
+use Dotpay\Exception\Resource\UnavailableException;
+use Dotpay\Exception\Resource\TimeoutException;
+
+abstract class Resource {
+    protected $config;
+    protected $curl;
+    
+    public function __construct(Configuration $config, Curl $curl) {
+        $this-&gt;config = $config;
+        $this-&gt;curl = $curl;
+        $this-&gt;curl-&gt;addOption(CURLOPT_SSL_VERIFYPEER, false)
+                   -&gt;addOption(CURLOPT_HEADER, false)
+                   -&gt;addOption(CURLOPT_RETURNTRANSFER, true);
+    }
+    
+    public function getCurl() {
+        return $this-&gt;curl;
+    }
+    
+    protected function getContent($url) {
+        $this-&gt;curl-&gt;addOption(CURLOPT_URL, $url);
+        $headers = [
+            'Accept' =&gt; 'application/json; indent=4',
+            'Content-Type' =&gt; 'application/json'
+        ];
+        $this-&gt;curl-&gt;addOption(CURLOPT_HTTPHEADER, $headers);
+        $result = $this-&gt;curl-&gt;exec();
+        $info = $this-&gt;curl-&gt;getInfo();
+        $httpCode = (int)$info['http_code'];
+        if($httpCode &gt;= 200 &amp;&amp; $httpCode &lt; 300 || $httpCode == 400)
+            return json_decode($result, true);
+        switch($httpCode) {
+            case 401:
+                throw new UnauthorizedException($url);
+                break;
+            case 403:
+                throw new ForbiddenException($url);
+                break;
+            case 404:
+                throw new NotFoundException($url);
+                break;
+            case 503:
+                throw new UnavailableException($url);
+                break;
+            case 504:
+                throw new TimeoutException($url);
+                break;
+            default:
+                throw new ServerException($this-&gt;curl-&gt;error(), $httpCode);
+        }
+    }
+    
+    protected function postData($url, $body) {
+        $this-&gt;curl-&gt;addOption(CURLOPT_POST, 1)
+                   -&gt;addOption(CURLOPT_POSTFIELDS, $body)
+                   -&gt;addOption(CURLOPT_USERPWD, $this-&gt;config-&gt;getUsername().':'.$this-&gt;config-&gt;getPassword());
+        return $this-&gt;getContent($url);
+    }
+}
+
+?&gt;</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

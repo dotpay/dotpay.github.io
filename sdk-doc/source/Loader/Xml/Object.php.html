@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Loader\Xml;
+
+use Dotpay\Exception\Loader\EmptyObjectNameException;
+
+class Object {
+    private $className;
+    private $parameters = [];
+    private $namedParameters = [];
+    private $alias;
+    private $storedInstance = [];
+    
+    public function __construct($className, array $parameters = [], $alias = null) {
+        if(empty($className))
+            throw new EmptyObjectNameException();
+        $this-&gt;className = (string)$className;
+        foreach ($parameters as $param)
+            if($param instanceof Param) {
+                $this-&gt;parameters[] = $param;
+                if(!empty($param-&gt;getName()))
+                    $this-&gt;namedParameters[$param-&gt;getName()] = $param;
+            }
+        $this-&gt;alias = (string)$alias;
+    }
+    
+    public function getClass() {
+        return $this-&gt;className;
+    }
+    
+    public function getParams() {
+        return $this-&gt;parameters;
+    }
+    
+    public function getParamVal($name) {
+        foreach($this-&gt;namedParameters as $key =&gt; $value)
+            if($name === $key)
+                return $value-&gt;getStoredValue();
+        return null;
+    }
+    
+    public function setParamVal($name, $value) {
+        foreach($this-&gt;namedParameters as $key =&gt; $oldValue)
+            if($name === $key) {
+                $this-&gt;namedParameters[$name]-&gt;setStoredValue($value);
+                break;
+            }
+        return $this;
+    }
+    
+    public function getAlias() {
+        return $this-&gt;alias;
+    }
+    
+    public function getStoredInstance($params) {
+        $paramId = sha1(serialize($params));
+        return isset($this-&gt;storedInstance[$paramId])?$this-&gt;storedInstance[$paramId]:null;
+    }
+    
+    public function setStoredInstance($params, $instance) {
+        $paramId = sha1(serialize($params));
+        $this-&gt;storedInstance[$paramId] = $instance;
+        return $this;
+    }
+    
+    public function getXml() {
+        $element = '&lt;object';
+        if(!empty($this-&gt;getClass()))
+            $element .= ' class=\''.$this-&gt;getClass().'\'';
+        if(!empty($this-&gt;getAlias()))
+            $element .= ' alias=\''.$this-&gt;getAlias().'\'';
+        $element .= '&gt;';
+        foreach ($this-&gt;getParams() as $param)
+            $element .= $param-&gt;getXml();
+        $element .= '&lt;/object&gt;';
+        return $element;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

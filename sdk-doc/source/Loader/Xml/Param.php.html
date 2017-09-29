@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Loader\Xml;
+
+class Param {
+    private $className;
+    private $name;
+    private $value;
+    private $storedValue;
+    
+    public function __construct($className = '', $name = '', $value = '') {
+        $this-&gt;className = (string)$className;
+        $this-&gt;name = (string)$name;
+        $this-&gt;value = (string)$value;
+    }
+    
+    public function getClassName() {
+        return $this-&gt;className;
+    }
+    
+    public function getName() {
+        return $this-&gt;name;
+    }
+    
+    public function getValue() {
+        return $this-&gt;value;
+    }
+    
+    public function getStoredValue() {
+        if(!empty($this-&gt;storedValue))
+            return $this-&gt;storedValue;
+        else if(!empty($this-&gt;getValue()))
+            return $this-&gt;getValue();
+        else
+            return null;
+    }
+    
+    public function setStoredValue($value) {
+        $this-&gt;storedValue = $value;
+        return $this;
+    }
+    
+    public function getXml() {
+        $element = '&lt;param';
+        if(!empty($this-&gt;getClassName()))
+            $element .= ' class=\''.$this-&gt;getClassName().'\'';
+        if(!empty($this-&gt;getName()))
+            $element .= ' name=\''.$this-&gt;getName().'\'';
+        if(!empty($this-&gt;getValue()))
+            $element .= ' value=\''.$this-&gt;getValue().'\'';
+        $element .= ' /&gt;';
+        return $element;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

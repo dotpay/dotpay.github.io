@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Model;
+
+use Dotpay\Validator\Url;
+use Dotpay\Exception\BadParameter\UrlException;
+
+class CardBrand {
+    private $name;
+    private $codeName;
+    private $image;
+    
+    public function getName() {
+        return $this-&gt;name;
+    }
+    
+    public function getCodeName() {
+        return $this-&gt;codeName;
+    }
+
+    public function getImage() {
+        return $this-&gt;image;
+    }
+
+    public function setName($name) {
+        $this-&gt;name = $name;
+        return $this;
+    }
+    
+    public function setCodeName($codeName) {
+        $this-&gt;codeName = $codeName;
+        return $this;
+    }
+
+    public function setImage($image) {
+        if(!Url::validate($image))
+            throw new UrlException($image);
+        $this-&gt;image = $image;
+        return $this;
+    }
+
+    public function __construct($name, $image, $codeName = null) {
+        $this-&gt;setName($name);
+        $this-&gt;setImage($image);
+        $this-&gt;setCodeName($codeName);
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

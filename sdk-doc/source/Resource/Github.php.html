@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Resource;
+
+use Dotpay\Model\Configuration;
+use Dotpay\Resource\Github\Version;
+use Dotpay\Exception\Resource\Github\VersionNotFoundException;
+use Dotpay\Exception\BadReturn\TypeNotCompatibleException;
+use Dotpay\Exception\Resource\NotFoundException;
+use \DateTime;
+
+class Github extends Resource {
+    const githubUrl = 'https://api.github.com/';
+    
+    public function getSdkVersion() {
+        try {
+            $content = $this-&gt;getGatewayVersion('dotpay', 'phpSDK');
+            $version = new Version($content['tag_name'], $content['assets'][0]['browser_download_url']);
+            $version-&gt;setUrl($content['url'])
+                    -&gt;setCreated(new DateTime($content['created_at']))
+                    -&gt;setPublished(new DateTime($content['published_at']));
+            return $version;
+        } catch (NotFoundException $ex) {
+            throw new VersionNotFoundException('phpSDK');
+        }
+    }
+    
+    public function isSdkNewest() {
+        $config = $this-&gt;config;
+        $githubVersion = $this-&gt;getSdkVersion()-&gt;getNumber();
+        $installedVersion = $config::SDK_VERSION;
+        return version_compare($githubVersion, $installedVersion, '&lt;=');
+    }
+    
+    public function getGatewayVersion($username, $project) {
+        $content = $this-&gt;getContent(self::githubUrl.'/repos/'.$username.'/'.$project.'/releases/latest');
+        if(!is_array($content))
+            throw new TypeNotCompatibleException(gettype($content));
+        return $content;
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

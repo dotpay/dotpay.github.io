@@ -1,0 +1,287 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Model;
+
+use \DateTime;
+use Dotpay\Model\Configuration;
+use Dotpay\Validator\OpNumber;
+use Dotpay\Validator\Url;
+use Dotpay\Validator\Id;
+use Dotpay\Validator\Amount;
+use Dotpay\Exception\BadParameter\UrlException;
+use Dotpay\Exception\BadParameter\OperationNumberException;
+use Dotpay\Exception\BadParameter\IdException;
+use Dotpay\Exception\BadParameter\AmountException;
+use Dotpay\Exception\BadParameter\CurrencyException;
+use Dotpay\Exception\BadParameter\OperationTypeException;
+use Dotpay\Exception\BadParameter\OperationStatusException;
+
+class Operation {
+    private $url;
+    private $number;
+    private $dateTime;
+    private $type;
+    private $status;
+    private $amount;
+    private $currency;
+    private $originalCurrency;
+    private $originalAmount;
+    private $withdrawalAmount;
+    private $commissionAmount;
+    private $accountId;
+    private $relatedOperation;
+    private $description;
+    private $control;
+    private $payer;
+    private $paymentMethod;
+    
+    const STATUS_NEW = 'new';
+    const STATUS_PROCESSING = 'processing';
+    const STATUS_COMPLETE = 'completed';
+    const STATUS_REJECTED = 'rejected';
+    
+    const TYPE_PAYMENT = 'payment';
+    const TYPE_REFUND = 'refund';
+    const TYPE_PAYOUT = 'payout';
+    
+    public static $types = [
+        'payment',
+        'refund'
+    ];
+    
+    public static $statuses = [
+        'new',
+        'processing',
+        'completed',
+        'rejected',
+        'processing_realization_waiting',
+        'processing_realization'
+    ];
+    
+    public function __construct($type, $number) {
+        $this-&gt;setType($type);
+        $this-&gt;setNumber($number);
+    }
+    
+    public function getUrl() {
+        return $this-&gt;url;
+    }
+
+    public function getNumber() {
+        return $this-&gt;number;
+    }
+
+    public function getDateTime() {
+        return $this-&gt;dateTime;
+    }
+
+    public function getType() {
+        return $this-&gt;type;
+    }
+
+    public function getStatus() {
+        return $this-&gt;status;
+    }
+
+    public function getAmount() {
+        return $this-&gt;amount;
+    }
+
+    public function getCurrency() {
+        return $this-&gt;currency;
+    }
+
+    public function getOriginalCurrency() {
+        return $this-&gt;originalCurrency;
+    }
+
+    public function getOriginalAmount() {
+        return $this-&gt;originalAmount;
+    }
+    
+    public function getWithdrawalAmount() {
+        return $this-&gt;withdrawalAmount;
+    }
+    public function getCommissionAmount() {
+        return $this-&gt;commissionAmount;
+    }
+
+    public function getAccountId() {
+        return $this-&gt;accountId;
+    }
+
+    public function getRelatedOperation() {
+        return $this-&gt;relatedOperation;
+    }
+
+    public function getDescription() {
+        return $this-&gt;description;
+    }
+
+    public function getControl() {
+        return $this-&gt;control;
+    }
+
+    public function getPayer() {
+        return $this-&gt;payer;
+    }
+
+    public function getPaymentMethod() {
+        return $this-&gt;paymentMethod;
+    }
+
+    public function setUrl($url) {
+        if(!Url::validate($url))
+            throw new UrlException($url);
+        $this-&gt;url = $url;
+        return $this;
+    }
+
+    public function setNumber($number) {
+        if(!OpNumber::validate($number))
+            throw new OperationNumberException($number);
+        $this-&gt;number = $number;
+        return $this;
+    }
+
+    public function setDateTime(DateTime $dateTime) {
+        $this-&gt;dateTime = $dateTime;
+        return $this;
+    }
+
+    public function setType($type) {
+        if(array_search($type, self::$types) === false)
+            throw new OperationTypeException($type);
+        $this-&gt;type = $type;
+        return $this;
+    }
+
+    public function setStatus($status) {
+        if(array_search($status, self::$statuses) === false)
+            throw new OperationStatusException($status);
+        $this-&gt;status = $status;
+        return $this;
+    }
+
+    public function setAmount($amount) {
+        if(!Amount::validate($amount))
+            throw new AmountException($amount);
+        $this-&gt;amount = $amount;
+        return $this;
+    }
+
+    public function setCurrency($currency) {
+        $currency = strtoupper($currency);
+        if(!in_array($currency, Configuration::CURRENCIES))
+            throw new CurrencyException($currency);
+        $this-&gt;currency = $currency;
+        return $this;
+    }
+
+    public function setOriginalCurrency($originalCurrency) {
+        $originalCurrency = strtoupper($originalCurrency);
+        if(!in_array($originalCurrency, Configuration::CURRENCIES))
+            throw new CurrencyException($originalCurrency);
+        $this-&gt;originalCurrency = $originalCurrency;
+        return $this;
+    }
+
+    public function setOriginalAmount($originalAmount) {
+        if(!Amount::validate($originalAmount))
+            throw new AmountException($originalAmount);
+        $this-&gt;originalAmount = $originalAmount;
+        return $this;
+    }
+    
+    public function setWithdrawalAmount($withdrawalAmount) {
+        if(!Amount::validate($withdrawalAmount))
+            throw new AmountException($withdrawalAmount);
+        $this-&gt;withdrawalAmount = $withdrawalAmount;
+        return $this;
+    }
+
+    public function setCommissionAmount($commissionAmount) {
+        if(!Amount::validate($commissionAmount))
+            throw new AmountException($commissionAmount);
+        $this-&gt;commissionAmount = $commissionAmount;
+        return $this;
+    }
+
+    public function setAccountId($accountId) {
+        if(!Id::validate($accountId))
+            throw new IdException($accountId);
+        $this-&gt;accountId = $accountId;
+        return $this;
+    }
+
+    public function setRelatedOperation($relatedOperation) {
+        if(!OpNumber::validate($relatedOperation))
+            throw new OperationNumberException($relatedOperation);
+        $this-&gt;relatedOperation = $relatedOperation;
+        return $this;
+    }
+
+    public function setDescription($description) {
+        $this-&gt;description = $description;
+        return $this;
+    }
+
+    public function setControl($control) {
+        $this-&gt;control = $control;
+        return $this;
+    }
+
+    public function setPayer(Payer $payer) {
+        $this-&gt;payer = $payer;
+        return $this;
+    }
+
+    public function setPaymentMethod(PaymentMethod $paymentMethod) {
+        $this-&gt;paymentMethod = $paymentMethod;
+        return $this;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

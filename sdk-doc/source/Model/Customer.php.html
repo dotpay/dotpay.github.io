@@ -1,0 +1,184 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Model;
+
+use Dotpay\Validator\Name;
+use Dotpay\Validator\Street;
+use Dotpay\Validator\BNumber;
+use Dotpay\Validator\PostCode;
+use Dotpay\Validator\Phone;
+use Dotpay\Exception\BadParameter\LanguageException;
+use Dotpay\Exception\BadParameter\StreetException;
+use Dotpay\Exception\BadParameter\BNumberException;
+use Dotpay\Exception\BadParameter\PostCodeException;
+use Dotpay\Exception\BadParameter\CityException;
+use Dotpay\Exception\BadParameter\CountryException;
+use Dotpay\Exception\BadParameter\PhoneException;
+
+class Customer extends Payer {
+    private $id;
+    private $street;
+    private $buildingNumber;
+    private $postCode;
+    private $city;
+    private $country;
+    private $phone;
+    private $language;
+
+    const LANGUAGES = array(
+        'pl',
+        'en',
+        'de',
+        'it',
+        'fr',
+        'es',
+        'cz',
+        'ru',
+        'bg'
+    );
+    
+    public function getId() {
+        return $this-&gt;id;
+    }
+
+    public function getStreet() {
+        $this-&gt;extractBnFromStreet();
+        return $this-&gt;street;
+    }
+
+    public function getBuildingNumber() {
+        $this-&gt;extractBnFromStreet();
+        return $this-&gt;buildingNumber;
+    }
+
+    public function getPostCode() {
+        return $this-&gt;postCode;
+    }
+
+    public function getCity() {
+        return $this-&gt;city;
+    }
+
+    public function getCountry() {
+        return $this-&gt;country;
+    }
+
+    public function getPhone() {
+        return $this-&gt;phone;
+    }
+    
+    public function getLanguage() {
+        return $this-&gt;language;
+    }
+
+    public function setId($id) {
+        $this-&gt;id = $id;
+        return $this;
+    }
+
+    public function setStreet($street) {
+        if(!Street::validate($street))
+            throw new StreetException($street);
+        $this-&gt;street = $street;
+        return $this;
+    }
+
+    public function setBuildingNumber($buildingNumber) {
+        if(!BNumber::validate($buildingNumber))
+            throw new BNumberException($buildingNumber);
+        $this-&gt;buildingNumber = $buildingNumber;
+        return $this;
+    }
+
+    public function setPostCode($postCode) {
+        if(!PostCode::validate($postCode))
+            throw new PostCodeException($postCode);
+        $this-&gt;postCode = $postCode;
+        return $this;
+    }
+
+    public function setCity($city) {
+        if(!Name::validate($city))
+            throw new CityException($city);
+        $this-&gt;city = $city;
+        return $this;
+    }
+
+    public function setCountry($country) {
+        if(!Name::validate($country))
+            throw new CountryException($country);
+        $this-&gt;country = $country;
+        return $this;
+    }
+    
+    public function setPhone($phone) {
+        if(!Phone::validate($phone))
+            throw new PhoneException($phone);
+        $this-&gt;phone = $phone;
+        return $this;
+    }
+
+    public function setLanguage($language) {
+        if(!in_array($language, self::LANGUAGES))
+            throw new LanguageException($language);
+        $this-&gt;language = $language;
+        return $this;
+    }
+    
+    private function extractBnFromStreet() {
+        if(empty($this-&gt;buildingNumber) &amp;&amp; !empty($this-&gt;street)) {
+            preg_match(&quot;/\s[\w\d\/_\-]{0,30}$/&quot;, $this-&gt;street, $matches);
+            if(count($matches)&gt;0) {
+                $this-&gt;setBuildingNumber(trim($matches[0]));
+                $this-&gt;setStreet(str_replace($matches[0], '', $this-&gt;street));
+            }
+        }
+    }
+}
+
+?&gt;
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

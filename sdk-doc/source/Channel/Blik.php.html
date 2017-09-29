@@ -1,0 +1,139 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * @package Dotpay\Channel
+ */
+namespace Dotpay\Channel;
+
+use Dotpay\Html\Form\Text;
+use Dotpay\Model\Configuration;
+use Dotpay\Model\Transaction;
+use Dotpay\Resource\Payment as PaymentResource;
+use Dotpay\Validator\BlikCode;
+use Dotpay\Exception\BadParameter\BlikCodeException;
+
+/**
+ * Class provides a special functionality for Blik payments
+ */
+class Blik extends Channel
+{
+    /**
+     * @var int Blik code which can be used for making a payment
+     */
+    private $blikCode;
+    
+    /**
+     * Initializes a Blik channel
+     * @param Configuration $config Dotpay configuration object
+     * @param Transaction $transaction Object with transaction details
+     * @param PaymentResource $paymentResource Payment resource which can be used for Payment API
+     */
+    public function __construct(Configuration $config, Transaction $transaction, PaymentResource $paymentResource)
+    {
+        parent::__construct(Configuration::BLIK_CHANNEL, 'blik', $config, $transaction, $paymentResource);
+    }
+    
+    /**
+     * Checks if the channel is enabled to using
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return parent::isEnabled() &amp;&amp;
+               $this-&gt;config-&gt;getBlikVisible() &amp;&amp;
+               ($this-&gt;transaction-&gt;getPayment()-&gt;getOrder()-&gt;getCurrency() === 'PLN');
+    }
+    
+    /**
+     * Returns a Blik code which was set for a current payment
+     * @return int
+     */
+    public function getBlikCode()
+    {
+        return $this-&gt;blikCode;
+    }
+    
+    /**
+     * Sets a Blik code for a current payment
+     * @param int $blikCode Blik code
+     * @return Blik
+     * @throws BlikCodeException Thrown if the Blik code is incorrect
+     */
+    public function setBlikCode($blikCode)
+    {
+        if (!BlikCode::validate($blikCode)) {
+            throw new BlikCodeException($blikCode);
+        }
+        $this-&gt;blikCode = (int)$blikCode;
+        return $this;
+    }
+    
+    /**
+     * Returns an array of hidden fields for a form to redirecting to a Dotpay site with all needed information about a current payment
+     * @return array
+     */
+    public function getHiddenFields()
+    {
+        $data = parent::getHiddenFields();
+        $data['blik_code'] = $this-&gt;blikCode;
+        return $data;
+    }
+    
+    /**
+     * Returns an array of fields which can be displayed on a list of payment channels.
+     * They can contain aditional fields with information which are needed before continue a payment process.
+     * @return array
+     */
+    public function getViewFields()
+    {
+        $data = parent::getViewFields();
+        $field = new Text('blik_code');
+        $field-&gt;setClass('dotpay_blik_code');
+        $data[] = $field;
+        return $data;
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

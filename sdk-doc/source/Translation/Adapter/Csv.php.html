@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Translation\Adapter;
+
+use Dotpay\Translation\Adapter;
+use Dotpay\Exception\FileNotFoundException;
+
+class Csv extends Adapter {
+    const ROW_SIZE = 4096;
+    
+    private $name;
+    private $delimiter;
+    private $file;
+    private $key;
+    
+    public function __construct($fileName, $delimiter=',') {
+        $this-&gt;name = $fileName;
+        $this-&gt;delimiter = $delimiter;
+        $this-&gt;openFile();
+    }
+    
+    public function rewind() {
+        $this-&gt;key = 0;
+        if(!$this-&gt;file) {
+            $this-&gt;openFile($this-&gt;name, $this-&gt;delimiter);
+        }
+        rewind($this-&gt;file);
+    }
+    
+    public function current() {
+        $current = fgetcsv($this-&gt;file, self::ROW_SIZE, $this-&gt;delimiter);
+        ++$this-&gt;key;
+        return $current;
+    }
+    
+    public function key() {
+        return $this-&gt;key;
+    }
+    
+    public function next() {
+        return !feof($this-&gt;file);
+    }
+    
+    public function valid() {
+        if (!$this-&gt;next()) {
+            fclose($this-&gt;file);
+            return false;
+        }
+        return true;
+    }
+    
+    private function openFile($fileName, $delimiter=',') {
+        if(!file_exists($this-&gt;name))
+            throw new FileNotFoundException($this-&gt;name);
+        $this-&gt;file = fopen($this-&gt;name, 'r');
+        
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

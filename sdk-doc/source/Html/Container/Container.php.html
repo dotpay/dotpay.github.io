@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Html\Container;
+
+use Dotpay\Html\Element;
+use Dotpay\Html\Node;
+use Dotpay\Html\PlainText;
+
+abstract class Container extends Element {
+    private $children = [];
+    
+    public function __construct($type, $children = []) {
+        parent::__construct($type);
+        if($children instanceof Node)
+            $children = [$children];
+        else if($children === null ||
+                is_scalar($children) ||
+                is_callable([$children, '__toString'])) {
+            $children = [new PlainText($children)];
+        }
+        $this-&gt;setChildren($children);
+    }
+    
+    public function getChildren() {
+        return $this-&gt;children;
+    }
+    
+    public function addChild(Node $child) {
+        $this-&gt;children[] = $child;
+    }
+    
+    public function setChildren(array $children) {
+        $this-&gt;children = [];
+        foreach ($children as $child) {
+            if($child instanceof Node)
+                $this-&gt;addChild($child);
+        }
+    }
+    
+    public function removeChild(Node $child) {
+        foreach ($this-&gt;getChildren() as $index =&gt; $oneChild) {
+            if($oneChild === $child) {
+                array_splice($this-&gt;children, $index, 1);
+                break;
+            }
+        }
+        return $this;
+    }
+    
+    public function __toString() {
+        $text = '&lt;'.$this-&gt;getType().$this-&gt;getAttributeList().'&gt;';
+        foreach($this-&gt;getChildren() as $child) {
+            $text .= (string)$child;
+        }
+        $text .= '&lt;/'.$this-&gt;getType().'&gt;';
+        return $text;
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

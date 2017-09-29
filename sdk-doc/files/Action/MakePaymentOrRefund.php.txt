@@ -1,0 +1,33 @@
+<?php
+/**
+ * @package Dotpay\Action
+ */
+namespace Dotpay\Action;
+
+use Dotpay\Model\Operation;
+
+/**
+ * Action which is executed during making payments and refunds.
+ */
+class MakePaymentOrRefund extends Action
+{
+    /**
+     * Returns an operation which is set as an argument for a callback.
+     * @return Operation
+     */
+    public function getOperation()
+    {
+        return $this->getOneArgument();
+    }
+
+    /**
+     * Sets an operation which can be passed to callback function.
+     * @param Operation $operation Operation object
+     * @return MakePaymentOrRefund
+     */
+    public function setOperation(Operation $operation)
+    {
+        return $this->setOneArgument($operation);
+    }
+}
+

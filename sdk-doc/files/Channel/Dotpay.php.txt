@@ -1,0 +1,91 @@
+<?php
+
+namespace Dotpay\Channel;
+
+use Dotpay\Model\Configuration;
+use Dotpay\Model\Transaction;
+use Dotpay\Resource\Payment as PaymentResource;
+use Dotpay\Html\Container\P;
+use Dotpay\Html\Container\Script;
+use Dotpay\Html\PlainText;
+
+/**
+ * Class provides a special functionality for Dotpay standard payments
+ */
+class Dotpay extends Channel {
+    /**
+     * Initializes a Dotpay standard channel
+     * @param Configuration $config Dotpay configuration object
+     * @param Transaction $transaction Object with transaction details
+     * @param PaymentResource $paymentResource Payment resource which can be used for Payment API
+     */
+    public function __construct(Configuration $config, Transaction $transaction, PaymentResource $paymentResource) {
+        parent::__construct(null, 'dotpay', $config, $transaction, $paymentResource);
+        $this->available = true;
+    }
+    
+    /**
+     * Checks if the channel is enabled to using
+     * @return bool
+     */
+    public function isEnabled() {
+        return parent::isEnabled() &&
+               $this->config->isWidgetEnabled(
+                    $this->transaction->getPayment()->getOrder()->getCurrency()
+               );
+    }
+    
+    public function setChannelId($id) {
+        $this->setChannelInfo($id);
+    }
+    
+    /**
+     * Returns an array of fields which can be displayed on a list of payment channels.
+     * They can contain aditional fields with information which are needed before continue a payment process.
+     * @return array
+     */
+    public function getViewFields() {
+        $data = parent::getViewFields();
+        if($this->config->getWidgetVisible() && $this->isVisible()) {
+            $config = $this->config;
+            $container = new P();
+            $container->setClass($config::WIDGET_CLASS_CONTAINER);
+            $data[] = $container;
+        }
+        return $data;
+    }
+    
+    /**
+     * Returns array of hidden fields for a form to redirecting to a Dotpay site with all needed information about a current payment
+     * @return array
+     */
+    public function getHiddenFields() {
+        $data = parent::getHiddenFields();
+        if(empty($this->getChannelId()) || !$this->config->getWidgetVisible()) {
+            $data['type'] = 0;
+            $data['ch_lock'] = 0;
+        } else {
+            $data['channel'] = $this->getChannelId();
+        }
+        return $data;
+    }
+    
+    public function getScript(array $disableChanels = []) {
+        $config = $this->config;
+        $script = [
+            'sellerAccountId' => $this->config->getId(),
+            'amount' => $this->transaction->getPayment()->getOrder()->getAmount(),
+            'currency' => $this->transaction->getPayment()->getOrder()->getCurrency(),
+            'lang' => $this->transaction->getPayment()->getCustomer()->getLanguage(),
+            'widgetFormContainerClass' => $config::WIDGET_CLASS_CONTAINER,
+            'offlineChannel' => 'mark',
+            'offlineChannelTooltip' => true,
+            'disabledChannels' => $disableChanels,
+            'host' => $this->config->getPaymentUrl()
+        ];
+        return new Script(new PlainText('var dotpayWidgetConfig = '.json_encode($script).';'));
+    }
+}
+
+?>
+

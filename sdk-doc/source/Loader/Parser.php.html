@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Loader;
+
+use Dotpay\Loader\Xml\Object;
+use Dotpay\Loader\Xml\Param;
+use Dotpay\Exception\Loader\XmlNotFoundException;
+use \SimpleXMLElement;
+
+class Parser {
+    private $xml;
+    private $objects = [];
+    
+    public function __construct($fileName) {
+        if(!file_exists($fileName))
+            throw new XmlNotFoundException($fileName);
+        $this-&gt;xml = new SimpleXMLElement(file_get_contents($fileName));
+    }
+    
+    public function getObjects() {
+        if(empty($this-&gt;objects))
+            $this-&gt;parse();
+        return $this-&gt;objects;
+    }
+    
+    private function parse() {
+        foreach($this-&gt;xml-&gt;object as $xmlObject) {
+            $params = [];
+            foreach ($xmlObject-&gt;param as $xmlParam)
+                $params[] = new Param($xmlParam['class'], $xmlParam['name'], $xmlParam['value']);
+            $this-&gt;objects[(string)$xmlObject['class']] = new Object($xmlObject['class'], $params, $xmlObject['alias']);
+        }
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

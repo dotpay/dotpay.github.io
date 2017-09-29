@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Model;
+
+use Dotpay\Validator\BankNumber;
+use Dotpay\Exception\BadParameter\BankNumberException;
+
+class BankAccount {
+    private $name;
+    private $number;
+    
+    public function __construct($name = null, $number = null) {
+        $this-&gt;setName($name);
+        $this-&gt;setNumber($number);
+    }
+    
+    public function getName() {
+        return $this-&gt;name;
+    }
+
+    public function getNumber() {
+        return $this-&gt;number;
+    }
+
+    public function setName($name) {
+        if(empty($name))
+            $name = null;
+        $this-&gt;name = $name;
+        return $this;
+    }
+
+    public function setNumber($number) {
+        if(preg_match('/^\d{26}$/', trim($number)) === 1)
+            $number = 'PL'.$number;
+        if(!empty($number) &amp;&amp; !BankNumber::validate($number))
+            throw new BankNumberException($number);
+        if(empty($number))
+            $number = null;
+        $this-&gt;number = $number;
+        return $this;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

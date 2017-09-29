@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Dotpay\Model;
+
+use Dotpay\Validator\Name;
+use Dotpay\Validator\Email;
+use Dotpay\Exception\BadParameter\FirstnameException;
+use Dotpay\Exception\BadParameter\LastnameException;
+use Dotpay\Exception\BadParameter\EmailException;
+
+class Payer {
+    private $firstName;
+    private $lastName;
+    private $email;
+    
+    public function __construct($email, $firstName, $lastName) {
+        $this-&gt;setEmail($email);
+        $this-&gt;setFirstName($firstName);
+        $this-&gt;setLastName($lastName);
+    }
+    
+    public function getFirstName() {
+        return $this-&gt;firstName;
+    }
+
+    public function getLastName() {
+        return $this-&gt;lastName;
+    }
+
+    public function getEmail() {
+        return $this-&gt;email;
+    }
+
+    public function setFirstName($firstName) {
+        if(!Name::validate($firstName))
+            throw new FirstnameException($firstName);
+        $this-&gt;firstName = $firstName;
+        return $this;
+    }
+
+    public function setLastName($lastName) {
+        if(!Name::validate($lastName))
+            throw new LastnameException($lastName);
+        $this-&gt;lastName = $lastName;
+        return $this;
+    }
+
+    public function setEmail($email) {
+        if(!Email::validate($email))
+            throw new EmailException($email);
+        $this-&gt;email = $email;
+        return $this;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>
